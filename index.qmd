@@ -1,15 +1,38 @@
 ---
+title: "Gap Term 2023"
 format:
   revealjs:
     incremental: false
-    css: ../styles.css
+    css: styles.css
+    include-in-header: 
+      text: |
+        <style>
+        .center-xy {
+          margin: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -ms-transform: translateY(-50%), translateX(-50%);
+          transform: translateY(-50%), translateX(-50%);
+        }
+        .center-x {
+          margin: 0;
+          position: absolute;
+          left: 50%;
+          -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+        }
+        </style>
 execute: 
   echo: true
+author: ニッタ ジョエル
+institute: <a href="https://joelnitta.com">https://joelnitta.com</a>
+footer: <a href="https://joelnitta.github.io/gap-term-2023">https://joelnitta.github.io/gap-term-2023</a>
 html:
   mathjax: true
 ---
 
-# RStudio入門、BLAST、データ入力
+# Day 1: RStudio入門、BLAST、データ入力
 
 2023-10-03
 
