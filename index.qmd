@@ -141,7 +141,7 @@ html:
 
 ## プロジェクトを作る
 
-- New Folderボタン（右下のパネル）をクリック→ `data`というフォルダーを作る
+- New Folderボタン（右下のパネル）をクリック→ `data_raw`というフォルダーを作る
 
 ---
 
@@ -149,7 +149,7 @@ html:
 
 ## プロジェクトを作る
 
-- Teamsで共有した以下のファイルをダウンロードして、`data`に置きましょう
+- Teamsで共有した以下のファイルをダウンロードして、`data_raw`に置きましょう
   - `Chiba-1-ZBJ.fasta`
   - `Chiba-1-trnL.fasta`
   - `4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx`
@@ -157,11 +157,11 @@ html:
 
 ---
 
-![](images/project-data-added.png)
+![](images/project-data_raw-added.png)
 
 ## プロジェクトを作る
 
-- `data`フォルダーを読み込み専用にしよう
+- `data_raw`フォルダーを読み込み専用にしよう
   - **解析用のデータは手でいじらないのが鉄則**
   - Rに読み込んだ上でRの中で操りましょう
 
@@ -297,7 +297,7 @@ install.packages(c("readxl", "janitor", "tidyverse"))
 library(readxl)
 
 blast_animals <- read_excel(
-  "data/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx")
+  "data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx")
 ```
 
 ## データの読み込み
@@ -333,7 +333,7 @@ library(readxl)
 library(janitor)
 
 blast_animals <- read_excel(
-  "data/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx")
+  "data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx")
 
 clean_names(blast_animals)
 ```
@@ -364,7 +364,7 @@ library(readxl)
 library(janitor)
 
 blast_animals <- read_excel(
-  "data/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx")
+  "data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx")
 
 blast_animals <- clean_names(blast_animals)
 ```
