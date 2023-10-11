@@ -159,6 +159,16 @@ html:
 
 ![](images/project-data-added.png)
 
+## プロジェクトを作る
+
+- `data`フォルダーを読み込み専用にしよう
+  - **解析用のデータは手でいじらないのが鉄則**
+  - Rに読み込んだ上でRの中で操りましょう
+
+---
+
+![](images/read-only.png)
+
 ## DNAバーコードとは？
 
 ::: {.columns}
@@ -192,13 +202,13 @@ html:
 
 - Targetが複数ある場合もあるし、何にも当たらない場合もある
 
-## `BLAST`を使ってみましょう
+## `BLAST`を使ってみよう
 
 - ムクドリ調査で得られた配列を**GenBank**（最も大きなオンラインDNAデータベース）に対して検索してみよう
 
   - GenBankとDDBJ（DNA Data Bank of Japan）に入っているデータは基本的に一緒。別のデータベースがあるのは、それぞれの地域のユーザーのため。
 
-## `BLAST`を使ってみましょう
+## `BLAST`を使ってみよう
 
 - <https://blast.ncbi.nlm.nih.gov/>に行って、「Nucleotide BLAST」をクリック
   - Nucleotide = DNA塩基配列
@@ -207,7 +217,7 @@ html:
 
 ![](images/blast-site.png)
 
-## `BLAST`を使ってみましょう
+## `BLAST`を使ってみよう
 
 - `Chiba-1-ZBJ.fasta`をRStudioで開いて、最初の二行をコピーして、検索パネルに貼り付ける
 
@@ -220,7 +230,7 @@ html:
 
 ![](images/blast-input.png)
 
-## `BLAST`を使ってみましょう
+## `BLAST`を使ってみよう
 
 - 結果には**複数の配列が返ってくる**
 
@@ -238,7 +248,7 @@ html:
 
 ![](images/blast-results-2.png)
 
-## `BLAST`を使ってみましょう
+## `BLAST`を使ってみよう
 
 クリックしたら、subjectとtargetのアラインメントが見える。
 
@@ -246,7 +256,7 @@ html:
 
 - あなたなら、このシーケンスを何と同定しますか？
 
-## `BLAST`を使ってみましょう
+## `BLAST`を使ってみよう
 
 もう一回、同じ作業をしてみよう。
 
@@ -256,7 +266,110 @@ html:
 
 - あなたなら、このシーケンスを何と同定しますか？
 
+## Rパッケージについて
+
+- Rパッケージとは、Rが出来ることを大幅に増やす「追加」のソフト
+  - 現在、**２万**近くのパッケージがある！
+
+- 今回は`xlsx`ファイルを読み込むためのパッケージ、そして他のデータ解析をやりやすくするパッケージをインストールする
+
+## Rパッケージのインストール
+
+Rパッケージのインストールを行うには、`install.packages()`を使う：
+
+```{r}
+#| label: install
+#| echo: true
+#| eval: false
+install.packages(c("readxl", "janitor", "tidyverse"))
+```
+
+一回インストールしたら、次回からはしなくて良いので、これはコードとして保存しない
+
 ## データの読み込み
+
+- 今回のデータは`.xlsx`なので、`readxl`パッケージの`read_excel()`関数を使う。
+
+- このコードを`barcode-analysis.R`として保存してください：
+
+```{r}
+#| label: load-animals
+library(readxl)
+
+blast_animals <- read_excel(
+  "data/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx")
+```
+
+## データの読み込み
+
+`blast_animals`を打つと、読み込まれたデータが表示される：
+
+```{r}
+#| label: show-animals
+#| eval: true
+
+blast_animals
+```
+
+## データを整える
+
+- 行の名前を確かめてください
+
+::: {.incremental}
+
+- 大文字と小文字、スペースやシャープが入っているでしょう？これはコードを打つ以上、邪魔になるので、**簡単な**行名に変えよう
+  - `janitor`パッケージの`clean_names()`関数を使う
+
+:::
+
+## データを整える
+
+以下のコードを試してください：
+
+```{r}
+#| label: clean-names-show
+#| eval: false
+library(readxl)
+library(janitor)
+
+blast_animals <- read_excel(
+  "data/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx")
+
+clean_names(blast_animals)
+```
+
+---
+
+```{r}
+#| label: clean-names-hide
+#| eval: true
+#| echo: false
+library(readxl)
+library(janitor)
+
+clean_names(blast_animals)
+```
+
+## データを整える
+
+行名がスッキリしたでしょう？
+
+でも、どうやってこのデータのバージョンの保存ができるのでしょうか？
+
+## データを整える
+
+```{r}
+#| label: clean-names-save
+library(readxl)
+library(janitor)
+
+blast_animals <- read_excel(
+  "data/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx")
+
+blast_animals <- clean_names(blast_animals)
+```
+
+とりあえずこれで良い。もっとスマートなやり方もあるけど、それは次回の楽しみにしよう。
 
 ## 宿題
 
