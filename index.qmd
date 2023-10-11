@@ -1,0 +1,243 @@
+---
+format:
+  revealjs:
+    incremental: false
+    css: ../styles.css
+execute: 
+  echo: true
+html:
+  mathjax: true
+---
+
+# RStudio入門、BLAST、データ入力
+
+2023-10-03
+
+## なぜコードを使うのか？
+
+- 解析を再現可能にするため
+
+## 再現性とは？
+
+- 他の人（将来の自分を含めて）があなたの解析を再度行って、同じ結果を得ることができること
+
+## なぜR?
+
+:::::: {.incremental}
+
+- タダ
+- 柔軟性
+- 広く生態学に使われている
+- コミュニティー
+
+::::::
+
+## RとRStudio 
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- Rとは「R Project for Statistical Computing」という組織が提供しているオープンソース（タダの）プログラミング言語
+:::
+
+::: {.column width="50%"}
+![](https://www.r-project.org/logo/Rlogo.svg)
+:::
+
+::::
+
+## RとRStudio
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- RStudioとはPosit社が提供しているIDE（Integrated Development Environment）
+  - 基本的な機能はタダ
+  - 会社向けの機能は有料
+  - Rのコードを書く・実行する最適なソフト
+:::
+
+::: {.column width="50%"}
+![](https://posit.co/wp-content/uploads/2022/10/thumbnail-3.jpg)
+:::
+
+::::
+
+## 資料
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- [R for Reproducible Scientific Analysis（日本語）](https://swcarpentry-ja.github.io/r-novice-gapminder/ja/)
+
+- R for Data Science
+  - 英語版はオンラインで無料 [https://r4ds.had.co.nz/](https://r4ds.had.co.nz/)
+  - 日本語版は[アマゾン](https://www.amazon.co.jp/R%E3%81%A7%E3%81%AF%E3%81%98%E3%82%81%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9-Hadley-Wickham/dp/487311814X)などから 
+:::
+
+::: {.column width="50%"}
+![](https://m.media-amazon.com/images/I/91WTLn1DrBL.jpg)
+:::
+
+::::
+
+## 解析の準備：プロジェクトを作る
+
+- File → New Project → New Directory → New Project
+
+- 名前と置く場所を選択する。名前は`mukudori-analysis`にしよう。
+
+- 場所は**自分が後で探しやすいところ**にしましょう（**デスクトップ**がおすすめ）
+
+---
+
+![](images/project-setup.png)
+
+## プロジェクトを作る
+
+- RStudioが再起動されて、新しいプロジェクトに入る
+
+- 右下の「Files」パネルに以下のファイルが入っていることを確認：
+  - `mukudori-analysis.Rproj`
+  - `.gitignore`（gitを使っている場合のみ）
+
+---
+
+![](images/new-project.png)
+
+## `.Rproj`ファイルについて
+
+- `mukudori-analysis.Rproj`はRStudioの設定を保存するためのファイルで、基本的には**手でイジる必要はない**
+
+- でも、このプロジェクトを開くためには便利
+  - 一旦RStudioを閉じて、`mukudori-analysis.Rproj`のアイコンをダブルクリックすると、またプロジェクトに入ることが出来る。
+
+---
+
+![](images/rproj-icon.png)
+
+## プロジェクトを作る
+
+- New Folderボタン（右下のパネル）をクリック→ `data`というフォルダーを作る
+
+---
+
+![](images/new-folder.png)
+
+## プロジェクトを作る
+
+- Teamsで共有した以下のファイルをダウンロードして、`data`に置きましょう
+  - `Chiba-1-ZBJ.fasta`
+  - `Chiba-1-trnL.fasta`
+  - `4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx`
+  - `4_全生物種リスト(BLAST結果10位まで).xlsx`
+
+---
+
+![](images/project-data-added.png)
+
+## DNAバーコードとは？
+
+::: {.columns}
+::: {.column}
+
+- DNAによって**種同定**を行う
+  - 今まで種の同定の仕様がなかった・非常に難しかったケース（食性解析）に便利
+:::
+::: {.column}
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRILebKXDqs9YG9XcUE52KFwYbe0aHljP_c5g&usqp=CAU)
+:::
+:::
+
+- **DNAの類似度を測るツールが必要** ➡︎ `BLAST`
+
+## `BLAST`とは？
+
+- Basic Local **Alignment** Search Tool
+
+- **Alignment** （アラインメント）：二つ以上のDNA塩基配列を並べたもの
+
+![](images/alignment.png)
+
+![](images/alignment_text.png)
+
+## `BLAST`の使い方
+
+- Subject（「主体」、手元にあるシーケンス）を**標準データベース**に対して検索し、Target（「対象」、当たったシーケンス）との類似度を測る
+
+- **結果は標準データベースによる（重要！）**
+
+- Targetが複数ある場合もあるし、何にも当たらない場合もある
+
+## `BLAST`を使ってみましょう
+
+- ムクドリ調査で得られた配列を**GenBank**（最も大きなオンラインDNAデータベース）に対して検索してみよう
+
+  - GenBankとDDBJ（DNA Data Bank of Japan）に入っているデータは基本的に一緒。別のデータベースがあるのは、それぞれの地域のユーザーのため。
+
+## `BLAST`を使ってみましょう
+
+- <https://blast.ncbi.nlm.nih.gov/>に行って、「Nucleotide BLAST」をクリック
+  - Nucleotide = DNA塩基配列
+
+---
+
+![](images/blast-site.png)
+
+## `BLAST`を使ってみましょう
+
+- `Chiba-1-ZBJ.fasta`をRStudioで開いて、最初の二行をコピーして、検索パネルに貼り付ける
+
+- `Program Selection`で、「Somewhat similar sequences (blastn)」を選択する（シーケンス業者が使ったと一緒、一般的な`BLAST`の種類）
+  - `BLAST`には複数の種類と様々な設定がある！今回はデフォルトを使うけど、これも**結果を影響する**ので、本当は設定を理解する必要がある
+
+- `BLAST`ボタンを押して、結果が出るまで待つ（大体１分以内に終わる）
+
+---
+
+![](images/blast-input.png)
+
+## `BLAST`を使ってみましょう
+
+- 結果には**複数の配列が返ってくる**
+
+- 重要な項目
+  - `e-value`: subjectとtargetが偶然に一致する確率。低い方がいい（`4e-72` = $4 \times 10^{-72}$）
+  - `identity`：類似度（パーセント）
+
+この場合、当たったシーケンスの中で、一つだけが他のより類似度がグンと高い（`Polydesmus sp`、100％）。それをクリックしてみよう。
+
+---
+
+![](images/blast-results.png)
+
+---
+
+![](images/blast-results-2.png)
+
+## `BLAST`を使ってみましょう
+
+クリックしたら、subjectとtargetのアラインメントが見える。
+
+- 最も近いtargetと次に近いtargetの結果を比べてみよう。何が違う？
+
+- あなたなら、このシーケンスを何と同定しますか？
+
+## `BLAST`を使ってみましょう
+
+もう一回、同じ作業をしてみよう。
+
+今回は`Chiba-1-trnL.fasta`に入っている最初の２行を使ってみよう。
+
+- 最も近いtargetと次に近いtargetの結果を比べてみよう。何が違う？
+
+- あなたなら、このシーケンスを何と同定しますか？
+
+## データの読み込み
+
+## 宿題
+
+3.5.1, 3.5.2
+
+
+
