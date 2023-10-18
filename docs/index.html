@@ -8,7 +8,7 @@
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.450">
+  <meta name="generator" content="quarto-1.3.217">
 
   <meta name="author" content="ニッタ ジョエル">
   <title>Gap Term 2023</title>
@@ -26,10 +26,9 @@
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
       width: 0.8em;
-      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -95,7 +94,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css" id="theme">
   <link rel="stylesheet" href="styles.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -139,44 +138,44 @@
     font-weight: 400;
   }
 
-  .callout.callout-titled.callout-style-simple .callout-body {
+  .callout.callout-captioned.callout-style-simple .callout-body {
     margin-top: 0.2em;
   }
 
-  .callout:not(.callout-titled) .callout-body {
+  .callout:not(.callout-captioned) .callout-body {
       display: flex;
   }
 
-  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
     padding-left: 1.6em;
   }
 
-  .callout.callout-titled .callout-header {
+  .callout.callout-captioned .callout-header {
     padding-top: 0.2em;
     margin-bottom: -0.2em;
   }
 
-  .callout.callout-titled .callout-title  p {
+  .callout.callout-captioned .callout-caption  p {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
   }
     
-  .callout.callout-titled.callout-style-simple .callout-content  p {
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
     margin-top: 0;
   }
 
-  .callout.callout-titled.callout-style-default .callout-content  p {
+  .callout.callout-captioned.callout-style-default .callout-content  p {
     margin-top: 0.7em;
   }
 
-  .callout.callout-style-simple div.callout-title {
+  .callout.callout-style-simple div.callout-caption {
     border-bottom: none;
     font-size: .9rem;
     font-weight: 600;
     opacity: 75%;
   }
 
-  .callout.callout-style-default  div.callout-title {
+  .callout.callout-style-default  div.callout-caption {
     border-bottom: none;
     font-weight: 600;
     opacity: 85%;
@@ -208,7 +207,7 @@
     background-size: 0.9rem 0.9rem;
   }
 
-  .callout-title {
+  .callout-caption {
     display: flex
   }
     
@@ -221,16 +220,16 @@
     display: none !important;
   }
 
-  .callout.callout-titled .callout-body > .callout-content > :last-child {
+  .callout.callout-captioned .callout-body > .callout-content > :last-child {
     margin-bottom: 0.5rem;
   }
 
-  .callout.callout-titled .callout-icon::before {
+  .callout.callout-captioned .callout-icon::before {
     margin-top: .5rem;
     padding-right: .5rem;
   }
 
-  .callout:not(.callout-titled) .callout-icon::before {
+  .callout:not(.callout-captioned) .callout-icon::before {
     margin-top: 1rem;
     padding-right: .5rem;
   }
@@ -245,7 +244,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
   }
 
-  div.callout-note.callout-style-default .callout-title {
+  div.callout-note.callout-style-default .callout-caption {
     background-color: #dae6fb
   }
 
@@ -257,7 +256,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
   }
 
-  div.callout-important.callout-style-default .callout-title {
+  div.callout-important.callout-style-default .callout-caption {
     background-color: #f7dddc
   }
 
@@ -269,7 +268,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
   }
 
-  div.callout-warning.callout-style-default .callout-title {
+  div.callout-warning.callout-style-default .callout-caption {
     background-color: #fcefdc
   }
 
@@ -281,7 +280,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
   }
 
-  div.callout-tip.callout-style-default .callout-title {
+  div.callout-tip.callout-style-default .callout-caption {
     background-color: #ccf1e3
   }
 
@@ -293,7 +292,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
   }
 
-  div.callout-caution.callout-style-default .callout-title {
+  div.callout-caution.callout-style-default .callout-caption {
     background-color: #ffe5d0
   }
 
@@ -1068,6 +1067,39 @@
 </ul>
 <p><code>_top1</code>は最も近い「当たり」、<code>_top2</code>はその次に高いもの、など</p>
 </section>
+<section id="行の名前を変える" class="slide level2">
+<h2>行の名前を変える</h2>
+<ul>
+<li><p>生データの行の名前が長くて打ちづらいことがよくある。前回は<code>clean_names()</code>で自動的に名前をと整えたが、さらに短くしたい。</p></li>
+<li><p><code>rename()</code>関数で行の名前を変える</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>blast_animals <span class="ot">&lt;-</span> <span class="fu">rename</span>(blast_animals, <span class="at">otu =</span> number_otu_id)</span>
+<span id="cb19-2"><a href="#cb19-2"></a>blast_animals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 106 × 55
+   otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
+   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;         
+ 1 ASV_001       21793           0          4312           0 MN319604.1    
+ 2 ASV_002           0       18828             0           0 MK659817.1    
+ 3 ASV_003           0           0             0       14991 KF492138.1    
+ 4 ASV_004           0       12144             0           0 KX053593.1    
+ 5 ASV_005           0           0             0        7550 MH898572.1    
+ 6 ASV_006           0           0          6918           0 KY039108.1    
+ 7 ASV_007           0           0             0        6518 JX416292.1    
+ 8 ASV_008           0           0             0        5434 EU751122.1    
+ 9 ASV_009           0        5276             0           0 KY270107.1    
+10 ASV_010           0           0          4904           0 KX096927.1    
+# ℹ 96 more rows
+# ℹ 49 more variables: target_top1 &lt;chr&gt;, identity_top1 &lt;dbl&gt;,
+#   alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;, accession_top2 &lt;chr&gt;,
+#   target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;, alignment_length_top2 &lt;dbl&gt;,
+#   species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;, target_top3 &lt;chr&gt;,
+#   identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;, species_top3 &lt;chr&gt;,
+#   accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, identity_top4 &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+</section>
 <section id="列の順を並び変える" class="slide level2">
 <h2>列の順を並び変える</h2>
 <ul>
@@ -1077,28 +1109,28 @@
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">arrange</span>(blast_animals, chiba_1_zbj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">arrange</span>(blast_animals, chiba_1_zbj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 55
-   number_otu_id chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj
-   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
- 1 ASV_002                 0       18828             0           0
- 2 ASV_003                 0           0             0       14991
- 3 ASV_004                 0       12144             0           0
- 4 ASV_005                 0           0             0        7550
- 5 ASV_006                 0           0          6918           0
- 6 ASV_007                 0           0             0        6518
- 7 ASV_008                 0           0             0        5434
- 8 ASV_009                 0        5276             0           0
- 9 ASV_010                 0           0          4904           0
-10 ASV_011                 0           0          4499           0
+   otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
+   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;         
+ 1 ASV_002           0       18828             0           0 MK659817.1    
+ 2 ASV_003           0           0             0       14991 KF492138.1    
+ 3 ASV_004           0       12144             0           0 KX053593.1    
+ 4 ASV_005           0           0             0        7550 MH898572.1    
+ 5 ASV_006           0           0          6918           0 KY039108.1    
+ 6 ASV_007           0           0             0        6518 JX416292.1    
+ 7 ASV_008           0           0             0        5434 EU751122.1    
+ 8 ASV_009           0        5276             0           0 KY270107.1    
+ 9 ASV_010           0           0          4904           0 KX096927.1    
+10 ASV_011           0           0          4499           0 MT670322.1    
 # ℹ 96 more rows
-# ℹ 50 more variables: accession_top1 &lt;chr&gt;, target_top1 &lt;chr&gt;,
-#   identity_top1 &lt;dbl&gt;, alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;,
-#   accession_top2 &lt;chr&gt;, target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;,
-#   alignment_length_top2 &lt;dbl&gt;, species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;,
-#   target_top3 &lt;chr&gt;, identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;,
-#   species_top3 &lt;chr&gt;, accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, …</code></pre>
+# ℹ 49 more variables: target_top1 &lt;chr&gt;, identity_top1 &lt;dbl&gt;,
+#   alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;, accession_top2 &lt;chr&gt;,
+#   target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;, alignment_length_top2 &lt;dbl&gt;,
+#   species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;, target_top3 &lt;chr&gt;,
+#   identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;, species_top3 &lt;chr&gt;,
+#   accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, identity_top4 &lt;dbl&gt;, …</code></pre>
 </div>
 </div>
 </section>
@@ -1109,51 +1141,28 @@
 <li>大きい方（あるいは、Zの方）から並べたい時は<code>desc()</code>を使う</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">arrange</span>(blast_animals, <span class="fu">desc</span>(chiba_1_zbj))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">arrange</span>(blast_animals, <span class="fu">desc</span>(chiba_1_zbj))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 55
-   number_otu_id chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj
-   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
- 1 ASV_001             21793           0          4312           0
- 2 ASV_014              3279           0           207           0
- 3 ASV_039               224           0             0           0
- 4 ASV_044               158           0             0           0
- 5 ASV_023               147           0           603           0
- 6 ASV_049               122           0             0           0
- 7 ASV_052               109           0             0           0
- 8 ASV_077                26           0             0           0
- 9 ASV_083                22           0             0           0
-10 ASV_085                21           0             0           0
+   otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
+   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;         
+ 1 ASV_001       21793           0          4312           0 MN319604.1    
+ 2 ASV_014        3279           0           207           0 HQ891438.1    
+ 3 ASV_039         224           0             0           0 KC440139.1    
+ 4 ASV_044         158           0             0           0 OM830080.1    
+ 5 ASV_023         147           0           603           0 MT521281.1    
+ 6 ASV_049         122           0             0           0 MT780697.1    
+ 7 ASV_052         109           0             0           0 HQ891438.1    
+ 8 ASV_077          26           0             0           0 MW960413.1    
+ 9 ASV_083          22           0             0           0 OL664229.1    
+10 ASV_085          21           0             0           0 MT554836.1    
 # ℹ 96 more rows
-# ℹ 50 more variables: accession_top1 &lt;chr&gt;, target_top1 &lt;chr&gt;,
-#   identity_top1 &lt;dbl&gt;, alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;,
-#   accession_top2 &lt;chr&gt;, target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;,
-#   alignment_length_top2 &lt;dbl&gt;, species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;,
-#   target_top3 &lt;chr&gt;, identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;,
-#   species_top3 &lt;chr&gt;, accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, …</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">arrange</span>(blast_animals, target_top1, identity_top1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 106 × 55
-   number_otu_id chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj
-   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
- 1 ASV_111                 0           0             2           0
- 2 ASV_079                20           0             4           0
- 3 ASV_055                 0          92             0           0
- 4 ASV_082                 0           0            23           0
- 5 ASV_061                 0          63             0           0
- 6 ASV_091                 0           0            15           0
- 7 ASV_033                 0           0           314           0
- 8 ASV_026                 0           0           504           0
- 9 ASV_023               147           0           603           0
-10 ASV_051                 0           0           111           0
-# ℹ 96 more rows
-# ℹ 50 more variables: accession_top1 &lt;chr&gt;, target_top1 &lt;chr&gt;,
-#   identity_top1 &lt;dbl&gt;, alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;,
-#   accession_top2 &lt;chr&gt;, target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;,
-#   alignment_length_top2 &lt;dbl&gt;, species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;,
-#   target_top3 &lt;chr&gt;, identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;,
-#   species_top3 &lt;chr&gt;, accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, …</code></pre>
+# ℹ 49 more variables: target_top1 &lt;chr&gt;, identity_top1 &lt;dbl&gt;,
+#   alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;, accession_top2 &lt;chr&gt;,
+#   target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;, alignment_length_top2 &lt;dbl&gt;,
+#   species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;, target_top3 &lt;chr&gt;,
+#   identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;, species_top3 &lt;chr&gt;,
+#   accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, identity_top4 &lt;dbl&gt;, …</code></pre>
 </div>
 </div>
 </section>
@@ -1166,25 +1175,25 @@
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">arrange</span>(blast_animals, target_top1, identity_top1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 55
-   number_otu_id chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj
-   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
- 1 ASV_111                 0           0             2           0
- 2 ASV_079                20           0             4           0
- 3 ASV_055                 0          92             0           0
- 4 ASV_082                 0           0            23           0
- 5 ASV_061                 0          63             0           0
- 6 ASV_091                 0           0            15           0
- 7 ASV_033                 0           0           314           0
- 8 ASV_026                 0           0           504           0
- 9 ASV_023               147           0           603           0
-10 ASV_051                 0           0           111           0
+   otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
+   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;         
+ 1 ASV_111           0           0             2           0 MH124183.1    
+ 2 ASV_079          20           0             4           0 MH124181.1    
+ 3 ASV_055           0          92             0           0 GQ465635.1    
+ 4 ASV_082           0           0            23           0 GQ465621.1    
+ 5 ASV_061           0          63             0           0 MW305766.1    
+ 6 ASV_091           0           0            15           0 KJ654008.1    
+ 7 ASV_033           0           0           314           0 JX435832.1    
+ 8 ASV_026           0           0           504           0 LC619089.1    
+ 9 ASV_023         147           0           603           0 MT521281.1    
+10 ASV_051           0           0           111           0 MT957001.1    
 # ℹ 96 more rows
-# ℹ 50 more variables: accession_top1 &lt;chr&gt;, target_top1 &lt;chr&gt;,
-#   identity_top1 &lt;dbl&gt;, alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;,
-#   accession_top2 &lt;chr&gt;, target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;,
-#   alignment_length_top2 &lt;dbl&gt;, species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;,
-#   target_top3 &lt;chr&gt;, identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;,
-#   species_top3 &lt;chr&gt;, accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, …</code></pre>
+# ℹ 49 more variables: target_top1 &lt;chr&gt;, identity_top1 &lt;dbl&gt;,
+#   alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;, accession_top2 &lt;chr&gt;,
+#   target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;, alignment_length_top2 &lt;dbl&gt;,
+#   species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;, target_top3 &lt;chr&gt;,
+#   identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;, species_top3 &lt;chr&gt;,
+#   accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, identity_top4 &lt;dbl&gt;, …</code></pre>
 </div>
 </div>
 </section>
@@ -1194,21 +1203,21 @@
 <li><code>select(data, column)</code>で行を抜き出す</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">select</span>(blast_animals, number_otu_id, chiba_1_zbj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">select</span>(blast_animals, otu, chiba_1_zbj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 2
-   number_otu_id chiba_1_zbj
-   &lt;chr&gt;               &lt;dbl&gt;
- 1 ASV_001             21793
- 2 ASV_002                 0
- 3 ASV_003                 0
- 4 ASV_004                 0
- 5 ASV_005                 0
- 6 ASV_006                 0
- 7 ASV_007                 0
- 8 ASV_008                 0
- 9 ASV_009                 0
-10 ASV_010                 0
+   otu     chiba_1_zbj
+   &lt;chr&gt;         &lt;dbl&gt;
+ 1 ASV_001       21793
+ 2 ASV_002           0
+ 3 ASV_003           0
+ 4 ASV_004           0
+ 5 ASV_005           0
+ 6 ASV_006           0
+ 7 ASV_007           0
+ 8 ASV_008           0
+ 9 ASV_009           0
+10 ASV_010           0
 # ℹ 96 more rows</code></pre>
 </div>
 </div>
@@ -1222,21 +1231,21 @@
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">select</span>(blast_animals, number_otu_id, chiba_1_zbj, target_top1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">select</span>(blast_animals, otu, chiba_1_zbj, target_top1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 3
-   number_otu_id chiba_1_zbj target_top1             
-   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;                   
- 1 ASV_001             21793 Oxidus_gracilis         
- 2 ASV_002                 0 Drosophila_ficusphila   
- 3 ASV_003                 0 Spodoptera_depravata    
- 4 ASV_004                 0 Lepidopsocidae_sp.      
- 5 ASV_005                 0 Smicronyx_guineanus     
- 6 ASV_006                 0 Colasposoma_sp.         
- 7 ASV_007                 0 Parapediasia_teterrellus
- 8 ASV_008                 0 Philodina_plena         
- 9 ASV_009                 0 Sitticus_penicillatus   
-10 ASV_010                 0 Oxidus_riukiarius       
+   otu     chiba_1_zbj target_top1             
+   &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;                   
+ 1 ASV_001       21793 Oxidus_gracilis         
+ 2 ASV_002           0 Drosophila_ficusphila   
+ 3 ASV_003           0 Spodoptera_depravata    
+ 4 ASV_004           0 Lepidopsocidae_sp.      
+ 5 ASV_005           0 Smicronyx_guineanus     
+ 6 ASV_006           0 Colasposoma_sp.         
+ 7 ASV_007           0 Parapediasia_teterrellus
+ 8 ASV_008           0 Philodina_plena         
+ 9 ASV_009           0 Sitticus_penicillatus   
+10 ASV_010           0 Oxidus_riukiarius       
 # ℹ 96 more rows</code></pre>
 </div>
 </div>
@@ -1250,18 +1259,18 @@
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">select</span>(blast_animals, <span class="dv">1</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 2
-   number_otu_id chiba_1_zbj
-   &lt;chr&gt;               &lt;dbl&gt;
- 1 ASV_001             21793
- 2 ASV_002                 0
- 3 ASV_003                 0
- 4 ASV_004                 0
- 5 ASV_005                 0
- 6 ASV_006                 0
- 7 ASV_007                 0
- 8 ASV_008                 0
- 9 ASV_009                 0
-10 ASV_010                 0
+   otu     chiba_1_zbj
+   &lt;chr&gt;         &lt;dbl&gt;
+ 1 ASV_001       21793
+ 2 ASV_002           0
+ 3 ASV_003           0
+ 4 ASV_004           0
+ 5 ASV_005           0
+ 6 ASV_006           0
+ 7 ASV_007           0
+ 8 ASV_008           0
+ 9 ASV_009           0
+10 ASV_010           0
 # ℹ 96 more rows</code></pre>
 </div>
 </div>
@@ -1275,18 +1284,18 @@
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">select</span>(blast_animals, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 4
-   number_otu_id chiba_1_zbj chiba_2_zbj tsudanuma_zbj
-   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;
- 1 ASV_001             21793           0          4312
- 2 ASV_002                 0       18828             0
- 3 ASV_003                 0           0             0
- 4 ASV_004                 0       12144             0
- 5 ASV_005                 0           0             0
- 6 ASV_006                 0           0          6918
- 7 ASV_007                 0           0             0
- 8 ASV_008                 0           0             0
- 9 ASV_009                 0        5276             0
-10 ASV_010                 0           0          4904
+   otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj
+   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+ 1 ASV_001       21793           0          4312
+ 2 ASV_002           0       18828             0
+ 3 ASV_003           0           0             0
+ 4 ASV_004           0       12144             0
+ 5 ASV_005           0           0             0
+ 6 ASV_006           0           0          6918
+ 7 ASV_007           0           0             0
+ 8 ASV_008           0           0             0
+ 9 ASV_009           0        5276             0
+10 ASV_010           0           0          4904
 # ℹ 96 more rows</code></pre>
 </div>
 </div>
@@ -1297,21 +1306,21 @@
 <li><code>:</code>で行の範囲を指定できる</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">select</span>(blast_animals, number_otu_id<span class="sc">:</span>gyotoku_zbj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">select</span>(blast_animals, otu<span class="sc">:</span>gyotoku_zbj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 5
-   number_otu_id chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj
-   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
- 1 ASV_001             21793           0          4312           0
- 2 ASV_002                 0       18828             0           0
- 3 ASV_003                 0           0             0       14991
- 4 ASV_004                 0       12144             0           0
- 5 ASV_005                 0           0             0        7550
- 6 ASV_006                 0           0          6918           0
- 7 ASV_007                 0           0             0        6518
- 8 ASV_008                 0           0             0        5434
- 9 ASV_009                 0        5276             0           0
-10 ASV_010                 0           0          4904           0
+   otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj
+   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+ 1 ASV_001       21793           0          4312           0
+ 2 ASV_002           0       18828             0           0
+ 3 ASV_003           0           0             0       14991
+ 4 ASV_004           0       12144             0           0
+ 5 ASV_005           0           0             0        7550
+ 6 ASV_006           0           0          6918           0
+ 7 ASV_007           0           0             0        6518
+ 8 ASV_008           0           0             0        5434
+ 9 ASV_009           0        5276             0           0
+10 ASV_010           0           0          4904           0
 # ℹ 96 more rows</code></pre>
 </div>
 </div>
@@ -1325,12 +1334,12 @@
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">filter</span>(blast_animals, target_top1 <span class="sc">==</span> <span class="st">"Diaprepes_sp."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 55
-  number_otu_id chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
-  &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;         
-1 ASV_014              3279           0           207           0 HQ891438.1    
-2 ASV_025                 0           0           670           0 HQ891438.1    
-3 ASV_030                 0           0           429           0 HQ891438.1    
-4 ASV_052               109           0             0           0 HQ891438.1    
+  otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
+  &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;         
+1 ASV_014        3279           0           207           0 HQ891438.1    
+2 ASV_025           0           0           670           0 HQ891438.1    
+3 ASV_030           0           0           429           0 HQ891438.1    
+4 ASV_052         109           0             0           0 HQ891438.1    
 # ℹ 49 more variables: target_top1 &lt;chr&gt;, identity_top1 &lt;dbl&gt;,
 #   alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;, accession_top2 &lt;chr&gt;,
 #   target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;, alignment_length_top2 &lt;dbl&gt;,
@@ -1350,25 +1359,25 @@
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">filter</span>(blast_animals, identity_top1 <span class="sc">&gt;</span> <span class="dv">98</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 58 × 55
-   number_otu_id chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj
-   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
- 1 ASV_002                 0       18828             0           0
- 2 ASV_003                 0           0             0       14991
- 3 ASV_006                 0           0          6918           0
- 4 ASV_007                 0           0             0        6518
- 5 ASV_009                 0        5276             0           0
- 6 ASV_011                 0           0          4499           0
- 7 ASV_012                 0        3704             0           0
- 8 ASV_015                 0           0             0        2309
- 9 ASV_016                 0           0          2157           0
-10 ASV_017                 0        1919             0           0
+   otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
+   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;         
+ 1 ASV_002           0       18828             0           0 MK659817.1    
+ 2 ASV_003           0           0             0       14991 KF492138.1    
+ 3 ASV_006           0           0          6918           0 KY039108.1    
+ 4 ASV_007           0           0             0        6518 JX416292.1    
+ 5 ASV_009           0        5276             0           0 KY270107.1    
+ 6 ASV_011           0           0          4499           0 MT670322.1    
+ 7 ASV_012           0        3704             0           0 EU414825.1    
+ 8 ASV_015           0           0             0        2309 OL664327.1    
+ 9 ASV_016           0           0          2157           0 MT521279.1    
+10 ASV_017           0        1919             0           0 MK473841.1    
 # ℹ 48 more rows
-# ℹ 50 more variables: accession_top1 &lt;chr&gt;, target_top1 &lt;chr&gt;,
-#   identity_top1 &lt;dbl&gt;, alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;,
-#   accession_top2 &lt;chr&gt;, target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;,
-#   alignment_length_top2 &lt;dbl&gt;, species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;,
-#   target_top3 &lt;chr&gt;, identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;,
-#   species_top3 &lt;chr&gt;, accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, …</code></pre>
+# ℹ 49 more variables: target_top1 &lt;chr&gt;, identity_top1 &lt;dbl&gt;,
+#   alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;, accession_top2 &lt;chr&gt;,
+#   target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;, alignment_length_top2 &lt;dbl&gt;,
+#   species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;, target_top3 &lt;chr&gt;,
+#   identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;, species_top3 &lt;chr&gt;,
+#   accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, identity_top4 &lt;dbl&gt;, …</code></pre>
 </div>
 </div>
 </section>
@@ -1378,6 +1387,322 @@
 <ul>
 <li>ヒント：<code>write_csv()</code>でcsvファイルを保存することができる</li>
 </ul>
+</section>
+<section id="データの変換" class="slide level2">
+<h2>データの変換</h2>
+<ul>
+<li><code>mutate()</code>である行のデータを変換することができる。
+<ul>
+<li>例えば、<code>identity_top1</code>をパーセントに変える（０から１まで）</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="co"># データをBLASTの最も近い結果だけに絞る</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a>top1 <span class="ot">&lt;-</span> <span class="fu">select</span>(blast_animals, otu, <span class="fu">matches</span>(<span class="st">"top1$"</span>))</span>
+<span id="cb41-3"><a href="#cb41-3"></a><span class="co"># identity_top1をパーセントに変える（上書き）</span></span>
+<span id="cb41-4"><a href="#cb41-4"></a><span class="fu">mutate</span>(top1, <span class="at">identity_top1 =</span> identity_top1 <span class="sc">/</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 106 × 6
+   otu     accession_top1 target_top1        identity_top1 alignment_length_top1
+   &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;                      &lt;dbl&gt;                 &lt;dbl&gt;
+ 1 ASV_001 MN319604.1     Oxidus_gracilis            0.930                   157
+ 2 ASV_002 MK659817.1     Drosophila_ficusp…         1                       157
+ 3 ASV_003 KF492138.1     Spodoptera_deprav…         1                       157
+ 4 ASV_004 KX053593.1     Lepidopsocidae_sp.         0.885                   157
+ 5 ASV_005 MH898572.1     Smicronyx_guinean…         0.929                   155
+ 6 ASV_006 KY039108.1     Colasposoma_sp.            1                       157
+ 7 ASV_007 JX416292.1     Parapediasia_tete…         1                       157
+ 8 ASV_008 EU751122.1     Philodina_plena            0.935                   154
+ 9 ASV_009 KY270107.1     Sitticus_penicill…         0.987                   157
+10 ASV_010 KX096927.1     Oxidus_riukiarius          0.958                   143
+# ℹ 96 more rows
+# ℹ 1 more variable: species_top1 &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="データの変換-1" class="slide level2">
+<h2>データの変換</h2>
+<ul>
+<li><code>mutate()</code>は新しい行を作ることもできる</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="co"># identity_top1をパーセントに変える</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a><span class="fu">mutate</span>(top1, <span class="at">identity_top1_perc =</span> identity_top1 <span class="sc">/</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 106 × 7
+   otu     accession_top1 target_top1        identity_top1 alignment_length_top1
+   &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;                      &lt;dbl&gt;                 &lt;dbl&gt;
+ 1 ASV_001 MN319604.1     Oxidus_gracilis             93.0                   157
+ 2 ASV_002 MK659817.1     Drosophila_ficusp…         100                     157
+ 3 ASV_003 KF492138.1     Spodoptera_deprav…         100                     157
+ 4 ASV_004 KX053593.1     Lepidopsocidae_sp.          88.5                   157
+ 5 ASV_005 MH898572.1     Smicronyx_guinean…          92.9                   155
+ 6 ASV_006 KY039108.1     Colasposoma_sp.            100                     157
+ 7 ASV_007 JX416292.1     Parapediasia_tete…         100                     157
+ 8 ASV_008 EU751122.1     Philodina_plena             93.5                   154
+ 9 ASV_009 KY270107.1     Sitticus_penicill…          98.7                   157
+10 ASV_010 KX096927.1     Oxidus_riukiarius           95.8                   143
+# ℹ 96 more rows
+# ℹ 2 more variables: species_top1 &lt;chr&gt;, identity_top1_perc &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="パイプについて" class="slide level2">
+<h2>パイプについて</h2>
+<p>今までのやり方では、複数の処理をする際、それぞれのアウトプットに名前をつけていた：</p>
+<blockquote>
+<p><code>blast_animals</code>から”chiba_1_zbj”と”target_top1”のデータを切り出して、ゼロよりも多いOTUだけに絞って、別のcsvファイルとして保存して下さい</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>blast_animals_chiba_1 <span class="ot">&lt;-</span> <span class="fu">select</span>(blast_animals, chiba_1_zbj, target_top1)</span>
+<span id="cb45-2"><a href="#cb45-2"></a>blast_animals_chiba_1_small <span class="ot">&lt;-</span> <span class="fu">filter</span>(blast_animals_chiba_1, chiba_1_zbj <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>でもこれは処理が多くなるとややこしくなってくる。</p>
+<p><strong>もっといい方法はある：パイプ</strong></p>
+</section>
+<section id="パイプについて-1" class="slide level2">
+<h2>パイプについて</h2>
+<p>「パイプ」とは、左の関数のアウトプットを右の関数の<br>インプットに渡すもの</p>
+<p><br></p>
+<p><code>%&gt;%</code>（あるいは<code>|&gt;</code>）と書く。「それから」として読む</p>
+</section>
+<section id="パイプについて-2" class="slide level2">
+<h2>パイプについて</h2>
+
+<img data-src="images/pipe.png" alt="mario going through a pipe" class="r-stretch"></section>
+<section id="パイプについて-3" class="slide level2">
+<h2>パイプについて</h2>
+<ul>
+<li>先の作業はパイプを使うとこのようにできる：</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>blast_animals <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="#cb46-2"></a>  <span class="fu">select</span>(chiba_1_zbj, target_top1) <span class="sc">%&gt;%</span></span>
+<span id="cb46-3"><a href="#cb46-3"></a>  <span class="fu">filter</span>(chiba_1_zbj <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 2
+   chiba_1_zbj target_top1               
+         &lt;dbl&gt; &lt;chr&gt;                     
+ 1       21793 Oxidus_gracilis           
+ 2        3279 Diaprepes_sp.             
+ 3         147 Armadillidium_vulgare     
+ 4         224 Gonocephalum_coriaceum    
+ 5         158 Leptomias_kangmarensis    
+ 6         122 Phytopythium_vexans       
+ 7         109 Diaprepes_sp.             
+ 8          26 Cucurbitella_mespiliformis
+ 9          20 Acanthamoeba_hatchetti    
+10          22 Scepticus_griseus         
+11          21 Xysticus_sp.              
+12          16 Stachybotrys_chartarum    
+13           6 Stachybotrys_chartarum    
+14           5 Spongospora_subterranea   
+15           3 Contracaecum_sp.          </code></pre>
+</div>
+</div>
+<ul>
+<li>この方がスッキリするでしょう？</li>
+</ul>
+</section>
+<section id="チャレンジ-1" class="slide level2">
+<h2>チャレンジ</h2>
+<p><code>blast_animals</code>から<strong>行徳</strong>のデータだけに絞って、最も近く一致した種の<strong>和名</strong>を<strong>リード数の順</strong>で並べてください</p>
+</section>
+<section id="データの集計" class="slide level2">
+<h2>データの集計</h2>
+<p><code>summarize()</code>でデータの<strong>集計</strong>ができる：</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">summarize</span>(blast_animals, <span class="at">mean_aln_len =</span> <span class="fu">mean</span>(alignment_length_top1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  mean_aln_len
+         &lt;dbl&gt;
+1         156.</code></pre>
+</div>
+</div>
+</section>
+<section id="グループ化" class="slide level2">
+<h2>グループ化</h2>
+<p>しかし、全体の平均だけを計算してもあまり意味はない。</p>
+<p>それよりも、何か<strong>毎に</strong>データの集計を行いたい方が多い。</p>
+<p>それには<code>group_by()</code>関数を使う。例えば、種ごと。まずはデータのグループを指定する：</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>blast_animals <span class="sc">%&gt;%</span></span>
+<span id="cb50-2"><a href="#cb50-2"></a>  <span class="fu">group_by</span>(target_top1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 106 × 55
+# Groups:   target_top1 [86]
+   otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
+   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;         
+ 1 ASV_001       21793           0          4312           0 MN319604.1    
+ 2 ASV_002           0       18828             0           0 MK659817.1    
+ 3 ASV_003           0           0             0       14991 KF492138.1    
+ 4 ASV_004           0       12144             0           0 KX053593.1    
+ 5 ASV_005           0           0             0        7550 MH898572.1    
+ 6 ASV_006           0           0          6918           0 KY039108.1    
+ 7 ASV_007           0           0             0        6518 JX416292.1    
+ 8 ASV_008           0           0             0        5434 EU751122.1    
+ 9 ASV_009           0        5276             0           0 KY270107.1    
+10 ASV_010           0           0          4904           0 KX096927.1    
+# ℹ 96 more rows
+# ℹ 49 more variables: target_top1 &lt;chr&gt;, identity_top1 &lt;dbl&gt;,
+#   alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;, accession_top2 &lt;chr&gt;,
+#   target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;, alignment_length_top2 &lt;dbl&gt;,
+#   species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;, target_top3 &lt;chr&gt;,
+#   identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;, species_top3 &lt;chr&gt;,
+#   accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, identity_top4 &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+</section>
+<section id="グループ化-1" class="slide level2">
+<h2>グループ化</h2>
+<p>次に、集計する：</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>blast_animals <span class="sc">%&gt;%</span></span>
+<span id="cb52-2"><a href="#cb52-2"></a>  <span class="fu">group_by</span>(target_top1) <span class="sc">%&gt;%</span></span>
+<span id="cb52-3"><a href="#cb52-3"></a>  <span class="fu">summarize</span>(<span class="at">mean_aln_len =</span> <span class="fu">mean</span>(alignment_length_top1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 86 × 2
+   target_top1             mean_aln_len
+   &lt;chr&gt;                          &lt;dbl&gt;
+ 1 Acanthamoeba_hatchetti           162
+ 2 Adineta_gracilis                 155
+ 3 Adineta_vaga                     153
+ 4 Agrotis_segetum                  157
+ 5 Albugo_sp.                       160
+ 6 Ambigolimax_valentianus          154
+ 7 Anisodactylus_signatus           157
+ 8 Armadillidium_vulgare            157
+ 9 Atypus_snetsingeri               157
+10 Caedius_marinus                  157
+# ℹ 76 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="グループ化-2" class="slide level2">
+<h2>グループ化</h2>
+<p>グループ毎の計算が終わったら、<code>ungroup()</code>でグループの解除をする必要がある場合がある。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>blast_animals <span class="sc">%&gt;%</span></span>
+<span id="cb54-2"><a href="#cb54-2"></a>  <span class="fu">group_by</span>(target_top1) <span class="sc">%&gt;%</span></span>
+<span id="cb54-3"><a href="#cb54-3"></a>  <span class="fu">summarize</span>(<span class="at">mean_aln_len =</span> <span class="fu">mean</span>(alignment_length_top1)) <span class="sc">%&gt;%</span></span>
+<span id="cb54-4"><a href="#cb54-4"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 86 × 2
+   target_top1             mean_aln_len
+   &lt;chr&gt;                          &lt;dbl&gt;
+ 1 Acanthamoeba_hatchetti           162
+ 2 Adineta_gracilis                 155
+ 3 Adineta_vaga                     153
+ 4 Agrotis_segetum                  157
+ 5 Albugo_sp.                       160
+ 6 Ambigolimax_valentianus          154
+ 7 Anisodactylus_signatus           157
+ 8 Armadillidium_vulgare            157
+ 9 Atypus_snetsingeri               157
+10 Caedius_marinus                  157
+# ℹ 76 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="幅広いデータから細長いデータへ" class="slide level2">
+<h2>幅広いデータから細長いデータへ</h2>
+<ul>
+<li><p>今のデータの幅がとても広い（行がたくさんある）</p></li>
+<li><p>解析によっては、<strong>長細い</strong>形の方がいい時がある</p></li>
+<li><p>幅広い形から細長い形に変えるには、<code>pivot_wider()</code>を使う</p></li>
+</ul>
+</section>
+<section id="幅広いデータから細長いデータへ-1" class="slide level2">
+<h2>幅広いデータから細長いデータへ</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>target_long <span class="ot">&lt;-</span></span>
+<span id="cb56-2"><a href="#cb56-2"></a>  blast_animals <span class="sc">|&gt;</span></span>
+<span id="cb56-3"><a href="#cb56-3"></a>    <span class="co"># まずは、種名とOTUだけに絞りましょう</span></span>
+<span id="cb56-4"><a href="#cb56-4"></a>    <span class="fu">select</span>(otu, <span class="fu">contains</span>(<span class="st">"target_top"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb56-5"><a href="#cb56-5"></a>    <span class="co"># 行の名前を新しい「rank」という行に入れて、各セルのデータを「species」に入れましょう</span></span>
+<span id="cb56-6"><a href="#cb56-6"></a>    <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">"rank"</span>, <span class="at">values_to =</span> <span class="st">"species"</span>, <span class="at">cols =</span> <span class="sc">-</span>otu) <span class="sc">|&gt;</span></span>
+<span id="cb56-7"><a href="#cb56-7"></a>    <span class="co"># 最後にrankを数字にする</span></span>
+<span id="cb56-8"><a href="#cb56-8"></a>    <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">parse_number</span>(rank))</span>
+<span id="cb56-9"><a href="#cb56-9"></a></span>
+<span id="cb56-10"><a href="#cb56-10"></a>target_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,060 × 3
+   otu      rank species        
+   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;          
+ 1 ASV_001     1 Oxidus_gracilis
+ 2 ASV_001     2 Oxidus_gracilis
+ 3 ASV_001     3 Oxidus_gracilis
+ 4 ASV_001     4 Oxidus_gracilis
+ 5 ASV_001     5 Oxidus_gracilis
+ 6 ASV_001     6 Oxidus_gracilis
+ 7 ASV_001     7 Oxidus_gracilis
+ 8 ASV_001     8 Polydesmida_sp.
+ 9 ASV_001     9 Oxidus_gracilis
+10 ASV_001    10 Oxidus_gracilis
+# ℹ 1,050 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="幅広いデータから細長いデータへ-2" class="slide level2">
+<h2>幅広いデータから細長いデータへ</h2>
+<ul>
+<li>類似度のデータにも同じことができる：</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>identity_long <span class="ot">&lt;-</span></span>
+<span id="cb58-2"><a href="#cb58-2"></a>  blast_animals <span class="sc">|&gt;</span></span>
+<span id="cb58-3"><a href="#cb58-3"></a>    <span class="fu">select</span>(otu, <span class="fu">contains</span>(<span class="st">"identity_top"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb58-4"><a href="#cb58-4"></a>    <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">"rank"</span>, <span class="at">values_to =</span> <span class="st">"identity"</span>, <span class="at">cols =</span> <span class="sc">-</span>otu) <span class="sc">|&gt;</span></span>
+<span id="cb58-5"><a href="#cb58-5"></a>    <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">parse_number</span>(rank))</span>
+<span id="cb58-6"><a href="#cb58-6"></a></span>
+<span id="cb58-7"><a href="#cb58-7"></a>identity_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,060 × 3
+   otu      rank identity
+   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+ 1 ASV_001     1     93.0
+ 2 ASV_001     2     93.0
+ 3 ASV_001     3     93.0
+ 4 ASV_001     4     93.0
+ 5 ASV_001     5     93.0
+ 6 ASV_001     6     93.0
+ 7 ASV_001     7     93.0
+ 8 ASV_001     8     93.0
+ 9 ASV_001     9     93.7
+10 ASV_001    10     93.7
+# ℹ 1,050 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="幅広いデータから細長いデータへ-3" class="slide level2">
+<h2>幅広いデータから細長いデータへ</h2>
+<ul>
+<li>最後に、この二つの細長いデータをくっ付ける（「join」）することによって、解析に使いやすい状態にする：</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="fu">left_join</span>(target_long, identity_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,060 × 4
+   otu      rank species         identity
+   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;
+ 1 ASV_001     1 Oxidus_gracilis     93.0
+ 2 ASV_001     2 Oxidus_gracilis     93.0
+ 3 ASV_001     3 Oxidus_gracilis     93.0
+ 4 ASV_001     4 Oxidus_gracilis     93.0
+ 5 ASV_001     5 Oxidus_gracilis     93.0
+ 6 ASV_001     6 Oxidus_gracilis     93.0
+ 7 ASV_001     7 Oxidus_gracilis     93.0
+ 8 ASV_001     8 Polydesmida_sp.     93.0
+ 9 ASV_001     9 Oxidus_gracilis     93.7
+10 ASV_001    10 Oxidus_gracilis     93.7
+# ℹ 1,050 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="まとめ" class="slide level2">
+<h2>まとめ</h2>
+<p>初めての方にはとてもコードの量が多いように思えるでしょうが、このようなツールを毎日使うって、慣れていくとそのうちどのようなデータでもRで扱えるようになる！</p>
 <div class="footer footer-default">
 <p><a href="https://joelnitta.github.io/gap-term-2023">https://joelnitta.github.io/gap-term-2023</a></p>
 </div>
@@ -1413,7 +1738,7 @@
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1655,23 +1980,9 @@
       tabsets.forEach(function(tabset) {
         const tabby = new Tabby('#' + tabset.id);
       });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
-        }
-        return false;
-      }
       const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
+        target: function(trigger) {
+          return trigger.previousElementSibling;
         }
       });
       clipboard.on('success', function(e) {

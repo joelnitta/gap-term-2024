@@ -32,6 +32,11 @@ html:
   mathjax: true
 ---
 
+```{r}
+#| echo: false
+options(width = 80)
+```
+
 # Day 1: RStudio入門、BLAST、データ入力
 
 2023-10-12
@@ -375,6 +380,7 @@ round(3.1415, digits = 1)
 ::: large
 
 ```{r}
+#| eval: false
 ?round
 ```
 
@@ -609,6 +615,17 @@ blast_animals <- clean_names(blast_animals)
 
 `_top1`は最も近い「当たり」、`_top2`はその次に高いもの、など
 
+## 行の名前を変える
+
+- 生データの行の名前が長くて打ちづらいことがよくある。前回は`clean_names()`で自動的に名前をと整えたが、さらに短くしたい。
+
+- `rename()`関数で行の名前を変える
+
+```{r}
+blast_animals <- rename(blast_animals, otu = number_otu_id)
+blast_animals
+```
+
 ## 列の順を並び変える
 
 - `arrange(data, column)`
@@ -625,7 +642,6 @@ arrange(blast_animals, chiba_1_zbj)
 
 ```{r}
 arrange(blast_animals, desc(chiba_1_zbj))
-arrange(blast_animals, target_top1, identity_top1)
 ```
 
 ## 列の順を並び変える
@@ -641,7 +657,7 @@ arrange(blast_animals, target_top1, identity_top1)
 - `select(data, column)`で行を抜き出す
 
 ```{r}
-select(blast_animals, number_otu_id, chiba_1_zbj)
+select(blast_animals, otu, chiba_1_zbj)
 ```
 
 ## 行を抜き出す
@@ -650,7 +666,7 @@ select(blast_animals, number_otu_id, chiba_1_zbj)
   - 複数の行を選ぶこともできる
 
 ```{r}
-select(blast_animals, number_otu_id, chiba_1_zbj, target_top1)
+select(blast_animals, otu, chiba_1_zbj, target_top1)
 ```
 
 ## 行を抜き出す
@@ -674,7 +690,7 @@ select(blast_animals, 1:4)
 - `:`で行の範囲を指定できる
 
 ```{r}
-select(blast_animals, number_otu_id:gyotoku_zbj)
+select(blast_animals, otu:gyotoku_zbj)
 ```
 
 ## 列を絞る
@@ -698,3 +714,156 @@ filter(blast_animals, identity_top1 > 98)
 `blast_animals`から"chiba_1_zbj"と"target_top1"のデータを切り出して、ゼロよりも多いOTUだけに絞って、別のcsvファイルとして保存して下さい。
 
 - ヒント：`write_csv()`でcsvファイルを保存することができる
+
+## データの変換
+
+- `mutate()`である行のデータを変換することができる。
+  - 例えば、`identity_top1`をパーセントに変える（０から１まで）
+```{r}
+# データをBLASTの最も近い結果だけに絞る
+top1 <- select(blast_animals, otu, matches("top1$"))
+# identity_top1をパーセントに変える（上書き）
+mutate(top1, identity_top1 = identity_top1 / 100)
+```
+
+## データの変換
+
+- `mutate()`は新しい行を作ることもできる
+```{r}
+# identity_top1をパーセントに変える
+mutate(top1, identity_top1_perc = identity_top1 / 100)
+```
+
+## パイプについて
+
+今までのやり方では、複数の処理をする際、それぞれのアウトプットに名前をつけていた：
+
+> `blast_animals`から"chiba_1_zbj"と"target_top1"のデータを切り出して、ゼロよりも多いOTUだけに絞って、別のcsvファイルとして保存して下さい
+
+```{r}
+blast_animals_chiba_1 <- select(blast_animals, chiba_1_zbj, target_top1)
+blast_animals_chiba_1_small <- filter(blast_animals_chiba_1, chiba_1_zbj > 0)
+```
+
+でもこれは処理が多くなるとややこしくなってくる。
+
+**もっといい方法はある：パイプ**
+
+## パイプについて
+
+「パイプ」とは、左の関数のアウトプットを右の関数の<br>インプットに渡すもの
+
+<br>
+
+`%>%`（あるいは`|>`）と書く。「それから」として読む
+
+## パイプについて
+
+![](images/pipe.png){fig-alt="mario going through a pipe"}
+
+## パイプについて
+
+- 先の作業はパイプを使うとこのようにできる：
+
+```{r}
+blast_animals %>%
+  select(chiba_1_zbj, target_top1) %>%
+  filter(chiba_1_zbj > 0)
+```
+
+- この方がスッキリするでしょう？
+
+## チャレンジ
+
+`blast_animals`から**行徳**のデータだけに絞って、最も近く一致した種の**和名**を**リード数の順**で並べてください
+
+## データの集計
+
+`summarize()`でデータの**集計**ができる：
+
+```{r}
+summarize(blast_animals, mean_aln_len = mean(alignment_length_top1))
+```
+
+## グループ化
+
+しかし、全体の平均だけを計算してもあまり意味はない。
+
+それよりも、何か**毎に**データの集計を行いたい方が多い。
+
+それには`group_by()`関数を使う。例えば、種ごと。まずはデータのグループを指定する：
+
+```{r}
+blast_animals %>%
+  group_by(target_top1)
+```
+
+## グループ化
+
+次に、集計する：
+
+```{r}
+blast_animals %>%
+  group_by(target_top1) %>%
+  summarize(mean_aln_len = mean(alignment_length_top1))
+```
+
+## グループ化
+
+グループ毎の計算が終わったら、`ungroup()`でグループの解除をする必要がある場合がある。
+
+```{r}
+blast_animals %>%
+  group_by(target_top1) %>%
+  summarize(mean_aln_len = mean(alignment_length_top1)) %>%
+  ungroup()
+```
+
+## 幅広いデータから細長いデータへ
+
+- 今のデータの幅がとても広い（行がたくさんある）
+
+- 解析によっては、**長細い**形の方がいい時がある
+
+- 幅広い形から細長い形に変えるには、`pivot_wider()`を使う
+
+## 幅広いデータから細長いデータへ
+
+```{r}
+target_long <-
+  blast_animals |>
+    # まずは、種名とOTUだけに絞りましょう
+    select(otu, contains("target_top")) |>
+    # 行の名前を新しい「rank」という行に入れて、各セルのデータを「species」に入れましょう
+    pivot_longer(names_to = "rank", values_to = "species", cols = -otu) |>
+    # 最後にrankを数字にする
+    mutate(rank = parse_number(rank))
+
+target_long
+```
+
+## 幅広いデータから細長いデータへ
+
+- 類似度のデータにも同じことができる：
+
+```{r}
+identity_long <-
+  blast_animals |>
+    select(otu, contains("identity_top")) |>
+    pivot_longer(names_to = "rank", values_to = "identity", cols = -otu) |>
+    mutate(rank = parse_number(rank))
+
+identity_long
+```
+
+## 幅広いデータから細長いデータへ
+
+- 最後に、この二つの細長いデータをくっ付ける（「join」）することによって、解析に使いやすい状態にする：
+
+```{r}
+left_join(target_long, identity_long)
+```
+
+## まとめ
+
+初めての方にはとてもコードの量が多いように思えるでしょうが、このようなツールを毎日使うって、慣れていくとそのうちどのようなデータでもRで扱えるようになる！
