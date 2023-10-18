@@ -425,7 +425,7 @@
 <section>
 <section id="day-1-rstudio入門blastデータ入力" class="title-slide slide level1 center">
 <h1>Day 1: RStudio入門、BLAST、データ入力</h1>
-<p>2023-10-03</p>
+<p>2023-10-12</p>
 </section>
 <section id="なぜコードを使うのか" class="slide level2">
 <h2>なぜコードを使うのか？</h2>
@@ -602,7 +602,7 @@
 </section>
 <section id="rstudioのデフォルト設定を-変えましょう" class="slide level2">
 <h2>RStudioのデフォルト設定を<br>変えましょう</h2>
-<p>前のセッションのデータが残っていることは再現的に<strong>ダメ</strong>！</p>
+<p>前のセッションのデータが残っていることは<br>再現的に<strong>ダメ</strong>！</p>
 <div class="fragment">
 <p>Tools → Global Options → General → Workspace</p>
 <ul>
@@ -812,10 +812,8 @@
 <section id="パッケージのインストール" class="slide level2">
 <h2>パッケージのインストール</h2>
 <p>Rパッケージのインストールを行うには、<code>install.packages()</code>を使う：</p>
-<div class="large">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"readxl"</span>, <span class="st">"janitor"</span>, <span class="st">"tidyverse"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </div>
 <p>一回インストールしたら、次回からはしなくて良いので、これはコードとして保存しない</p>
 </section>
@@ -955,6 +953,430 @@
 <li><p>宿題は<code>day1-hw.R</code>に入っている（teamsかgithubらダウンロード）</p></li>
 <li><p>「答え」にRコードを書いてください</p></li>
 <li><p>次回までにメールでニッタまで送ってください</p></li>
+</ul>
+</section></section>
+<section>
+<section id="day-2-データの整理" class="title-slide slide level1 center">
+<h1>Day 2: データの整理</h1>
+<p>2023-10-19</p>
+</section>
+<section id="データラングリングとは" class="slide level2">
+<h2>「データラングリング」とは？</h2>
+<div class="fragment">
+<ul>
+<li><p>「wrangle」= （元々は牛などを）思う通りに整理すること</p></li>
+<li><p>データが入って来たら、必ずしも<strong>解析しやすい</strong>形になっていない</p>
+<ul>
+<li>データを<strong>整える必要がある</strong></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="https://datasciencecampus.github.io/DSCA_data_wrangling_with_r/slides/images/data_cowboy.png" alt="data wrangling monsters" class="r-stretch quarto-figure-center"><p class="caption">Image by Allison Horst</p></section>
+<section id="edaとは" class="slide level2">
+<h2>EDAとは？</h2>
+<div class="fragment">
+<ul>
+<li><p>EDA = <strong>E</strong>ploratory <strong>D</strong>ata <strong>A</strong>nalysis</p></li>
+<li><p>本格的なデータ解析（モデルの構築など）に入る前に、とりあえずデータの基本的な特徴をつかむこと</p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/ggplot2_exploratory.png" class="r-stretch quarto-figure-center"><p class="caption">Image by Allison Horst</p></section>
+<section id="データラングリングとeda" class="slide level2">
+<h2>データラングリングとEDA</h2>
+<ul>
+<li><p>データラングリングとEDAを<strong>一緒に</strong>にすることが多い</p></li>
+<li><p>様々なRパッケージがあるが、ここでは<code>tidyverse</code>を使う</p>
+<ul>
+<li>初心者に（上級者にも）使いやすい</li>
+<li>本当は複数のパッケージを含む（<code>dplyr</code>、<code>tidyr</code>、<code>ggplot</code>など）</li>
+</ul></li>
+<li><p>DNAバーコードデータのデータラングリングとEDAをやってみましょう！</p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/tidyverse_celestial.png" class="r-stretch quarto-figure-center"><p class="caption">Image by Allison Horst</p></section>
+<section id="tidyverseのインストール" class="slide level2">
+<h2><code>tidyverse</code>のインストール</h2>
+<ul>
+<li>まずは、<code>tidyverse</code>をインストールしましょう（複数のパッケージを含むので、ちょっと時間かかる）</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="データを読み込む" class="slide level2">
+<h2>データを読み込む</h2>
+<ul>
+<li><p><code>barcode-analysis.R</code>に入っているコードで前回と同じようにデータを読み込みましょう</p></li>
+<li><p>これからは<code>tidyverse</code>を使うので、<code>library(tidyverse)</code>を加える</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb18-4"><a href="#cb18-4"></a></span>
+<span id="cb18-5"><a href="#cb18-5"></a>blast_animals <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb18-6"><a href="#cb18-6"></a>  <span class="st">"data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx"</span>)</span>
+<span id="cb18-7"><a href="#cb18-7"></a></span>
+<span id="cb18-8"><a href="#cb18-8"></a>blast_animals <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(blast_animals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="まずデータを眺める" class="slide level2">
+<h2>まず、データを眺める</h2>
+<p><code>blast_animals</code>をコンソールで打つと、基本的な情報が返ってくる</p>
+<ul>
+<li>行のデータの種類</li>
+<li>列の数</li>
+<li>行の数</li>
+</ul>
+</section>
+<section id="まずデータを眺める-1" class="slide level2">
+<h2>まず、データを眺める</h2>
+<ul>
+<li><p>このデータがどうなっているのか理解するためには、まず全体の様子を見てみましょう</p></li>
+<li><p><code>Environment</code>パネルの<code>blast_animals</code>をクリックすると、エクセルのような画面が出てくる</p></li>
+</ul>
+</section>
+<section id="まずデータを眺める-2" class="slide level2">
+<h2>まず、データを眺める</h2>
+<ul>
+<li><code>number_otu_id</code>: OTUの個人番号みたいな物。一シーケンスあたり、一つの番号がついている</li>
+<li><code>chiba_1_zbj</code>、<code>chiba_2_zbj</code>など：それぞれの地点において、各OTUの頻度（リードの数）</li>
+</ul>
+</section>
+<section id="まずデータを眺める-3" class="slide level2 smaller">
+<h2>まず、データを眺める</h2>
+<ul>
+<li><code>_top1</code>で終わる行はBLASTの結果
+<ul>
+<li><code>accession_top1</code>:一致したシーケンスのID</li>
+<li><code>target_top1</code>:一致したシーケンスの学名</li>
+<li><code>identity_top1</code>:一致したシーケンスとOTUとの類似度</li>
+<li><code>alignment_length_top1</code>:一致したシーケンスとOTUとのアラインメントの長さ</li>
+<li><code>species_top1</code>:一致したシーケンスの和名</li>
+</ul></li>
+</ul>
+<p><code>_top1</code>は最も近い「当たり」、<code>_top2</code>はその次に高いもの、など</p>
+</section>
+<section id="列の順を並び変える" class="slide level2">
+<h2>列の順を並び変える</h2>
+<ul>
+<li><code>arrange(data, column)</code>
+<ul>
+<li>デフォルトで小さいから大きい順</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">arrange</span>(blast_animals, chiba_1_zbj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 106 × 55
+   number_otu_id chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj
+   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+ 1 ASV_002                 0       18828             0           0
+ 2 ASV_003                 0           0             0       14991
+ 3 ASV_004                 0       12144             0           0
+ 4 ASV_005                 0           0             0        7550
+ 5 ASV_006                 0           0          6918           0
+ 6 ASV_007                 0           0             0        6518
+ 7 ASV_008                 0           0             0        5434
+ 8 ASV_009                 0        5276             0           0
+ 9 ASV_010                 0           0          4904           0
+10 ASV_011                 0           0          4499           0
+# ℹ 96 more rows
+# ℹ 50 more variables: accession_top1 &lt;chr&gt;, target_top1 &lt;chr&gt;,
+#   identity_top1 &lt;dbl&gt;, alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;,
+#   accession_top2 &lt;chr&gt;, target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;,
+#   alignment_length_top2 &lt;dbl&gt;, species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;,
+#   target_top3 &lt;chr&gt;, identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;,
+#   species_top3 &lt;chr&gt;, accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+</section>
+<section id="列の順を並び変える-1" class="slide level2">
+<h2>列の順を並び変える</h2>
+<ul>
+<li>デフォルトで小さい順（あるいは、Aの方）から並ぶ</li>
+<li>大きい方（あるいは、Zの方）から並べたい時は<code>desc()</code>を使う</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">arrange</span>(blast_animals, <span class="fu">desc</span>(chiba_1_zbj))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 106 × 55
+   number_otu_id chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj
+   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+ 1 ASV_001             21793           0          4312           0
+ 2 ASV_014              3279           0           207           0
+ 3 ASV_039               224           0             0           0
+ 4 ASV_044               158           0             0           0
+ 5 ASV_023               147           0           603           0
+ 6 ASV_049               122           0             0           0
+ 7 ASV_052               109           0             0           0
+ 8 ASV_077                26           0             0           0
+ 9 ASV_083                22           0             0           0
+10 ASV_085                21           0             0           0
+# ℹ 96 more rows
+# ℹ 50 more variables: accession_top1 &lt;chr&gt;, target_top1 &lt;chr&gt;,
+#   identity_top1 &lt;dbl&gt;, alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;,
+#   accession_top2 &lt;chr&gt;, target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;,
+#   alignment_length_top2 &lt;dbl&gt;, species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;,
+#   target_top3 &lt;chr&gt;, identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;,
+#   species_top3 &lt;chr&gt;, accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">arrange</span>(blast_animals, target_top1, identity_top1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 106 × 55
+   number_otu_id chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj
+   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+ 1 ASV_111                 0           0             2           0
+ 2 ASV_079                20           0             4           0
+ 3 ASV_055                 0          92             0           0
+ 4 ASV_082                 0           0            23           0
+ 5 ASV_061                 0          63             0           0
+ 6 ASV_091                 0           0            15           0
+ 7 ASV_033                 0           0           314           0
+ 8 ASV_026                 0           0           504           0
+ 9 ASV_023               147           0           603           0
+10 ASV_051                 0           0           111           0
+# ℹ 96 more rows
+# ℹ 50 more variables: accession_top1 &lt;chr&gt;, target_top1 &lt;chr&gt;,
+#   identity_top1 &lt;dbl&gt;, alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;,
+#   accession_top2 &lt;chr&gt;, target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;,
+#   alignment_length_top2 &lt;dbl&gt;, species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;,
+#   target_top3 &lt;chr&gt;, identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;,
+#   species_top3 &lt;chr&gt;, accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+</section>
+<section id="列の順を並び変える-2" class="slide level2">
+<h2>列の順を並び変える</h2>
+<ul>
+<li><code>arrange(data, column1, column2)</code>で複数の行によって並び変える</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">arrange</span>(blast_animals, target_top1, identity_top1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 106 × 55
+   number_otu_id chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj
+   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+ 1 ASV_111                 0           0             2           0
+ 2 ASV_079                20           0             4           0
+ 3 ASV_055                 0          92             0           0
+ 4 ASV_082                 0           0            23           0
+ 5 ASV_061                 0          63             0           0
+ 6 ASV_091                 0           0            15           0
+ 7 ASV_033                 0           0           314           0
+ 8 ASV_026                 0           0           504           0
+ 9 ASV_023               147           0           603           0
+10 ASV_051                 0           0           111           0
+# ℹ 96 more rows
+# ℹ 50 more variables: accession_top1 &lt;chr&gt;, target_top1 &lt;chr&gt;,
+#   identity_top1 &lt;dbl&gt;, alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;,
+#   accession_top2 &lt;chr&gt;, target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;,
+#   alignment_length_top2 &lt;dbl&gt;, species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;,
+#   target_top3 &lt;chr&gt;, identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;,
+#   species_top3 &lt;chr&gt;, accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+</section>
+<section id="行を抜き出す" class="slide level2">
+<h2>行を抜き出す</h2>
+<ul>
+<li><code>select(data, column)</code>で行を抜き出す</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">select</span>(blast_animals, number_otu_id, chiba_1_zbj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 106 × 2
+   number_otu_id chiba_1_zbj
+   &lt;chr&gt;               &lt;dbl&gt;
+ 1 ASV_001             21793
+ 2 ASV_002                 0
+ 3 ASV_003                 0
+ 4 ASV_004                 0
+ 5 ASV_005                 0
+ 6 ASV_006                 0
+ 7 ASV_007                 0
+ 8 ASV_008                 0
+ 9 ASV_009                 0
+10 ASV_010                 0
+# ℹ 96 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="行を抜き出す-1" class="slide level2">
+<h2>行を抜き出す</h2>
+<ul>
+<li><code>select(data, column1, column2)</code>で行を抜き出す
+<ul>
+<li>複数の行を選ぶこともできる</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">select</span>(blast_animals, number_otu_id, chiba_1_zbj, target_top1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 106 × 3
+   number_otu_id chiba_1_zbj target_top1             
+   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;                   
+ 1 ASV_001             21793 Oxidus_gracilis         
+ 2 ASV_002                 0 Drosophila_ficusphila   
+ 3 ASV_003                 0 Spodoptera_depravata    
+ 4 ASV_004                 0 Lepidopsocidae_sp.      
+ 5 ASV_005                 0 Smicronyx_guineanus     
+ 6 ASV_006                 0 Colasposoma_sp.         
+ 7 ASV_007                 0 Parapediasia_teterrellus
+ 8 ASV_008                 0 Philodina_plena         
+ 9 ASV_009                 0 Sitticus_penicillatus   
+10 ASV_010                 0 Oxidus_riukiarius       
+# ℹ 96 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="行を抜き出す-2" class="slide level2">
+<h2>行を抜き出す</h2>
+<ul>
+<li>数字でも指定できる</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">select</span>(blast_animals, <span class="dv">1</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 106 × 2
+   number_otu_id chiba_1_zbj
+   &lt;chr&gt;               &lt;dbl&gt;
+ 1 ASV_001             21793
+ 2 ASV_002                 0
+ 3 ASV_003                 0
+ 4 ASV_004                 0
+ 5 ASV_005                 0
+ 6 ASV_006                 0
+ 7 ASV_007                 0
+ 8 ASV_008                 0
+ 9 ASV_009                 0
+10 ASV_010                 0
+# ℹ 96 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="行を抜き出す-3" class="slide level2">
+<h2>行を抜き出す</h2>
+<ul>
+<li><code>:</code>で行の範囲を指定できる</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">select</span>(blast_animals, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 106 × 4
+   number_otu_id chiba_1_zbj chiba_2_zbj tsudanuma_zbj
+   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+ 1 ASV_001             21793           0          4312
+ 2 ASV_002                 0       18828             0
+ 3 ASV_003                 0           0             0
+ 4 ASV_004                 0       12144             0
+ 5 ASV_005                 0           0             0
+ 6 ASV_006                 0           0          6918
+ 7 ASV_007                 0           0             0
+ 8 ASV_008                 0           0             0
+ 9 ASV_009                 0        5276             0
+10 ASV_010                 0           0          4904
+# ℹ 96 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="行を抜き出す-4" class="slide level2">
+<h2>行を抜き出す</h2>
+<ul>
+<li><code>:</code>で行の範囲を指定できる</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">select</span>(blast_animals, number_otu_id<span class="sc">:</span>gyotoku_zbj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 106 × 5
+   number_otu_id chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj
+   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+ 1 ASV_001             21793           0          4312           0
+ 2 ASV_002                 0       18828             0           0
+ 3 ASV_003                 0           0             0       14991
+ 4 ASV_004                 0       12144             0           0
+ 5 ASV_005                 0           0             0        7550
+ 6 ASV_006                 0           0          6918           0
+ 7 ASV_007                 0           0             0        6518
+ 8 ASV_008                 0           0             0        5434
+ 9 ASV_009                 0        5276             0           0
+10 ASV_010                 0           0          4904           0
+# ℹ 96 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="列を絞る" class="slide level2">
+<h2>列を絞る</h2>
+<ul>
+<li><code>filter()</code>である条件に合っている列だけに絞る</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">filter</span>(blast_animals, target_top1 <span class="sc">==</span> <span class="st">"Diaprepes_sp."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 55
+  number_otu_id chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
+  &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;         
+1 ASV_014              3279           0           207           0 HQ891438.1    
+2 ASV_025                 0           0           670           0 HQ891438.1    
+3 ASV_030                 0           0           429           0 HQ891438.1    
+4 ASV_052               109           0             0           0 HQ891438.1    
+# ℹ 49 more variables: target_top1 &lt;chr&gt;, identity_top1 &lt;dbl&gt;,
+#   alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;, accession_top2 &lt;chr&gt;,
+#   target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;, alignment_length_top2 &lt;dbl&gt;,
+#   species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;, target_top3 &lt;chr&gt;,
+#   identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;, species_top3 &lt;chr&gt;,
+#   accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, identity_top4 &lt;dbl&gt;,
+#   alignment_length_top4 &lt;dbl&gt;, species_top4 &lt;chr&gt;, accession_top5 &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+</section>
+<section id="列を絞る-1" class="slide level2">
+<h2>列を絞る</h2>
+<ul>
+<li><code>filter()</code>である条件に合っている列だけに絞る</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">filter</span>(blast_animals, identity_top1 <span class="sc">&gt;</span> <span class="dv">98</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 58 × 55
+   number_otu_id chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj
+   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+ 1 ASV_002                 0       18828             0           0
+ 2 ASV_003                 0           0             0       14991
+ 3 ASV_006                 0           0          6918           0
+ 4 ASV_007                 0           0             0        6518
+ 5 ASV_009                 0        5276             0           0
+ 6 ASV_011                 0           0          4499           0
+ 7 ASV_012                 0        3704             0           0
+ 8 ASV_015                 0           0             0        2309
+ 9 ASV_016                 0           0          2157           0
+10 ASV_017                 0        1919             0           0
+# ℹ 48 more rows
+# ℹ 50 more variables: accession_top1 &lt;chr&gt;, target_top1 &lt;chr&gt;,
+#   identity_top1 &lt;dbl&gt;, alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;,
+#   accession_top2 &lt;chr&gt;, target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;,
+#   alignment_length_top2 &lt;dbl&gt;, species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;,
+#   target_top3 &lt;chr&gt;, identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;,
+#   species_top3 &lt;chr&gt;, accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+</section>
+<section id="チャレンジ" class="slide level2">
+<h2>チャレンジ</h2>
+<p><code>blast_animals</code>から”chiba_1_zbj”と”target_top1”のデータを切り出して、ゼロよりも多いOTUだけに絞って、別のcsvファイルとして保存して下さい。</p>
+<ul>
+<li>ヒント：<code>write_csv()</code>でcsvファイルを保存することができる</li>
 </ul>
 <div class="footer footer-default">
 <p><a href="https://joelnitta.github.io/gap-term-2023">https://joelnitta.github.io/gap-term-2023</a></p>

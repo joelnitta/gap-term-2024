@@ -34,7 +34,7 @@ html:
 
 # Day 1: RStudio入門、BLAST、データ入力
 
-2023-10-03
+2023-10-12
 
 ## なぜコードを使うのか？
 
@@ -186,7 +186,7 @@ html:
 
 ## RStudioのデフォルト設定を<br>変えましょう
 
-前のセッションのデータが残っていることは再現的に**ダメ**！
+前のセッションのデータが残っていることは<br>再現的に**ダメ**！
 
 . . . 
 
@@ -391,16 +391,12 @@ round(3.1415, digits = 1)
 
 Rパッケージのインストールを行うには、`install.packages()`を使う：
 
-::: large
-
 ```{r}
 #| label: install
 #| echo: true
 #| eval: false
 install.packages(c("readxl", "janitor", "tidyverse"))
 ```
-
-:::
 
 一回インストールしたら、次回からはしなくて良いので、これはコードとして保存しない
 
@@ -512,3 +508,193 @@ blast_animals <- clean_names(blast_animals)
 - 「答え」にRコードを書いてください
 
 - 次回までにメールでニッタまで送ってください
+
+# Day 2: データの整理
+
+2023-10-19
+
+## 「データラングリング」とは？
+
+. . .
+
+- 「wrangle」= （元々は牛などを）思う通りに整理すること
+
+- データが入って来たら、必ずしも**解析しやすい**形になっていない
+  - データを**整える必要がある**
+
+---
+
+![Image by Allison Horst](https://datasciencecampus.github.io/DSCA_data_wrangling_with_r/slides/images/data_cowboy.png){fig-alt="data wrangling monsters"}
+
+## EDAとは？
+
+. . .
+
+- EDA = **E**ploratory **D**ata **A**nalysis
+
+- 本格的なデータ解析（モデルの構築など）に入る前に、とりあえずデータの基本的な特徴をつかむこと
+
+---
+
+![Image by Allison Horst](images/ggplot2_exploratory.png)
+
+
+## データラングリングとEDA
+
+- データラングリングとEDAを**一緒に**にすることが多い
+
+- 様々なRパッケージがあるが、ここでは`tidyverse`を使う
+  - 初心者に（上級者にも）使いやすい
+  - 本当は複数のパッケージを含む（`dplyr`、`tidyr`、`ggplot`など）
+
+- DNAバーコードデータのデータラングリングとEDAをやってみましょう！
+
+---
+
+![Image by Allison Horst](images/tidyverse_celestial.png)
+
+## `tidyverse`のインストール
+
+- まずは、`tidyverse`をインストールしましょう（複数のパッケージを含むので、ちょっと時間かかる）
+
+```{r}
+#| eval: false
+install.packages("tidyverse")
+```
+
+## データを読み込む
+
+- `barcode-analysis.R`に入っているコードで前回と同じようにデータを読み込みましょう
+
+- これからは`tidyverse`を使うので、`library(tidyverse)`を加える
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(janitor)
+
+blast_animals <- read_excel(
+  "data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx")
+
+blast_animals <- clean_names(blast_animals)
+```
+
+## まず、データを眺める
+
+`blast_animals`をコンソールで打つと、基本的な情報が返ってくる
+
+- 行のデータの種類
+- 列の数
+- 行の数
+
+## まず、データを眺める
+
+- このデータがどうなっているのか理解するためには、まず全体の様子を見てみましょう
+
+- `Environment`パネルの`blast_animals`をクリックすると、エクセルのような画面が出てくる
+
+## まず、データを眺める
+
+- `number_otu_id`: OTUの個人番号みたいな物。一シーケンスあたり、一つの番号がついている
+- `chiba_1_zbj`、`chiba_2_zbj`など：それぞれの地点において、各OTUの頻度（リードの数）
+
+## まず、データを眺める{.smaller}
+
+- `_top1`で終わる行はBLASTの結果
+  - `accession_top1`:一致したシーケンスのID
+  - `target_top1`:一致したシーケンスの学名
+  - `identity_top1`:一致したシーケンスとOTUとの類似度
+  - `alignment_length_top1`:一致したシーケンスとOTUとのアラインメントの長さ
+  - `species_top1`:一致したシーケンスの和名
+
+`_top1`は最も近い「当たり」、`_top2`はその次に高いもの、など
+
+## 列の順を並び変える
+
+- `arrange(data, column)`
+  - デフォルトで小さいから大きい順
+
+```{r}
+arrange(blast_animals, chiba_1_zbj)
+```
+
+## 列の順を並び変える
+
+- デフォルトで小さい順（あるいは、Aの方）から並ぶ
+- 大きい方（あるいは、Zの方）から並べたい時は`desc()`を使う
+
+```{r}
+arrange(blast_animals, desc(chiba_1_zbj))
+arrange(blast_animals, target_top1, identity_top1)
+```
+
+## 列の順を並び変える
+
+- `arrange(data, column1, column2)`で複数の行によって並び変える
+
+```{r}
+arrange(blast_animals, target_top1, identity_top1)
+```
+
+## 行を抜き出す
+
+- `select(data, column)`で行を抜き出す
+
+```{r}
+select(blast_animals, number_otu_id, chiba_1_zbj)
+```
+
+## 行を抜き出す
+
+- `select(data, column1, column2)`で行を抜き出す
+  - 複数の行を選ぶこともできる
+
+```{r}
+select(blast_animals, number_otu_id, chiba_1_zbj, target_top1)
+```
+
+## 行を抜き出す
+
+- 数字でも指定できる
+
+```{r}
+select(blast_animals, 1, 2)
+```
+
+## 行を抜き出す
+
+- `:`で行の範囲を指定できる
+
+```{r}
+select(blast_animals, 1:4)
+```
+
+## 行を抜き出す
+
+- `:`で行の範囲を指定できる
+
+```{r}
+select(blast_animals, number_otu_id:gyotoku_zbj)
+```
+
+## 列を絞る
+
+- `filter()`である条件に合っている列だけに絞る
+
+```{r}
+filter(blast_animals, target_top1 == "Diaprepes_sp.")
+```
+
+## 列を絞る
+
+- `filter()`である条件に合っている列だけに絞る
+
+```{r}
+filter(blast_animals, identity_top1 > 98)
+```
+
+## チャレンジ
+
+`blast_animals`から"chiba_1_zbj"と"target_top1"のデータを切り出して、ゼロよりも多いOTUだけに絞って、別のcsvファイルとして保存して下さい。
+
+- ヒント：`write_csv()`でcsvファイルを保存することができる
