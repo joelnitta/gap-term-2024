@@ -981,6 +981,96 @@
 </ul></li>
 </ul>
 </section>
+<section id="宿題-1" class="slide level2">
+<h2>宿題</h2>
+<blockquote>
+<p>Chiba-1-trnL.fastaに入っているシーケンス（DNA配列）の長さはどれくらい（何塩基）でしょうか？</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">library</span>(ape)</span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">read.FASTA</span>(<span class="st">"data_raw/Chiba-1-trnL.fasta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="宿題-2" class="slide level2">
+<h2>宿題</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>2 DNA sequences in binary format stored in a list.
+
+All sequences of same length: 145 
+
+Labels:
+ASV_002_(99.6083%)
+ASV_024_(0.1846%)
+
+Base composition:
+    a     c     g     t 
+0.376 0.183 0.221 0.221 
+(Total: 290 bases)</code></pre>
+</div>
+</div>
+<ul>
+<li><code>All sequences of same length: 145</code>の<strong>length</strong>が145なので、答えは145延期です（<code>Total</code>はこの全部のデータに含まれている延期の数）</li>
+</ul>
+</section>
+<section id="宿題-3" class="slide level2">
+<h2>宿題</h2>
+<ul>
+<li><code>library()</code>でパッケージをロードする時、一つずつロードする必要がある</li>
+</ul>
+<p>OK:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">library</span>(ape)</span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="宿題-4" class="slide level2">
+<h2>宿題</h2>
+<ul>
+<li><code>library()</code>でパッケージをロードする時、一つずつロードする必要がある</li>
+</ul>
+<p>ダメ：</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">library</span>(ape, janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>エラーが出ないけど、<code>janitor</code>がちゃんとロードされていない</li>
+</ul>
+</section>
+<section id="エラー" class="slide level2">
+<h2>エラー</h2>
+<ul>
+<li><p>そもそもエラーって何？</p></li>
+<li><p>Rを実行している途中に（Rにとって）<strong>間違った</strong>コマンドを受けた時の反応</p>
+<ul>
+<li>ここ以上<strong>進めない</strong></li>
+<li>その代わり、エラーメッセージ（赤い文字）を発信する</li>
+</ul></li>
+</ul>
+<div class="large">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">round</span>(<span class="st">"1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in round("1"): non-numeric argument to mathematical function</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="エラー-1" class="slide level2">
+<h2>エラー</h2>
+<ul>
+<li>エラーが出た時にはどうすればいい？
+<ul>
+<li>まずは、<strong>慌てない</strong></li>
+<li>冷静にエラーメッセージを読んで、その意味を考えてください</li>
+<li>ヘルプファイル（例：<code>?round</code>）を読んだり、エラーメッセージをググったりしてみる</li>
+</ul></li>
+<li><strong><code>non-numeric</code></strong> <code>argument to mathematical function</code>
+<ul>
+<li>インプットは数字ではなかった！</li>
+</ul></li>
+</ul>
+</section>
 <section id="今日のトピック" class="slide level2">
 <h2>今日のトピック</h2>
 <ul>
@@ -1043,7 +1133,7 @@
 <li>まずは、<code>tidyverse</code>をインストールしましょう（複数のパッケージを含むので、ちょっと時間かかる）</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="データを読み込む" class="slide level2">
@@ -1053,14 +1143,14 @@
 <li><p>これからは<code>tidyverse</code>を使うので、<code>library(tidyverse)</code>を加える</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb18-4"><a href="#cb18-4"></a></span>
-<span id="cb18-5"><a href="#cb18-5"></a>blast_animals <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
-<span id="cb18-6"><a href="#cb18-6"></a>  <span class="st">"data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx"</span>)</span>
-<span id="cb18-7"><a href="#cb18-7"></a></span>
-<span id="cb18-8"><a href="#cb18-8"></a>blast_animals <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(blast_animals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb24-4"><a href="#cb24-4"></a></span>
+<span id="cb24-5"><a href="#cb24-5"></a>blast_animals <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb24-6"><a href="#cb24-6"></a>  <span class="st">"data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx"</span>)</span>
+<span id="cb24-7"><a href="#cb24-7"></a></span>
+<span id="cb24-8"><a href="#cb24-8"></a>blast_animals <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(blast_animals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="まずデータを眺める" class="slide level2">
@@ -1114,8 +1204,8 @@
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>blast_animals <span class="ot">&lt;-</span> <span class="fu">rename</span>(blast_animals, <span class="at">otu =</span> number_otu_id)</span>
-<span id="cb19-2"><a href="#cb19-2"></a>blast_animals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>blast_animals <span class="ot">&lt;-</span> <span class="fu">rename</span>(blast_animals, <span class="at">otu =</span> number_otu_id)</span>
+<span id="cb25-2"><a href="#cb25-2"></a>blast_animals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 55
    otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
@@ -1152,7 +1242,7 @@
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">arrange</span>(blast_animals, chiba_1_zbj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">arrange</span>(blast_animals, chiba_1_zbj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 55
    otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
@@ -1187,7 +1277,7 @@
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">arrange</span>(blast_animals, <span class="fu">desc</span>(chiba_1_zbj))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">arrange</span>(blast_animals, <span class="fu">desc</span>(chiba_1_zbj))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 55
    otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
@@ -1221,7 +1311,7 @@
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">arrange</span>(blast_animals, target_top1, identity_top1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">arrange</span>(blast_animals, target_top1, identity_top1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 55
    otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
@@ -1252,7 +1342,7 @@
 <li><code>select(data, column)</code>で行を抜き出す</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">select</span>(blast_animals, otu, chiba_1_zbj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">select</span>(blast_animals, otu, chiba_1_zbj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 2
    otu     chiba_1_zbj
@@ -1280,7 +1370,7 @@
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">select</span>(blast_animals, otu, chiba_1_zbj, target_top1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">select</span>(blast_animals, otu, chiba_1_zbj, target_top1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 3
    otu     chiba_1_zbj target_top1             
@@ -1305,7 +1395,7 @@
 <li>数字でも指定できる</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">select</span>(blast_animals, <span class="dv">1</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">select</span>(blast_animals, <span class="dv">1</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 2
    otu     chiba_1_zbj
@@ -1330,7 +1420,7 @@
 <li><code>:</code>で行の範囲を指定できる</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">select</span>(blast_animals, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">select</span>(blast_animals, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 4
    otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj
@@ -1355,7 +1445,7 @@
 <li><code>:</code>で行の範囲を指定できる</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">select</span>(blast_animals, otu<span class="sc">:</span>gyotoku_zbj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">select</span>(blast_animals, otu<span class="sc">:</span>gyotoku_zbj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 5
    otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj
@@ -1380,7 +1470,7 @@
 <li><code>filter()</code>である条件に合っている列だけに絞る</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">filter</span>(blast_animals, target_top1 <span class="sc">==</span> <span class="st">"Diaprepes_sp."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">filter</span>(blast_animals, target_top1 <span class="sc">==</span> <span class="st">"Diaprepes_sp."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 55
   otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
@@ -1405,7 +1495,7 @@
 <li><code>filter()</code>である条件に合っている列だけに絞る</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">filter</span>(blast_animals, identity_top1 <span class="sc">&gt;</span> <span class="dv">98</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">filter</span>(blast_animals, identity_top1 <span class="sc">&gt;</span> <span class="dv">98</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 58 × 55
    otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
@@ -1449,10 +1539,10 @@
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="co"># データをBLASTの最も近い結果だけに絞る</span></span>
-<span id="cb41-2"><a href="#cb41-2"></a>top1 <span class="ot">&lt;-</span> <span class="fu">select</span>(blast_animals, otu, <span class="fu">matches</span>(<span class="st">"top1$"</span>))</span>
-<span id="cb41-3"><a href="#cb41-3"></a><span class="co"># identity_top1をパーセントに変える（上書き）</span></span>
-<span id="cb41-4"><a href="#cb41-4"></a><span class="fu">mutate</span>(top1, <span class="at">identity_top1 =</span> identity_top1 <span class="sc">/</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="co"># データをBLASTの最も近い結果だけに絞る</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a>top1 <span class="ot">&lt;-</span> <span class="fu">select</span>(blast_animals, otu, <span class="fu">matches</span>(<span class="st">"top1$"</span>))</span>
+<span id="cb47-3"><a href="#cb47-3"></a><span class="co"># identity_top1をパーセントに変える（上書き）</span></span>
+<span id="cb47-4"><a href="#cb47-4"></a><span class="fu">mutate</span>(top1, <span class="at">identity_top1 =</span> identity_top1 <span class="sc">/</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 6
    otu     accession_top1 target_top1        identity_top1 alignment_length_top1
@@ -1481,8 +1571,8 @@
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="co"># identity_top1をパーセントに変える</span></span>
-<span id="cb43-2"><a href="#cb43-2"></a><span class="fu">mutate</span>(top1, <span class="at">identity_top1_perc =</span> identity_top1 <span class="sc">/</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="co"># identity_top1をパーセントに変える</span></span>
+<span id="cb49-2"><a href="#cb49-2"></a><span class="fu">mutate</span>(top1, <span class="at">identity_top1_perc =</span> identity_top1 <span class="sc">/</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 7
    otu     accession_top1 target_top1        identity_top1 alignment_length_top1
@@ -1509,8 +1599,8 @@
 <p><code>blast_animals</code>から”chiba_1_zbj”と”target_top1”のデータを切り出して、ゼロよりも多いOTUだけに絞って、別のcsvファイルとして保存して下さい</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>blast_animals_chiba_1 <span class="ot">&lt;-</span> <span class="fu">select</span>(blast_animals, chiba_1_zbj, target_top1)</span>
-<span id="cb45-2"><a href="#cb45-2"></a>blast_animals_chiba_1_small <span class="ot">&lt;-</span> <span class="fu">filter</span>(blast_animals_chiba_1, chiba_1_zbj <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>blast_animals_chiba_1 <span class="ot">&lt;-</span> <span class="fu">select</span>(blast_animals, chiba_1_zbj, target_top1)</span>
+<span id="cb51-2"><a href="#cb51-2"></a>blast_animals_chiba_1_small <span class="ot">&lt;-</span> <span class="fu">filter</span>(blast_animals_chiba_1, chiba_1_zbj <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>でもこれは処理が多くなるとややこしくなってくる。</p>
 <p><strong>もっといい方法はある：パイプ</strong></p>
@@ -1534,9 +1624,9 @@
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>blast_animals <span class="sc">%&gt;%</span></span>
-<span id="cb46-2"><a href="#cb46-2"></a>  <span class="fu">select</span>(chiba_1_zbj, target_top1) <span class="sc">%&gt;%</span></span>
-<span id="cb46-3"><a href="#cb46-3"></a>  <span class="fu">filter</span>(chiba_1_zbj <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>blast_animals <span class="sc">%&gt;%</span></span>
+<span id="cb52-2"><a href="#cb52-2"></a>  <span class="fu">select</span>(chiba_1_zbj, target_top1) <span class="sc">%&gt;%</span></span>
+<span id="cb52-3"><a href="#cb52-3"></a>  <span class="fu">filter</span>(chiba_1_zbj <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 15 × 2
    chiba_1_zbj target_top1               
@@ -1570,7 +1660,7 @@
 <h2>データの集計</h2>
 <p><code>summarize()</code>でデータの<strong>集計</strong>ができる：</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">summarize</span>(blast_animals, <span class="at">mean_aln_len =</span> <span class="fu">mean</span>(alignment_length_top1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">summarize</span>(blast_animals, <span class="at">mean_aln_len =</span> <span class="fu">mean</span>(alignment_length_top1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   mean_aln_len
@@ -1588,8 +1678,8 @@
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>blast_animals <span class="sc">%&gt;%</span></span>
-<span id="cb50-2"><a href="#cb50-2"></a>  <span class="fu">group_by</span>(target_top1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>blast_animals <span class="sc">%&gt;%</span></span>
+<span id="cb56-2"><a href="#cb56-2"></a>  <span class="fu">group_by</span>(target_top1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 55
 # Groups:   target_top1 [86]
@@ -1619,9 +1709,9 @@
 <h2>グループ化</h2>
 <p>次に、集計する：</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>blast_animals <span class="sc">%&gt;%</span></span>
-<span id="cb52-2"><a href="#cb52-2"></a>  <span class="fu">group_by</span>(target_top1) <span class="sc">%&gt;%</span></span>
-<span id="cb52-3"><a href="#cb52-3"></a>  <span class="fu">summarize</span>(<span class="at">mean_aln_len =</span> <span class="fu">mean</span>(alignment_length_top1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>blast_animals <span class="sc">%&gt;%</span></span>
+<span id="cb58-2"><a href="#cb58-2"></a>  <span class="fu">group_by</span>(target_top1) <span class="sc">%&gt;%</span></span>
+<span id="cb58-3"><a href="#cb58-3"></a>  <span class="fu">summarize</span>(<span class="at">mean_aln_len =</span> <span class="fu">mean</span>(alignment_length_top1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 86 × 2
    target_top1             mean_aln_len
@@ -1644,10 +1734,10 @@
 <h2>グループ化</h2>
 <p>グループ毎の計算が終わったら、<code>ungroup()</code>でグループの解除をする必要がある場合がある。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>blast_animals <span class="sc">%&gt;%</span></span>
-<span id="cb54-2"><a href="#cb54-2"></a>  <span class="fu">group_by</span>(target_top1) <span class="sc">%&gt;%</span></span>
-<span id="cb54-3"><a href="#cb54-3"></a>  <span class="fu">summarize</span>(<span class="at">mean_aln_len =</span> <span class="fu">mean</span>(alignment_length_top1)) <span class="sc">%&gt;%</span></span>
-<span id="cb54-4"><a href="#cb54-4"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>blast_animals <span class="sc">%&gt;%</span></span>
+<span id="cb60-2"><a href="#cb60-2"></a>  <span class="fu">group_by</span>(target_top1) <span class="sc">%&gt;%</span></span>
+<span id="cb60-3"><a href="#cb60-3"></a>  <span class="fu">summarize</span>(<span class="at">mean_aln_len =</span> <span class="fu">mean</span>(alignment_length_top1)) <span class="sc">%&gt;%</span></span>
+<span id="cb60-4"><a href="#cb60-4"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 86 × 2
    target_top1             mean_aln_len
@@ -1677,20 +1767,20 @@
 <section id="幅広いデータから細長いデータへ-1" class="slide level2">
 <h2>幅広いデータから細長いデータへ</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>target_long <span class="ot">&lt;-</span></span>
-<span id="cb56-2"><a href="#cb56-2"></a>  blast_animals <span class="sc">|&gt;</span></span>
-<span id="cb56-3"><a href="#cb56-3"></a>    <span class="co"># まずは、種名とOTUだけに絞りましょう</span></span>
-<span id="cb56-4"><a href="#cb56-4"></a>    <span class="fu">select</span>(otu, <span class="fu">contains</span>(<span class="st">"target_top"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb56-5"><a href="#cb56-5"></a>    <span class="co"># 行の名前を新しい「rank」という行に入れて、各セルのデータを「species」に入れましょう</span></span>
-<span id="cb56-6"><a href="#cb56-6"></a>    <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">"rank"</span>, <span class="at">values_to =</span> <span class="st">"species"</span>, <span class="at">cols =</span> <span class="sc">-</span>otu) <span class="sc">|&gt;</span></span>
-<span id="cb56-7"><a href="#cb56-7"></a>    <span class="co"># 最後にrankを数字にする</span></span>
-<span id="cb56-8"><a href="#cb56-8"></a>    <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">parse_number</span>(rank))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a>target_long <span class="ot">&lt;-</span></span>
+<span id="cb62-2"><a href="#cb62-2"></a>  blast_animals <span class="sc">|&gt;</span></span>
+<span id="cb62-3"><a href="#cb62-3"></a>    <span class="co"># まずは、種名とOTUだけに絞りましょう</span></span>
+<span id="cb62-4"><a href="#cb62-4"></a>    <span class="fu">select</span>(otu, <span class="fu">contains</span>(<span class="st">"target_top"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb62-5"><a href="#cb62-5"></a>    <span class="co"># 行の名前を新しい「rank」という行に入れて、各セルのデータを「species」に入れましょう</span></span>
+<span id="cb62-6"><a href="#cb62-6"></a>    <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">"rank"</span>, <span class="at">values_to =</span> <span class="st">"species"</span>, <span class="at">cols =</span> <span class="sc">-</span>otu) <span class="sc">|&gt;</span></span>
+<span id="cb62-7"><a href="#cb62-7"></a>    <span class="co"># 最後にrankを数字にする</span></span>
+<span id="cb62-8"><a href="#cb62-8"></a>    <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">parse_number</span>(rank))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a>target_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a>target_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,060 × 3
    otu      rank species        
@@ -1715,17 +1805,17 @@
 <li>類似度のデータにも同じことができる：</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a>identity_long <span class="ot">&lt;-</span></span>
-<span id="cb59-2"><a href="#cb59-2"></a>  blast_animals <span class="sc">|&gt;</span></span>
-<span id="cb59-3"><a href="#cb59-3"></a>    <span class="fu">select</span>(otu, <span class="fu">contains</span>(<span class="st">"identity_top"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb59-4"><a href="#cb59-4"></a>    <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">"rank"</span>, <span class="at">values_to =</span> <span class="st">"identity"</span>, <span class="at">cols =</span> <span class="sc">-</span>otu) <span class="sc">|&gt;</span></span>
-<span id="cb59-5"><a href="#cb59-5"></a>    <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">parse_number</span>(rank))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a>identity_long <span class="ot">&lt;-</span></span>
+<span id="cb65-2"><a href="#cb65-2"></a>  blast_animals <span class="sc">|&gt;</span></span>
+<span id="cb65-3"><a href="#cb65-3"></a>    <span class="fu">select</span>(otu, <span class="fu">contains</span>(<span class="st">"identity_top"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb65-4"><a href="#cb65-4"></a>    <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">"rank"</span>, <span class="at">values_to =</span> <span class="st">"identity"</span>, <span class="at">cols =</span> <span class="sc">-</span>otu) <span class="sc">|&gt;</span></span>
+<span id="cb65-5"><a href="#cb65-5"></a>    <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">parse_number</span>(rank))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>identity_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a>identity_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,060 × 3
    otu      rank identity
@@ -1750,7 +1840,7 @@
 <li>最後に、この二つの細長いデータをくっ付ける（「join」）することによって、解析に使いやすい状態にする：</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="fu">left_join</span>(target_long, identity_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="fu">left_join</span>(target_long, identity_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,060 × 4
    otu      rank species         identity
