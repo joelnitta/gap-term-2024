@@ -519,14 +519,36 @@ blast_animals <- clean_names(blast_animals)
 
 2023-10-19
 
+## おさらい
+
+- Rの基本的な使い方を学んだ
+  - 計算機としての使い方
+  - オブジェクト（変数）
+  - 関数
+
+## おさらい
+
+- BLASTの使い方とデータについて学んだ
+  - BLASTしたからと言って、必ず種名がわからない
+  - 結果が検索対象の**データベースによる**
+
+## 今日のトピック
+
+- データラングリング
+- EDA （Exploratory Data Analysis）
+
 ## 「データラングリング」とは？
 
 . . .
 
 - 「wrangle」= （元々は牛などを）思う通りに整理すること
 
-- データが入って来たら、必ずしも**解析しやすい**形になっていない
+- データが手に入ったら、必ずしも**解析しやすい**形になっていない
   - データを**整える必要がある**
+
+---
+
+![Getty Images](https://media.istockphoto.com/id/172342607/photo/cattle-drive.jpg?s=612x612&w=0&k=20&c=Fz--vTqe2gMWKxbHvgdLCgfUveH_Y3-k0js5H1m9Snc=)
 
 ---
 
@@ -599,6 +621,10 @@ blast_animals <- clean_names(blast_animals)
 
 - `Environment`パネルの`blast_animals`をクリックすると、エクセルのような画面が出てくる
 
+---
+
+![](images/rstudio-viewer.png)
+
 ## まず、データを眺める
 
 - `number_otu_id`: OTUの個人番号みたいな物。一シーケンスあたり、一つの番号がついている
@@ -621,6 +647,8 @@ blast_animals <- clean_names(blast_animals)
 
 - `rename()`関数で行の名前を変える
 
+---
+
 ```{r}
 blast_animals <- rename(blast_animals, otu = number_otu_id)
 blast_animals
@@ -631,6 +659,8 @@ blast_animals
 - `arrange(data, column)`
   - デフォルトで小さいから大きい順
 
+---
+
 ```{r}
 arrange(blast_animals, chiba_1_zbj)
 ```
@@ -640,6 +670,8 @@ arrange(blast_animals, chiba_1_zbj)
 - デフォルトで小さい順（あるいは、Aの方）から並ぶ
 - 大きい方（あるいは、Zの方）から並べたい時は`desc()`を使う
 
+---
+
 ```{r}
 arrange(blast_animals, desc(chiba_1_zbj))
 ```
@@ -647,6 +679,9 @@ arrange(blast_animals, desc(chiba_1_zbj))
 ## 列の順を並び変える
 
 - `arrange(data, column1, column2)`で複数の行によって並び変える
+
+
+---
 
 ```{r}
 arrange(blast_animals, target_top1, identity_top1)
@@ -719,6 +754,9 @@ filter(blast_animals, identity_top1 > 98)
 
 - `mutate()`である行のデータを変換することができる。
   - 例えば、`identity_top1`をパーセントに変える（０から１まで）
+
+---
+
 ```{r}
 # データをBLASTの最も近い結果だけに絞る
 top1 <- select(blast_animals, otu, matches("top1$"))
@@ -729,6 +767,9 @@ mutate(top1, identity_top1 = identity_top1 / 100)
 ## データの変換
 
 - `mutate()`は新しい行を作ることもできる
+
+---
+
 ```{r}
 # identity_top1をパーセントに変える
 mutate(top1, identity_top1_perc = identity_top1 / 100)
@@ -763,7 +804,9 @@ blast_animals_chiba_1_small <- filter(blast_animals_chiba_1, chiba_1_zbj > 0)
 
 ## パイプについて
 
-- 先の作業はパイプを使うとこのようにできる：
+- 先の作業はパイプを使うとこのようにできる
+
+---
 
 ```{r}
 blast_animals %>%
@@ -792,6 +835,8 @@ summarize(blast_animals, mean_aln_len = mean(alignment_length_top1))
 それよりも、何か**毎に**データの集計を行いたい方が多い。
 
 それには`group_by()`関数を使う。例えば、種ごと。まずはデータのグループを指定する：
+
+---
 
 ```{r}
 blast_animals %>%
@@ -838,7 +883,11 @@ target_long <-
     pivot_longer(names_to = "rank", values_to = "species", cols = -otu) |>
     # 最後にrankを数字にする
     mutate(rank = parse_number(rank))
+```
 
+---
+
+```{r}
 target_long
 ```
 
@@ -852,7 +901,10 @@ identity_long <-
     select(otu, contains("identity_top")) |>
     pivot_longer(names_to = "rank", values_to = "identity", cols = -otu) |>
     mutate(rank = parse_number(rank))
+```
 
+---
+```{r}
 identity_long
 ```
 
