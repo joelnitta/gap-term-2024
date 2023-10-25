@@ -433,7 +433,8 @@ library(tidyverse)
 library(readxl)
 
 blast_animals <- read_excel(
-  "data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx")
+  "data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx"
+)
 ```
 
 ## データの読み込み
@@ -469,7 +470,8 @@ library(readxl)
 library(janitor)
 
 blast_animals <- read_excel(
-  "data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx")
+  "data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx"
+)
 
 clean_names(blast_animals)
 ```
@@ -500,7 +502,8 @@ library(readxl)
 library(janitor)
 
 blast_animals <- read_excel(
-  "data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx")
+  "data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx"
+)
 
 blast_animals <- clean_names(blast_animals)
 ```
@@ -672,7 +675,8 @@ library(readxl)
 library(janitor)
 
 blast_animals <- read_excel(
-  "data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx")
+  "data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx"
+)
 
 blast_animals <- clean_names(blast_animals)
 ```
@@ -947,12 +951,12 @@ blast_animals %>%
 ```{r}
 target_long <-
   blast_animals %>%
-    # まずは、種名とOTUだけに絞りましょう
-    select(otu, contains("target_top")) %>%
-    # 行の名前を新しい「rank」という行に入れて、各セルのデータを「species」に入れましょう
-    pivot_longer(names_to = "rank", values_to = "species", cols = -otu) %>%
-    # 最後にrankを数字にする
-    mutate(rank = parse_number(rank))
+  # まずは、種名とOTUだけに絞りましょう
+  select(otu, contains("target_top")) %>%
+  # 行の名前を新しい「rank」という行に入れて、各セルのデータを「species」に入れましょう
+  pivot_longer(names_to = "rank", values_to = "species", cols = -otu) %>%
+  # 最後にrankを数字にする
+  mutate(rank = parse_number(rank))
 ```
 
 ---
@@ -968,12 +972,13 @@ target_long
 ```{r}
 identity_long <-
   blast_animals %>%
-    select(otu, contains("identity_top")) %>%
-    pivot_longer(names_to = "rank", values_to = "identity", cols = -otu) %>%
-    mutate(rank = parse_number(rank))
+  select(otu, contains("identity_top")) %>%
+  pivot_longer(names_to = "rank", values_to = "identity", cols = -otu) %>%
+  mutate(rank = parse_number(rank))
 ```
 
 ---
+
 ```{r}
 identity_long
 ```
@@ -989,3 +994,129 @@ left_join(target_long, identity_long)
 ## まとめ
 
 初めての方にはとてもコードの量が多いように思えるでしょうが、このようなツールを毎日使うって、慣れていくとそのうちどのようなデータでもRで扱えるようになる！
+
+# Day 3: データの可視化
+
+2023-10-26
+
+## データの可視化について
+
+- EDA（**E**ploratory **D**ata **A**nalysis）の際、データの**可視化**が重要なツールになる
+
+---
+
+![Image by Allison Horst](images/ggplot2_exploratory.png)
+
+## ggplot2について
+
+- Rには備え付けの関数、`plot()`があるが、今回は`tidyverse`の`ggplot2`パッケージを使う
+
+- `gg` = "**G**rammar of **G**raphics"（画像の文法）
+  - 「文法」が分かれば、（ほとんど）<br>どんな図でも作れる
+
+## ggplot2について
+
+図の構造にはいくつか**決まった要素**がある
+
+- **geometry**: 図はどのような**形**にする？
+
+- **aesthetics**: データをどのように図に**表す**？
+
+## Geometry
+
+:::: {.columns}
+
+::: {.column width="50%"}
+Pie chart
+<br><br>
+<img src="https://clauswilke.com/dataviz/proportional_ink_files/figure-html/RI-pop-pie-1.png" alt="drawing" height="220">
+:::
+
+::: {.column width="50%"}
+Bar graph
+<br><br>
+<img src="https://clauswilke.com/dataviz/proportional_ink_files/figure-html/RI-pop-bars-1.png" alt="drawing" height="220">
+:::
+
+::::
+
+:::: {.aside}
+::: {.small}
+https://clauswilke.com/dataviz/proportional-ink.html
+:::
+::::
+
+## Aesthetics
+
+<img src="https://clauswilke.com/dataviz/aesthetic_mapping_files/figure-html/common-aesthetics-1.png" alt="drawing" height="250">
+
+:::: {.aside}
+::: {.small}
+https://clauswilke.com/dataviz/aesthetic-mapping.html
+:::
+::::
+
+## ggplot2の基本的な使い方
+
+![](images/ggplot-summary-1.png)
+
+## ggplot2の基本的な使い方
+
+![](images/ggplot-summary-2.png)
+
+---
+
+```{r}
+#| output-location: column
+ggplot(blast_animals)
+```
+
+---
+
+```{r}
+#| output-location: column
+ggplot(
+  blast_animals,
+  aes(
+    x = chiba_1_zbj,
+    y = chiba_2_zbj)
+  )
+```
+
+---
+
+```{r}
+#| output-location: column
+ggplot(
+  blast_animals,
+  aes(
+    x = chiba_1_zbj,
+    y = chiba_2_zbj)
+  ) +
+  geom_point()
+```
+
+## チャレンジ
+
+`chiba_1_zbj`を横軸、`tsudanuma_zbj`を縦軸にして、点グラフを作成して下さい
+
+## データの整理と可視化を一緒にしよう
+
+- `chiba_1_zbj`の動物のリード数（個体数）を可視化しよう
+
+## データの整理と可視化を一緒にしよう
+
+- まずは`chiba_1_zbj`だけの種ごとにリード数の合計を計算する
+
+```{r}
+chiba_1_reads <-
+  blast_animals %>%
+    filter(chiba_1_zbj > 0) %>%
+    group_by(target_top1) %>%
+    summarize(reads = sum(chiba_1_zbj))
+```
+
+## チャレンジ
+
+- `chiba_1_reads`を使って、`reads`が横軸、`target_top1`が縦軸になっている棒グラフを作成して下さい
+  - ヒント：形（geometry）の指定は`geom_col()`を使って下さい
