@@ -870,11 +870,7 @@ blast_animals_chiba_1_small <- filter(blast_animals_chiba_1, chiba_1_zbj > 0)
 
 <br>
 
-`%>%`（あるいは`|>`）と書く。「それから」として読む
-
-## パイプについて
-
-![](images/pipe.png){fig-alt="mario going through a pipe"}
+`%>%`（あるいは`|>`）と書く。「**それから**」として読む
 
 ## パイプについて
 
@@ -936,59 +932,6 @@ blast_animals %>%
   group_by(target_top1) %>%
   summarize(mean_aln_len = mean(alignment_length_top1)) %>%
   ungroup()
-```
-
-## 幅広いデータから細長いデータへ
-
-- 今のデータの幅がとても広い（行がたくさんある）
-
-- 解析によっては、**長細い**形の方がいい時がある
-
-- 幅広い形から細長い形に変えるには、`pivot_wider()`を使う
-
-## 幅広いデータから細長いデータへ
-
-```{r}
-target_long <-
-  blast_animals %>%
-  # まずは、種名とOTUだけに絞りましょう
-  select(otu, contains("target_top")) %>%
-  # 行の名前を新しい「rank」という行に入れて、各セルのデータを「species」に入れましょう
-  pivot_longer(names_to = "rank", values_to = "species", cols = -otu) %>%
-  # 最後にrankを数字にする
-  mutate(rank = parse_number(rank))
-```
-
----
-
-```{r}
-target_long
-```
-
-## 幅広いデータから細長いデータへ
-
-- 類似度のデータにも同じことができる：
-
-```{r}
-identity_long <-
-  blast_animals %>%
-  select(otu, contains("identity_top")) %>%
-  pivot_longer(names_to = "rank", values_to = "identity", cols = -otu) %>%
-  mutate(rank = parse_number(rank))
-```
-
----
-
-```{r}
-identity_long
-```
-
-## 幅広いデータから細長いデータへ
-
-- 最後に、この二つの細長いデータをくっ付ける（「join」）することによって、解析に使いやすい状態にする：
-
-```{r}
-left_join(target_long, identity_long)
 ```
 
 ## まとめ
@@ -1100,11 +1043,11 @@ ggplot(
 
 `chiba_1_zbj`を横軸、`tsudanuma_zbj`を縦軸にして、点グラフを作成して下さい
 
-## データの整理と可視化を一緒にしよう
+## データの整理と可視化を一緒に<br>しよう
 
 - `chiba_1_zbj`の動物のリード数（個体数）を可視化しよう
 
-## データの整理と可視化を一緒にしよう
+## データの整理と可視化を一緒に<br>しよう
 
 - まずは`chiba_1_zbj`だけの種ごとにリード数の合計を計算する
 

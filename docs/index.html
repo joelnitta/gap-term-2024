@@ -1613,13 +1613,9 @@ Base composition:
 <h2>パイプについて</h2>
 <p>「パイプ」とは、左の関数のアウトプットを右の関数の<br>インプットに渡すもの</p>
 <p><br></p>
-<p><code>%&gt;%</code>（あるいは<code>|&gt;</code>）と書く。「それから」として読む</p>
+<p><code>%&gt;%</code>（あるいは<code>|&gt;</code>）と書く。「<strong>それから</strong>」として読む</p>
 </section>
 <section id="パイプについて-2" class="slide level2">
-<h2>パイプについて</h2>
-
-<img data-src="images/pipe.png" alt="mario going through a pipe" class="r-stretch"></section>
-<section id="パイプについて-3" class="slide level2">
 <h2>パイプについて</h2>
 <ul>
 <li>先の作業はパイプを使うとこのようにできる</li>
@@ -1760,109 +1756,6 @@ Base composition:
 </div>
 </div>
 </section>
-<section id="幅広いデータから細長いデータへ" class="slide level2">
-<h2>幅広いデータから細長いデータへ</h2>
-<ul>
-<li><p>今のデータの幅がとても広い（行がたくさんある）</p></li>
-<li><p>解析によっては、<strong>長細い</strong>形の方がいい時がある</p></li>
-<li><p>幅広い形から細長い形に変えるには、<code>pivot_wider()</code>を使う</p></li>
-</ul>
-</section>
-<section id="幅広いデータから細長いデータへ-1" class="slide level2">
-<h2>幅広いデータから細長いデータへ</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a>target_long <span class="ot">&lt;-</span></span>
-<span id="cb62-2"><a href="#cb62-2"></a>  blast_animals <span class="sc">%&gt;%</span></span>
-<span id="cb62-3"><a href="#cb62-3"></a>  <span class="co"># まずは、種名とOTUだけに絞りましょう</span></span>
-<span id="cb62-4"><a href="#cb62-4"></a>  <span class="fu">select</span>(otu, <span class="fu">contains</span>(<span class="st">"target_top"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb62-5"><a href="#cb62-5"></a>  <span class="co"># 行の名前を新しい「rank」という行に入れて、各セルのデータを「species」に入れましょう</span></span>
-<span id="cb62-6"><a href="#cb62-6"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">"rank"</span>, <span class="at">values_to =</span> <span class="st">"species"</span>, <span class="at">cols =</span> <span class="sc">-</span>otu) <span class="sc">%&gt;%</span></span>
-<span id="cb62-7"><a href="#cb62-7"></a>  <span class="co"># 最後にrankを数字にする</span></span>
-<span id="cb62-8"><a href="#cb62-8"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">parse_number</span>(rank))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section class="slide level2">
-
-<div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a>target_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,060 × 3
-   otu      rank species        
-   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;          
- 1 ASV_001     1 Oxidus_gracilis
- 2 ASV_001     2 Oxidus_gracilis
- 3 ASV_001     3 Oxidus_gracilis
- 4 ASV_001     4 Oxidus_gracilis
- 5 ASV_001     5 Oxidus_gracilis
- 6 ASV_001     6 Oxidus_gracilis
- 7 ASV_001     7 Oxidus_gracilis
- 8 ASV_001     8 Polydesmida_sp.
- 9 ASV_001     9 Oxidus_gracilis
-10 ASV_001    10 Oxidus_gracilis
-# ℹ 1,050 more rows</code></pre>
-</div>
-</div>
-</section>
-<section id="幅広いデータから細長いデータへ-2" class="slide level2">
-<h2>幅広いデータから細長いデータへ</h2>
-<ul>
-<li>類似度のデータにも同じことができる：</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a>identity_long <span class="ot">&lt;-</span></span>
-<span id="cb65-2"><a href="#cb65-2"></a>  blast_animals <span class="sc">%&gt;%</span></span>
-<span id="cb65-3"><a href="#cb65-3"></a>  <span class="fu">select</span>(otu, <span class="fu">contains</span>(<span class="st">"identity_top"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb65-4"><a href="#cb65-4"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">"rank"</span>, <span class="at">values_to =</span> <span class="st">"identity"</span>, <span class="at">cols =</span> <span class="sc">-</span>otu) <span class="sc">%&gt;%</span></span>
-<span id="cb65-5"><a href="#cb65-5"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">parse_number</span>(rank))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section class="slide level2">
-
-<div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a>identity_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,060 × 3
-   otu      rank identity
-   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt;
- 1 ASV_001     1     93.0
- 2 ASV_001     2     93.0
- 3 ASV_001     3     93.0
- 4 ASV_001     4     93.0
- 5 ASV_001     5     93.0
- 6 ASV_001     6     93.0
- 7 ASV_001     7     93.0
- 8 ASV_001     8     93.0
- 9 ASV_001     9     93.7
-10 ASV_001    10     93.7
-# ℹ 1,050 more rows</code></pre>
-</div>
-</div>
-</section>
-<section id="幅広いデータから細長いデータへ-3" class="slide level2">
-<h2>幅広いデータから細長いデータへ</h2>
-<ul>
-<li>最後に、この二つの細長いデータをくっ付ける（「join」）することによって、解析に使いやすい状態にする：</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="fu">left_join</span>(target_long, identity_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,060 × 4
-   otu      rank species         identity
-   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;
- 1 ASV_001     1 Oxidus_gracilis     93.0
- 2 ASV_001     2 Oxidus_gracilis     93.0
- 3 ASV_001     3 Oxidus_gracilis     93.0
- 4 ASV_001     4 Oxidus_gracilis     93.0
- 5 ASV_001     5 Oxidus_gracilis     93.0
- 6 ASV_001     6 Oxidus_gracilis     93.0
- 7 ASV_001     7 Oxidus_gracilis     93.0
- 8 ASV_001     8 Polydesmida_sp.     93.0
- 9 ASV_001     9 Oxidus_gracilis     93.7
-10 ASV_001    10 Oxidus_gracilis     93.7
-# ℹ 1,050 more rows</code></pre>
-</div>
-</div>
-</section>
 <section id="まとめ" class="slide level2">
 <h2>まとめ</h2>
 <p>初めての方にはとてもコードの量が多いように思えるでしょうが、このようなツールを毎日使うって、慣れていくとそのうちどのようなデータでもRで扱えるようになる！</p>
@@ -1936,10 +1829,10 @@ Base composition:
 
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a><span class="fu">ggplot</span>(blast_animals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="fu">ggplot</span>(blast_animals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-45-1.png" width="960"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-40-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -1948,15 +1841,15 @@ Base composition:
 
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb71-2"><a href="#cb71-2"></a>  blast_animals,</span>
-<span id="cb71-3"><a href="#cb71-3"></a>  <span class="fu">aes</span>(</span>
-<span id="cb71-4"><a href="#cb71-4"></a>    <span class="at">x =</span> chiba_1_zbj,</span>
-<span id="cb71-5"><a href="#cb71-5"></a>    <span class="at">y =</span> chiba_2_zbj)</span>
-<span id="cb71-6"><a href="#cb71-6"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb63-2"><a href="#cb63-2"></a>  blast_animals,</span>
+<span id="cb63-3"><a href="#cb63-3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb63-4"><a href="#cb63-4"></a>    <span class="at">x =</span> chiba_1_zbj,</span>
+<span id="cb63-5"><a href="#cb63-5"></a>    <span class="at">y =</span> chiba_2_zbj)</span>
+<span id="cb63-6"><a href="#cb63-6"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-46-1.png" width="960"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-41-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -1965,16 +1858,16 @@ Base composition:
 
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb72-2"><a href="#cb72-2"></a>  blast_animals,</span>
-<span id="cb72-3"><a href="#cb72-3"></a>  <span class="fu">aes</span>(</span>
-<span id="cb72-4"><a href="#cb72-4"></a>    <span class="at">x =</span> chiba_1_zbj,</span>
-<span id="cb72-5"><a href="#cb72-5"></a>    <span class="at">y =</span> chiba_2_zbj)</span>
-<span id="cb72-6"><a href="#cb72-6"></a>  ) <span class="sc">+</span></span>
-<span id="cb72-7"><a href="#cb72-7"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb64-2"><a href="#cb64-2"></a>  blast_animals,</span>
+<span id="cb64-3"><a href="#cb64-3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb64-4"><a href="#cb64-4"></a>    <span class="at">x =</span> chiba_1_zbj,</span>
+<span id="cb64-5"><a href="#cb64-5"></a>    <span class="at">y =</span> chiba_2_zbj)</span>
+<span id="cb64-6"><a href="#cb64-6"></a>  ) <span class="sc">+</span></span>
+<span id="cb64-7"><a href="#cb64-7"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-47-1.png" width="960"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-42-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -1983,23 +1876,23 @@ Base composition:
 <h2>チャレンジ</h2>
 <p><code>chiba_1_zbj</code>を横軸、<code>tsudanuma_zbj</code>を縦軸にして、点グラフを作成して下さい</p>
 </section>
-<section id="データの整理と可視化を一緒にしよう" class="slide level2">
-<h2>データの整理と可視化を一緒にしよう</h2>
+<section id="データの整理と可視化を一緒に-しよう" class="slide level2">
+<h2>データの整理と可視化を一緒に<br>しよう</h2>
 <ul>
 <li><code>chiba_1_zbj</code>の動物のリード数（個体数）を可視化しよう</li>
 </ul>
 </section>
-<section id="データの整理と可視化を一緒にしよう-1" class="slide level2">
-<h2>データの整理と可視化を一緒にしよう</h2>
+<section id="データの整理と可視化を一緒に-しよう-1" class="slide level2">
+<h2>データの整理と可視化を一緒に<br>しよう</h2>
 <ul>
 <li>まずは<code>chiba_1_zbj</code>だけの種ごとにリード数の合計を計算する</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a>chiba_1_reads <span class="ot">&lt;-</span></span>
-<span id="cb73-2"><a href="#cb73-2"></a>  blast_animals <span class="sc">%&gt;%</span></span>
-<span id="cb73-3"><a href="#cb73-3"></a>    <span class="fu">filter</span>(chiba_1_zbj <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb73-4"><a href="#cb73-4"></a>    <span class="fu">group_by</span>(target_top1) <span class="sc">%&gt;%</span></span>
-<span id="cb73-5"><a href="#cb73-5"></a>    <span class="fu">summarize</span>(<span class="at">reads =</span> <span class="fu">sum</span>(chiba_1_zbj))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a>chiba_1_reads <span class="ot">&lt;-</span></span>
+<span id="cb65-2"><a href="#cb65-2"></a>  blast_animals <span class="sc">%&gt;%</span></span>
+<span id="cb65-3"><a href="#cb65-3"></a>    <span class="fu">filter</span>(chiba_1_zbj <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb65-4"><a href="#cb65-4"></a>    <span class="fu">group_by</span>(target_top1) <span class="sc">%&gt;%</span></span>
+<span id="cb65-5"><a href="#cb65-5"></a>    <span class="fu">summarize</span>(<span class="at">reads =</span> <span class="fu">sum</span>(chiba_1_zbj))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="チャレンジ-3" class="slide level2">
