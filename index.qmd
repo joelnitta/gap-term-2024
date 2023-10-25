@@ -946,11 +946,11 @@ blast_animals %>%
 
 ```{r}
 target_long <-
-  blast_animals |>
+  blast_animals %>%
     # まずは、種名とOTUだけに絞りましょう
-    select(otu, contains("target_top")) |>
+    select(otu, contains("target_top")) %>%
     # 行の名前を新しい「rank」という行に入れて、各セルのデータを「species」に入れましょう
-    pivot_longer(names_to = "rank", values_to = "species", cols = -otu) |>
+    pivot_longer(names_to = "rank", values_to = "species", cols = -otu) %>%
     # 最後にrankを数字にする
     mutate(rank = parse_number(rank))
 ```
@@ -967,9 +967,9 @@ target_long
 
 ```{r}
 identity_long <-
-  blast_animals |>
-    select(otu, contains("identity_top")) |>
-    pivot_longer(names_to = "rank", values_to = "identity", cols = -otu) |>
+  blast_animals %>%
+    select(otu, contains("identity_top")) %>%
+    pivot_longer(names_to = "rank", values_to = "identity", cols = -otu) %>%
     mutate(rank = parse_number(rank))
 ```
 
