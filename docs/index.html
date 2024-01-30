@@ -8,10 +8,10 @@
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.450">
+  <meta name="generator" content="quarto-1.4.549">
 
   <meta name="author" content="ニッタ ジョエル">
-  <title>Gap Term 2023</title>
+  <title>Gap Term 2024 春</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -31,7 +31,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -222,7 +222,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -408,7 +409,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Gap Term 2023</h1>
+  <h1 class="title">Gap Term 2024 春</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -422,10 +423,26 @@
 </div>
 
 </section>
+<section id="目的" class="slide level2">
+<h2>目的</h2>
+<p>本授業の目的は<strong>Rを使うことによって<br>フローサイトメーターのデータを解析する</strong><br>ことである</p>
+<ul>
+<li>Rの基本的な操作</li>
+<li>データ処理</li>
+<li>データの可視化</li>
+</ul>
+</section>
+<section id="リンク" class="slide level2">
+<h2>リンク</h2>
+<ul>
+<li><p>スライド： <a href="https://joelnitta.github.io/gap-term-2024" class="uri">https://joelnitta.github.io/gap-term-2024</a></p></li>
+<li><p>コード： <a href="https://github.com/joelnitta/gap-term-2023/blob/main/ploidy-analysis.R" class="uri">https://github.com/joelnitta/gap-term-2023/blob/main/ploidy-analysis.R</a></p></li>
+</ul>
+</section>
 <section>
-<section id="day-1-rstudio入門blastデータ入力" class="title-slide slide level1 center">
-<h1>Day 1: RStudio入門、BLAST、データ入力</h1>
-<p>2023-10-12</p>
+<section id="part-i-r入門" class="title-slide slide level1 center">
+<h1>Part I: R入門</h1>
+
 </section>
 <section id="なぜコードを使うのか" class="slide level2">
 <h2>なぜコードを使うのか？</h2>
@@ -436,7 +453,7 @@
 <section id="再現性とは" class="slide level2">
 <h2>再現性とは？</h2>
 <ul>
-<li>他の人（<strong>将来の自分</strong>を含めて）があなたの解析を<strong>再度行って、同じ結果</strong>を得ることができること</li>
+<li>他の人（<strong>将来の自分</strong>を含めて）があなたの解析を<br><strong>再度行って、同じ結果</strong>を得ることができること</li>
 </ul>
 </section>
 <section id="なぜr" class="slide level2">
@@ -500,7 +517,7 @@
 <h2>解析の準備：プロジェクトを作る</h2>
 <ul>
 <li><p>File → New Project → New Directory → New Project</p></li>
-<li><p>名前と置く場所を選択する。名前は<code>mukudori-analysis</code>にしよう。</p></li>
+<li><p>名前と置く場所を選択する。名前は<code>flowcyt-analysis</code>にしよう。</p></li>
 <li><p>場所は<strong>自分が後で探しやすいところ</strong>にしましょう（<strong>デスクトップ</strong>がおすすめ）</p></li>
 </ul>
 </section>
@@ -514,7 +531,7 @@
 <li><p>RStudioが再起動されて、新しいプロジェクトに入る</p></li>
 <li><p>右下の「Files」パネルに以下のファイルが入っていることを確認：</p>
 <ul>
-<li><code>mukudori-analysis.Rproj</code></li>
+<li><code>flowcyt-analysis.Rproj</code></li>
 <li><code>.gitignore</code>（gitを使っている場合のみ）</li>
 </ul></li>
 </ul>
@@ -526,10 +543,10 @@
 <section id="rprojファイルについて" class="slide level2">
 <h2><code>.Rproj</code>ファイルについて</h2>
 <ul>
-<li><p><code>mukudori-analysis.Rproj</code>はRStudioの設定を保存するためのファイルで、基本的には<strong>手でイジる必要はない</strong></p></li>
+<li><p><code>flowcyt-analysis.Rproj</code>はRStudioの設定を保存するためのファイルで、基本的には<strong>手でイジる必要はない</strong></p></li>
 <li><p>でも、このプロジェクトを開くためには便利</p>
 <ul>
-<li>一旦RStudioを閉じて、<code>mukudori-analysis.Rproj</code>のアイコンをダブルクリックすると、またプロジェクトに入ることが出来る。</li>
+<li>一旦RStudioを閉じて、<code>flowcyt-analysis.Rproj</code>のアイコンをダブルクリックすると、またプロジェクトに入ることが出来る。</li>
 </ul></li>
 </ul>
 </section>
@@ -552,10 +569,7 @@
 <ul>
 <li>Teamsで共有した以下のファイルをダウンロードして、<code>data_raw</code>に置きましょう
 <ul>
-<li><code>Chiba-1-ZBJ.fasta</code></li>
-<li><code>Chiba-1-trnL.fasta</code></li>
-<li><code>4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx</code></li>
-<li><code>4_全生物種リスト(BLAST結果10位まで).xlsx</code></li>
+<li><code>itadori_flowcyt.xlsx</code></li>
 </ul></li>
 </ul>
 </section>
@@ -573,10 +587,6 @@
 </ul></li>
 </ul>
 </section>
-<section class="slide level2">
-
-
-<img data-src="images/read-only.png" class="r-stretch"></section>
 <section id="他のフォルダーを作る" class="slide level2 smaller">
 <h2>他のフォルダーを作る</h2>
 <p>続いて、同じように他の以下のフォルダーも作る：</p>
@@ -592,10 +602,6 @@
 <li><code>results/</code>
 <ul>
 <li>コードによって得られた結果を置く場所。これも使い捨て。</li>
-</ul></li>
-<li><code>code/</code>
-<ul>
-<li>コードを置く場所。ベストプラクティスはgitでバージョン管理を施す。</li>
 </ul></li>
 </ul>
 <p><strong>生データ</strong>と<strong>コード</strong>があればいつでも結果は得られる（再現できる）</p>
@@ -616,115 +622,6 @@
 <p>前のセッションのデータが残っていることは再現の観点<br>からダメ！</p>
 
 <img data-src="images/settings_change.png" alt="Screenshot showing how to change Rstudio settings for .RData" class="r-stretch"></section>
-<section id="dnaバーコードとは" class="slide level2">
-<h2>DNAバーコードとは？</h2>
-<div class="columns">
-<div class="column">
-<ul>
-<li>DNAによって<strong>種同定</strong>を行う
-<ul>
-<li>今まで種の同定の仕様がなかった・非常に難しかったケース（食性解析）に便利</li>
-</ul></li>
-</ul>
-</div><div class="column">
-<p><img data-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRILebKXDqs9YG9XcUE52KFwYbe0aHljP_c5g&amp;usqp=CAU.png"></p>
-</div>
-</div>
-<ul>
-<li><strong>DNAの類似度を測るツールが必要</strong> ➡︎ <code>BLAST</code></li>
-</ul>
-</section>
-<section id="blastとは" class="slide level2">
-<h2><code>BLAST</code>とは？</h2>
-<ul>
-<li><p>Basic Local <strong>Alignment</strong> Search Tool</p></li>
-<li><p><strong>Alignment</strong> （アラインメント）：二つ以上のDNA塩基配列を並べたもの</p></li>
-</ul>
-<p><img data-src="images/alignment.png"></p>
-<p><img data-src="images/alignment_text.png"></p>
-</section>
-<section id="blastの使い方" class="slide level2">
-<h2><code>BLAST</code>の使い方</h2>
-<ul>
-<li><p>Subject（「主体」、手元にあるシーケンス）を<strong>標準データベース</strong>に対して検索し、Target（「対象」、当たったシーケンス）との類似度を測る</p></li>
-<li><p><strong>結果は標準データベースによる（重要！）</strong></p></li>
-<li><p>Targetが複数ある場合もあるし、何にも当たらない場合もある</p></li>
-</ul>
-</section>
-<section id="blastを使ってみよう" class="slide level2">
-<h2><code>BLAST</code>を使ってみよう</h2>
-<ul>
-<li><p>ムクドリ調査で得られた配列を<strong>GenBank</strong>（最も大きなオンラインDNAデータベース）に対して検索してみよう</p>
-<ul>
-<li>GenBankとDDBJ（DNA Data Bank of Japan）に入っているデータは基本的に一緒。別のデータベースがあるのは、それぞれの地域のユーザーのため。</li>
-</ul></li>
-</ul>
-</section>
-<section id="blastを使ってみよう-1" class="slide level2">
-<h2><code>BLAST</code>を使ってみよう</h2>
-<ul>
-<li><a href="https://blast.ncbi.nlm.nih.gov/" class="uri">https://blast.ncbi.nlm.nih.gov/</a>に行って、「Nucleotide BLAST」をクリック
-<ul>
-<li>Nucleotide = DNA塩基配列</li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level2">
-
-
-<img data-src="images/blast-site.png" class="r-stretch"></section>
-<section id="blastを使ってみよう-2" class="slide level2">
-<h2><code>BLAST</code>を使ってみよう</h2>
-<ul>
-<li><p><code>Chiba-1-ZBJ.fasta</code>をRStudioで開いて、最初の二行をコピーして、検索パネルに貼り付ける</p></li>
-<li><p><code>Program Selection</code>で、「Somewhat similar sequences (blastn)」を選択する（シーケンス業者が使ったと一緒、一般的な<code>BLAST</code>の種類）</p>
-<ul>
-<li><code>BLAST</code>には複数の種類と様々な設定がある！今回はデフォルトを使うけど、これも<strong>結果を影響する</strong>ので、本当は設定を理解する必要がある</li>
-</ul></li>
-<li><p><code>BLAST</code>ボタンを押して、結果が出るまで待つ（大体１分以内に終わる）</p></li>
-</ul>
-</section>
-<section class="slide level2">
-
-
-<img data-src="images/blast-input.png" class="r-stretch"></section>
-<section id="blastを使ってみよう-3" class="slide level2">
-<h2><code>BLAST</code>を使ってみよう</h2>
-<ul>
-<li><p>結果には<strong>複数の配列が返ってくる</strong></p></li>
-<li><p>重要な項目</p>
-<ul>
-<li><code>e-value</code>: subjectとtargetが偶然に一致する確率。低い方がいい（<code>4e-72</code> = <span class="math inline">\(4 \times 10^{-72}\)</span>）</li>
-<li><code>identity</code>：類似度（パーセント）</li>
-</ul></li>
-</ul>
-<p>この場合、当たったシーケンスの中で、一つだけが他のより類似度がグンと高い（<code>Polydesmus sp</code>、100％）。それをクリックしてみよう。</p>
-</section>
-<section class="slide level2">
-
-
-<img data-src="images/blast-results.png" class="r-stretch"></section>
-<section class="slide level2">
-
-
-<img data-src="images/blast-results-2.png" class="r-stretch"></section>
-<section id="blastを使ってみよう-4" class="slide level2">
-<h2><code>BLAST</code>を使ってみよう</h2>
-<p>クリックしたら、subjectとtargetのアラインメントが見える。</p>
-<ul>
-<li><p>最も近いtargetと次に近いtargetの結果を比べてみよう。何が違う？</p></li>
-<li><p>あなたなら、このシーケンスを何と同定しますか？</p></li>
-</ul>
-</section>
-<section id="blastを使ってみよう-5" class="slide level2">
-<h2><code>BLAST</code>を使ってみよう</h2>
-<p>もう一回、同じ作業をしてみよう。</p>
-<p>今回は<code>Chiba-1-trnL.fasta</code>に入っている最初の２行を使ってみよう。</p>
-<ul>
-<li><p>最も近いtargetと次に近いtargetの結果を比べてみよう。何が違う？</p></li>
-<li><p>あなたなら、このシーケンスを何と同定しますか？</p></li>
-</ul>
-</section>
 <section id="rを計算機として使う" class="slide level2">
 <h2>Rを計算機として使う</h2>
 <ul>
@@ -732,22 +629,26 @@
 </ul>
 <div class="large">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 40</code></pre>
 </div>
 </div>
 </div>
-<p>おめでとうございます！Rプログラミングができました！</p>
+<div>
+<ul>
+<li class="fragment">おめでとうございます！Rプログラミングができました！</li>
+</ul>
+</div>
 </section>
 <section id="オブジェクト変数について" class="slide level2">
 <h2>オブジェクト（変数）について</h2>
 <ul>
-<li>次に、Rの中のデータを変数（Rでは、「オブジェクト Object」と呼ぶ）として保存しよう：</li>
+<li>次に、Rの中のデータを変数（Rでは、「<strong>オブジェクト</strong> Object」と呼ぶ）として<strong>保存</strong>しよう：</li>
 </ul>
 <div class="large">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>age <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>age <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -757,7 +658,7 @@
 <p>変数の内容を確認するには、コンソールにその変数の名前を打てば良い：</p>
 <div class="large">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>age</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>age</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 40</code></pre>
 </div>
@@ -783,7 +684,7 @@
 <p>例えば</p>
 <div class="large">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">round</span>(<span class="fl">3.1415</span>, <span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">round</span>(<span class="fl">3.1415</span>, <span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.1</code></pre>
 </div>
@@ -795,7 +696,7 @@
 <p>関数の使い方を確認したい時は<code>?関数名</code>と打って、ヘルプファイルを参照すれば良い</p>
 <div class="large">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>?round</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>?round</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -812,10 +713,12 @@
 <section id="パッケージのインストール" class="slide level2">
 <h2>パッケージのインストール</h2>
 <p>Rパッケージのインストールを行うには、<code>install.packages()</code>を使う：</p>
+<div class="large">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"readxl"</span>, <span class="st">"janitor"</span>, <span class="st">"tidyverse"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"readxl"</span>, <span class="st">"tidyverse"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>一回インストールしたら、次回からはしなくて良いので、これはコードとして保存しない</p>
+</div>
+<p>一回インストールしたら、次回からはしなくて良いので、<strong>これはコードとして書かない</strong></p>
 </section>
 <section id="パッケージのロード" class="slide level2">
 <h2>パッケージのロード</h2>
@@ -829,7 +732,7 @@
 <p><code>library()</code>関数でロードする：</p>
 <div class="large">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -837,45 +740,50 @@
 <h2>データの読み込み</h2>
 <ul>
 <li><p>今回のデータは<code>.xlsx</code>なので、<code>readxl</code>パッケージの<code>read_excel()</code>関数を使う。</p></li>
-<li><p>このコードを<code>barcode-analysis.R</code>として保存してください：</p></li>
+<li><p>このコードを<code>flowcyt-analysis.R</code>として保存してください：</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb11-2"><a href="#cb11-2"></a></span>
-<span id="cb11-3"><a href="#cb11-3"></a>blast_animals <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
-<span id="cb11-4"><a href="#cb11-4"></a>  <span class="st">"data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx"</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">library</span>(readxl)</span>
+<span id="cb11-2"><a href=""></a></span>
+<span id="cb11-3"><a href=""></a>flow_cyt_data_raw <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb11-4"><a href=""></a>  <span class="st">"data_raw/itadori_flowcyt.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">2</span></span>
+<span id="cb11-5"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="データの読み込み-1" class="slide level2">
 <h2>データの読み込み</h2>
-<p><code>blast_animals</code>を打つと、読み込まれたデータが表示される：</p>
+<p><code>flow_cyt_data_raw</code>を打つと、読み込まれたデータが表示され、基本情報（列と行の数など）が表示される：</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>blast_animals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>flow_cyt_data_raw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 106 × 55
-   `#OTU ID` `Chiba-1-ZBJ` `Chiba-2-ZBJ` `Tsudanuma-ZBJ` `Gyotoku-ZBJ`
-   &lt;chr&gt;             &lt;dbl&gt;         &lt;dbl&gt;           &lt;dbl&gt;         &lt;dbl&gt;
- 1 ASV_001           21793             0            4312             0
- 2 ASV_002               0         18828               0             0
- 3 ASV_003               0             0               0         14991
- 4 ASV_004               0         12144               0             0
- 5 ASV_005               0             0               0          7550
- 6 ASV_006               0             0            6918             0
- 7 ASV_007               0             0               0          6518
- 8 ASV_008               0             0               0          5434
- 9 ASV_009               0          5276               0             0
-10 ASV_010               0             0            4904             0
-# ℹ 96 more rows
-# ℹ 50 more variables: Accession_top1 &lt;chr&gt;, Target_top1 &lt;chr&gt;,
-#   Identity_top1 &lt;dbl&gt;, Alignment_length_top1 &lt;dbl&gt;, Species_top1 &lt;chr&gt;,
-#   Accession_top2 &lt;chr&gt;, Target_top2 &lt;chr&gt;, Identity_top2 &lt;dbl&gt;,
-#   Alignment_length_top2 &lt;dbl&gt;, Species_top2 &lt;chr&gt;, Accession_top3 &lt;chr&gt;,
-#   Target_top3 &lt;chr&gt;, Identity_top3 &lt;dbl&gt;, Alignment_length_top3 &lt;dbl&gt;,
-#   Species_top3 &lt;chr&gt;, Accession_top4 &lt;chr&gt;, Target_top4 &lt;chr&gt;, …</code></pre>
+<pre><code># A tibble: 414 × 12
+   通し番号 登録番号 種名    採取日 採取者 採取地    GPS   倍数性...8 トマト数値
+      &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt;
+ 1        1 33-1     &lt;NA&gt;  20220627 上原   &lt;NA&gt;      35.6… 3.0             3975.
+ 2        2 34-1     &lt;NA&gt;  20220628 上原   &lt;NA&gt;      35.2… 3.0             5452.
+ 3        3 34-2     &lt;NA&gt;  20220628 上原   &lt;NA&gt;      35.2… 3.0             5496.
+ 4        4 35-1     &lt;NA&gt;  20220720 上原   &lt;NA&gt;      36.5… 3.0             5050.
+ 5        5 36-1     &lt;NA&gt;  20220720 上原   〒371-01… 36.5… 不明（2倍…      5896.
+ 6        6 36-2     &lt;NA&gt;  20220720 上原   〒371-01… 36.5… 不明（2倍…      5042.
+ 7        7 36-3     &lt;NA&gt;  20220720 上原   〒371-01… 36.5… 不明（2倍…      4896.
+ 8        8 37-1     &lt;NA&gt;  20220720 上原   &lt;NA&gt;      36.5… &lt;NA&gt;              NA 
+ 9        9 37-2     &lt;NA&gt;  20220720 上原   &lt;NA&gt;      36.5… &lt;NA&gt;              NA 
+10       10 37-3     &lt;NA&gt;  20220720 上原   &lt;NA&gt;      36.5… &lt;NA&gt;              NA 
+# ℹ 404 more rows
+# ℹ 3 more variables: サンプル数値 &lt;dbl&gt;, `2C` &lt;dbl&gt;, 倍数性...12 &lt;dbl&gt;</code></pre>
 </div>
 </div>
 </section>
+<section id="データの読み込み-2" class="slide level2">
+<h2>データの読み込み</h2>
+<ul>
+<li><code>Environment</code>パネルの<code>flow_cyt_data_raw</code>をクリックすると、エクセルのような画面が出てくる</li>
+</ul>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/rstudio-viewer.png" class="r-stretch"></section>
 <section id="データを整える" class="slide level2">
 <h2>データを整える</h2>
 <ul>
@@ -883,10 +791,7 @@
 </ul>
 <div>
 <ul>
-<li class="fragment">大文字と小文字、スペースやシャープが入っているでしょう？これはコードを打つ以上、邪魔になるので、<strong>簡単な</strong>行名に変えよう
-<ul>
-<li class="fragment"><code>janitor</code>パッケージの<code>clean_names()</code>関数を使う</li>
-</ul></li>
+<li class="fragment">文字化けを防ぐために、なるべくローマ字表記がいい。ローマ字に変えよう</li>
 </ul>
 </div>
 </section>
@@ -894,40 +799,26 @@
 <h2>データを整える</h2>
 <p>以下のコードを試してください：</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb14-3"><a href="#cb14-3"></a></span>
-<span id="cb14-4"><a href="#cb14-4"></a>blast_animals <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
-<span id="cb14-5"><a href="#cb14-5"></a>  <span class="st">"data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx"</span></span>
-<span id="cb14-6"><a href="#cb14-6"></a>)</span>
-<span id="cb14-7"><a href="#cb14-7"></a></span>
-<span id="cb14-8"><a href="#cb14-8"></a><span class="fu">clean_names</span>(blast_animals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section class="slide level2">
-
-<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="fu">select</span>(</span>
+<span id="cb14-2"><a href=""></a>  flow_cyt_data_raw,</span>
+<span id="cb14-3"><a href=""></a>  <span class="at">id_num =</span> 通し番号,</span>
+<span id="cb14-4"><a href=""></a>  <span class="at">tomato_peak =</span> トマト数値,</span>
+<span id="cb14-5"><a href=""></a>  <span class="at">sample_peak =</span> サンプル数値)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 106 × 55
-   number_otu_id chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj
-   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
- 1 ASV_001             21793           0          4312           0
- 2 ASV_002                 0       18828             0           0
- 3 ASV_003                 0           0             0       14991
- 4 ASV_004                 0       12144             0           0
- 5 ASV_005                 0           0             0        7550
- 6 ASV_006                 0           0          6918           0
- 7 ASV_007                 0           0             0        6518
- 8 ASV_008                 0           0             0        5434
- 9 ASV_009                 0        5276             0           0
-10 ASV_010                 0           0          4904           0
-# ℹ 96 more rows
-# ℹ 50 more variables: accession_top1 &lt;chr&gt;, target_top1 &lt;chr&gt;,
-#   identity_top1 &lt;dbl&gt;, alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;,
-#   accession_top2 &lt;chr&gt;, target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;,
-#   alignment_length_top2 &lt;dbl&gt;, species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;,
-#   target_top3 &lt;chr&gt;, identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;,
-#   species_top3 &lt;chr&gt;, accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, …</code></pre>
+<pre><code># A tibble: 414 × 3
+   id_num tomato_peak sample_peak
+    &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+ 1      1       3975.       6848.
+ 2      2       5452.       8089.
+ 3      3       5496.       7835.
+ 4      4       5050.       8093.
+ 5      5       5896.          0 
+ 6      6       5042.          0 
+ 7      7       4896.          0 
+ 8      8         NA          NA 
+ 9      9         NA          NA 
+10     10         NA          NA 
+# ℹ 404 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -936,303 +827,29 @@
 <p>行名がスッキリしたでしょう？</p>
 <p>でも、どうやってこのデータのバージョンの保存ができるのでしょうか？</p>
 </section>
-<section id="データを整える-3" class="slide level2">
-<h2>データを整える</h2>
+<section id="データのrの中での保存" class="slide level2">
+<h2>データの（Rの中での）保存</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb16-3"><a href="#cb16-3"></a></span>
-<span id="cb16-4"><a href="#cb16-4"></a>blast_animals <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
-<span id="cb16-5"><a href="#cb16-5"></a>  <span class="st">"data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx"</span></span>
-<span id="cb16-6"><a href="#cb16-6"></a>)</span>
-<span id="cb16-7"><a href="#cb16-7"></a></span>
-<span id="cb16-8"><a href="#cb16-8"></a>blast_animals <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(blast_animals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>とりあえずこれで良い。もっとスマートなやり方もあるけど、それは次回の楽しみにしよう。</p>
-</section>
-<section id="宿題" class="slide level2">
-<h2>宿題</h2>
-<ul>
-<li><p>宿題は<code>day1-hw.R</code>に入っている（teamsかgithubらダウンロード）</p></li>
-<li><p>「答え」にRコードを書いてください</p></li>
-<li><p>次回までにメールでニッタまで送ってください</p></li>
-</ul>
-</section></section>
-<section>
-<section id="day-2-データの整理" class="title-slide slide level1 center">
-<h1>Day 2: データの整理</h1>
-<p>2023-10-19</p>
-</section>
-<section id="おさらい" class="slide level2">
-<h2>おさらい</h2>
-<ul>
-<li>Rの基本的な使い方を学んだ
-<ul>
-<li>計算機としての使い方</li>
-<li>オブジェクト（変数）</li>
-<li>関数</li>
-</ul></li>
-</ul>
-</section>
-<section id="おさらい-1" class="slide level2">
-<h2>おさらい</h2>
-<ul>
-<li>BLASTの使い方とデータについて学んだ
-<ul>
-<li>BLASTしたからと言って、必ず種名がわからない</li>
-<li>結果が検索対象の<strong>データベースによる</strong></li>
-</ul></li>
-</ul>
-</section>
-<section id="宿題-1" class="slide level2">
-<h2>宿題</h2>
-<blockquote>
-<p>Chiba-1-trnL.fastaに入っているシーケンス（DNA配列）の長さはどれくらい（何塩基）でしょうか？</p>
-</blockquote>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">library</span>(ape)</span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">read.FASTA</span>(<span class="st">"data_raw/Chiba-1-trnL.fasta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="fu">library</span>(readxl)</span>
+<span id="cb16-2"><a href=""></a></span>
+<span id="cb16-3"><a href=""></a>flow_cyt_data_raw <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb16-4"><a href=""></a>  <span class="st">"data_raw/itadori_flowcyt.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">2</span></span>
+<span id="cb16-5"><a href=""></a>)</span>
+<span id="cb16-6"><a href=""></a></span>
+<span id="cb16-7"><a href=""></a>flow_cyt_data <span class="ot">&lt;-</span> <span class="fu">select</span>(</span>
+<span id="cb16-8"><a href=""></a>  flow_cyt_data_raw,</span>
+<span id="cb16-9"><a href=""></a>  <span class="at">id_num =</span> 通し番号,</span>
+<span id="cb16-10"><a href=""></a>  <span class="at">tomato_peak =</span> トマト数値,</span>
+<span id="cb16-11"><a href=""></a>  <span class="at">sample_peak =</span> サンプル数値)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="宿題-2" class="slide level2">
-<h2>宿題</h2>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>2 DNA sequences in binary format stored in a list.
-
-All sequences of same length: 145 
-
-Labels:
-ASV_002_(99.6083%)
-ASV_024_(0.1846%)
-
-Base composition:
-    a     c     g     t 
-0.376 0.183 0.221 0.221 
-(Total: 290 bases)</code></pre>
-</div>
-</div>
+<section id="データのrの中での保存-1" class="slide level2">
+<h2>データの（Rの中での）保存</h2>
 <ul>
-<li><code>All sequences of same length: 145</code>の<strong>length</strong>が145なので、答えは145延期です（<code>Total</code>はこの全部のデータに含まれている延期の数）</li>
+<li><p><strong>大事：</strong> <strong><code>&lt;-</code></strong>を使わないと計算結果が<strong>保存されない</strong></p></li>
+<li><p>同じ名前で保存すると（注意なしで）前のデータが上書きされる</p></li>
+<li><p><strong>コード</strong>があれば、計算結果を<strong>再現できる</strong>ので、上書き・消去は<strong>気にしなくて良い</strong></p></li>
 </ul>
-</section>
-<section id="宿題-3" class="slide level2">
-<h2>宿題</h2>
-<ul>
-<li><code>library()</code>でパッケージをロードする時、一つずつロードする必要がある</li>
-</ul>
-<p>OK:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">library</span>(ape)</span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="宿題-4" class="slide level2">
-<h2>宿題</h2>
-<ul>
-<li><code>library()</code>でパッケージをロードする時、一つずつロードする必要がある</li>
-</ul>
-<p>ダメ：</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">library</span>(ape, janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>エラーが出ないけど、<code>janitor</code>がちゃんとロードされていない</li>
-</ul>
-</section>
-<section id="エラー" class="slide level2">
-<h2>エラー</h2>
-<ul>
-<li><p>そもそもエラーって何？</p></li>
-<li><p>Rを実行している途中に（Rにとって）<strong>間違った</strong>コマンドを受けた時の反応</p>
-<ul>
-<li>ここ以上<strong>進めない</strong></li>
-<li>その代わり、エラーメッセージ（赤い文字）を発信する</li>
-</ul></li>
-</ul>
-<div class="large">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">round</span>(<span class="st">"1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in round("1"): non-numeric argument to mathematical function</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section id="エラー-1" class="slide level2">
-<h2>エラー</h2>
-<ul>
-<li>エラーが出た時にはどうすればいい？
-<ul>
-<li>まずは、<strong>慌てない</strong></li>
-<li>冷静にエラーメッセージを読んで、その意味を考えてください</li>
-<li>ヘルプファイル（例：<code>?round</code>）を読んだり、エラーメッセージをググったりしてみる</li>
-</ul></li>
-<li><strong><code>non-numeric</code></strong> <code>argument to mathematical function</code>
-<ul>
-<li>インプットは数字ではなかった！</li>
-</ul></li>
-</ul>
-</section>
-<section id="今日のトピック" class="slide level2">
-<h2>今日のトピック</h2>
-<ul>
-<li>データラングリング</li>
-<li>EDA （Exploratory Data Analysis）</li>
-</ul>
-</section>
-<section id="データラングリングとは" class="slide level2">
-<h2>「データラングリング」とは？</h2>
-<div class="fragment">
-<ul>
-<li><p>「wrangle」= （元々は牛などを）思う通りに整理すること</p></li>
-<li><p>データが手に入ったら、必ずしも<strong>解析しやすい</strong>形になっていない</p>
-<ul>
-<li>データを<strong>整える必要がある</strong></li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section class="slide level2">
-
-
-<img data-src="https://media.istockphoto.com/id/172342607/photo/cattle-drive.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=Fz--vTqe2gMWKxbHvgdLCgfUveH_Y3-k0js5H1m9Snc=" class="r-stretch quarto-figure-center"><p class="caption">Getty Images</p></section>
-<section class="slide level2">
-
-
-<img data-src="https://datasciencecampus.github.io/DSCA_data_wrangling_with_r/slides/images/data_cowboy.png" alt="data wrangling monsters" class="r-stretch quarto-figure-center"><p class="caption">Image by Allison Horst</p></section>
-<section id="edaとは" class="slide level2">
-<h2>EDAとは？</h2>
-<div class="fragment">
-<ul>
-<li><p>EDA = <strong>E</strong>ploratory <strong>D</strong>ata <strong>A</strong>nalysis</p></li>
-<li><p>本格的なデータ解析（モデルの構築など）に入る前に、とりあえずデータの基本的な特徴をつかむこと</p></li>
-</ul>
-</div>
-</section>
-<section class="slide level2">
-
-
-<img data-src="images/ggplot2_exploratory.png" class="r-stretch quarto-figure-center"><p class="caption">Image by Allison Horst</p></section>
-<section id="データラングリングとeda" class="slide level2">
-<h2>データラングリングとEDA</h2>
-<ul>
-<li><p>データラングリングとEDAを<strong>一緒に</strong>にすることが多い</p></li>
-<li><p>様々なRパッケージがあるが、ここでは<code>tidyverse</code>を使う</p>
-<ul>
-<li>初心者に（上級者にも）使いやすい</li>
-<li>本当は複数のパッケージを含む（<code>dplyr</code>、<code>tidyr</code>、<code>ggplot</code>など）</li>
-</ul></li>
-<li><p>DNAバーコードデータのデータラングリングとEDAをやってみましょう！</p></li>
-</ul>
-</section>
-<section class="slide level2">
-
-
-<img data-src="images/tidyverse_celestial.png" class="r-stretch quarto-figure-center"><p class="caption">Image by Allison Horst</p></section>
-<section id="tidyverseのインストール" class="slide level2">
-<h2><code>tidyverse</code>のインストール</h2>
-<ul>
-<li>まずは、<code>tidyverse</code>をインストールしましょう（複数のパッケージを含むので、ちょっと時間かかる）</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="データを読み込む" class="slide level2">
-<h2>データを読み込む</h2>
-<ul>
-<li><p><code>barcode-analysis.R</code>に入っているコードで前回と同じようにデータを読み込みましょう</p></li>
-<li><p>これからは<code>tidyverse</code>を使うので、<code>library(tidyverse)</code>を加える</p></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb24-3"><a href="#cb24-3"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb24-4"><a href="#cb24-4"></a></span>
-<span id="cb24-5"><a href="#cb24-5"></a>blast_animals <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
-<span id="cb24-6"><a href="#cb24-6"></a>  <span class="st">"data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx"</span></span>
-<span id="cb24-7"><a href="#cb24-7"></a>)</span>
-<span id="cb24-8"><a href="#cb24-8"></a></span>
-<span id="cb24-9"><a href="#cb24-9"></a>blast_animals <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(blast_animals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="まずデータを眺める" class="slide level2">
-<h2>まず、データを眺める</h2>
-<p><code>blast_animals</code>をコンソールで打つと、基本的な情報が返ってくる</p>
-<ul>
-<li>行のデータの種類</li>
-<li>列の数</li>
-<li>行の数</li>
-</ul>
-</section>
-<section id="まずデータを眺める-1" class="slide level2">
-<h2>まず、データを眺める</h2>
-<ul>
-<li><p>このデータがどうなっているのか理解するためには、まず全体の様子を見てみましょう</p></li>
-<li><p><code>Environment</code>パネルの<code>blast_animals</code>をクリックすると、エクセルのような画面が出てくる</p></li>
-</ul>
-</section>
-<section class="slide level2">
-
-
-<img data-src="images/rstudio-viewer.png" class="r-stretch"></section>
-<section id="まずデータを眺める-2" class="slide level2">
-<h2>まず、データを眺める</h2>
-<ul>
-<li><code>number_otu_id</code>: OTUの個人番号みたいな物。一シーケンスあたり、一つの番号がついている</li>
-<li><code>chiba_1_zbj</code>、<code>chiba_2_zbj</code>など：それぞれの地点において、各OTUの頻度（リードの数）</li>
-</ul>
-</section>
-<section id="まずデータを眺める-3" class="slide level2 smaller">
-<h2>まず、データを眺める</h2>
-<ul>
-<li><code>_top1</code>で終わる行はBLASTの結果
-<ul>
-<li><code>accession_top1</code>:一致したシーケンスのID</li>
-<li><code>target_top1</code>:一致したシーケンスの学名</li>
-<li><code>identity_top1</code>:一致したシーケンスとOTUとの類似度</li>
-<li><code>alignment_length_top1</code>:一致したシーケンスとOTUとのアラインメントの長さ</li>
-<li><code>species_top1</code>:一致したシーケンスの和名</li>
-</ul></li>
-</ul>
-<p><code>_top1</code>は最も近い「当たり」、<code>_top2</code>はその次に高いもの、など</p>
-</section>
-<section id="行の名前を変える" class="slide level2">
-<h2>行の名前を変える</h2>
-<ul>
-<li><p>生データの行の名前が長くて打ちづらいことがよくある。前回は<code>clean_names()</code>で自動的に名前をと整えたが、さらに短くしたい。</p></li>
-<li><p><code>rename()</code>関数で行の名前を変える</p></li>
-</ul>
-</section>
-<section class="slide level2">
-
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>blast_animals <span class="ot">&lt;-</span> <span class="fu">rename</span>(blast_animals, <span class="at">otu =</span> number_otu_id)</span>
-<span id="cb25-2"><a href="#cb25-2"></a>blast_animals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 106 × 55
-   otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
-   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;         
- 1 ASV_001       21793           0          4312           0 MN319604.1    
- 2 ASV_002           0       18828             0           0 MK659817.1    
- 3 ASV_003           0           0             0       14991 KF492138.1    
- 4 ASV_004           0       12144             0           0 KX053593.1    
- 5 ASV_005           0           0             0        7550 MH898572.1    
- 6 ASV_006           0           0          6918           0 KY039108.1    
- 7 ASV_007           0           0             0        6518 JX416292.1    
- 8 ASV_008           0           0             0        5434 EU751122.1    
- 9 ASV_009           0        5276             0           0 KY270107.1    
-10 ASV_010           0           0          4904           0 KX096927.1    
-# ℹ 96 more rows
-# ℹ 49 more variables: target_top1 &lt;chr&gt;, identity_top1 &lt;dbl&gt;,
-#   alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;, accession_top2 &lt;chr&gt;,
-#   target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;, alignment_length_top2 &lt;dbl&gt;,
-#   species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;, target_top3 &lt;chr&gt;,
-#   identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;, species_top3 &lt;chr&gt;,
-#   accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, identity_top4 &lt;dbl&gt;, …</code></pre>
-</div>
-</div>
 </section>
 <section id="列の順を並び変える" class="slide level2">
 <h2>列の順を並び変える</h2>
@@ -1246,28 +863,22 @@ Base composition:
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">arrange</span>(blast_animals, chiba_1_zbj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">arrange</span>(flow_cyt_data, sample_peak)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 106 × 55
-   otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
-   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;         
- 1 ASV_002           0       18828             0           0 MK659817.1    
- 2 ASV_003           0           0             0       14991 KF492138.1    
- 3 ASV_004           0       12144             0           0 KX053593.1    
- 4 ASV_005           0           0             0        7550 MH898572.1    
- 5 ASV_006           0           0          6918           0 KY039108.1    
- 6 ASV_007           0           0             0        6518 JX416292.1    
- 7 ASV_008           0           0             0        5434 EU751122.1    
- 8 ASV_009           0        5276             0           0 KY270107.1    
- 9 ASV_010           0           0          4904           0 KX096927.1    
-10 ASV_011           0           0          4499           0 MT670322.1    
-# ℹ 96 more rows
-# ℹ 49 more variables: target_top1 &lt;chr&gt;, identity_top1 &lt;dbl&gt;,
-#   alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;, accession_top2 &lt;chr&gt;,
-#   target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;, alignment_length_top2 &lt;dbl&gt;,
-#   species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;, target_top3 &lt;chr&gt;,
-#   identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;, species_top3 &lt;chr&gt;,
-#   accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, identity_top4 &lt;dbl&gt;, …</code></pre>
+<pre><code># A tibble: 414 × 3
+   id_num tomato_peak sample_peak
+    &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+ 1      5       5896.          0 
+ 2      6       5042.          0 
+ 3      7       4896.          0 
+ 4    329          0           0 
+ 5    330          0           0 
+ 6     40       5179.       6805.
+ 7      1       3975.       6848.
+ 8     68       5169.       6917.
+ 9     67       4707.       7088.
+10     37       5328.       7108.
+# ℹ 404 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -1281,62 +892,22 @@ Base composition:
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">arrange</span>(blast_animals, <span class="fu">desc</span>(chiba_1_zbj))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">arrange</span>(flow_cyt_data, <span class="fu">desc</span>(sample_peak))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 106 × 55
-   otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
-   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;         
- 1 ASV_001       21793           0          4312           0 MN319604.1    
- 2 ASV_014        3279           0           207           0 HQ891438.1    
- 3 ASV_039         224           0             0           0 KC440139.1    
- 4 ASV_044         158           0             0           0 OM830080.1    
- 5 ASV_023         147           0           603           0 MT521281.1    
- 6 ASV_049         122           0             0           0 MT780697.1    
- 7 ASV_052         109           0             0           0 HQ891438.1    
- 8 ASV_077          26           0             0           0 MW960413.1    
- 9 ASV_083          22           0             0           0 OL664229.1    
-10 ASV_085          21           0             0           0 MT554836.1    
-# ℹ 96 more rows
-# ℹ 49 more variables: target_top1 &lt;chr&gt;, identity_top1 &lt;dbl&gt;,
-#   alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;, accession_top2 &lt;chr&gt;,
-#   target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;, alignment_length_top2 &lt;dbl&gt;,
-#   species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;, target_top3 &lt;chr&gt;,
-#   identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;, species_top3 &lt;chr&gt;,
-#   accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, identity_top4 &lt;dbl&gt;, …</code></pre>
-</div>
-</div>
-</section>
-<section id="列の順を並び変える-2" class="slide level2">
-<h2>列の順を並び変える</h2>
-<ul>
-<li><code>arrange(data, column1, column2)</code>で複数の行によって並び変える</li>
-</ul>
-</section>
-<section class="slide level2">
-
-<div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">arrange</span>(blast_animals, target_top1, identity_top1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 106 × 55
-   otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
-   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;         
- 1 ASV_111           0           0             2           0 MH124183.1    
- 2 ASV_079          20           0             4           0 MH124181.1    
- 3 ASV_055           0          92             0           0 GQ465635.1    
- 4 ASV_082           0           0            23           0 GQ465621.1    
- 5 ASV_061           0          63             0           0 MW305766.1    
- 6 ASV_091           0           0            15           0 KJ654008.1    
- 7 ASV_033           0           0           314           0 JX435832.1    
- 8 ASV_026           0           0           504           0 LC619089.1    
- 9 ASV_023         147           0           603           0 MT521281.1    
-10 ASV_051           0           0           111           0 MT957001.1    
-# ℹ 96 more rows
-# ℹ 49 more variables: target_top1 &lt;chr&gt;, identity_top1 &lt;dbl&gt;,
-#   alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;, accession_top2 &lt;chr&gt;,
-#   target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;, alignment_length_top2 &lt;dbl&gt;,
-#   species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;, target_top3 &lt;chr&gt;,
-#   identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;, species_top3 &lt;chr&gt;,
-#   accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, identity_top4 &lt;dbl&gt;, …</code></pre>
+<pre><code># A tibble: 414 × 3
+   id_num tomato_peak sample_peak
+    &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+ 1    370       7684.      32739.
+ 2    371       7573.      32208.
+ 3    375       7565.      31624.
+ 4    205       7641.      31514.
+ 5    138       7473.      31456.
+ 6    394       7387.      31344.
+ 7    359       7484.      31308.
+ 8    395       7428.      31116.
+ 9    142       7258.      31080.
+10    290       7346.      31050.
+# ℹ 404 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -1346,22 +917,22 @@ Base composition:
 <li><code>select(data, column)</code>で行を抜き出す</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">select</span>(blast_animals, otu, chiba_1_zbj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">select</span>(flow_cyt_data, sample_peak)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 106 × 2
-   otu     chiba_1_zbj
-   &lt;chr&gt;         &lt;dbl&gt;
- 1 ASV_001       21793
- 2 ASV_002           0
- 3 ASV_003           0
- 4 ASV_004           0
- 5 ASV_005           0
- 6 ASV_006           0
- 7 ASV_007           0
- 8 ASV_008           0
- 9 ASV_009           0
-10 ASV_010           0
-# ℹ 96 more rows</code></pre>
+<pre><code># A tibble: 414 × 1
+   sample_peak
+         &lt;dbl&gt;
+ 1       6848.
+ 2       8089.
+ 3       7835.
+ 4       8093.
+ 5          0 
+ 6          0 
+ 7          0 
+ 8         NA 
+ 9         NA 
+10         NA 
+# ℹ 404 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -1374,97 +945,88 @@ Base composition:
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">select</span>(blast_animals, otu, chiba_1_zbj, target_top1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="fu">select</span>(flow_cyt_data, id_num, sample_peak)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 106 × 3
-   otu     chiba_1_zbj target_top1             
-   &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;                   
- 1 ASV_001       21793 Oxidus_gracilis         
- 2 ASV_002           0 Drosophila_ficusphila   
- 3 ASV_003           0 Spodoptera_depravata    
- 4 ASV_004           0 Lepidopsocidae_sp.      
- 5 ASV_005           0 Smicronyx_guineanus     
- 6 ASV_006           0 Colasposoma_sp.         
- 7 ASV_007           0 Parapediasia_teterrellus
- 8 ASV_008           0 Philodina_plena         
- 9 ASV_009           0 Sitticus_penicillatus   
-10 ASV_010           0 Oxidus_riukiarius       
-# ℹ 96 more rows</code></pre>
+<pre><code># A tibble: 414 × 2
+   id_num sample_peak
+    &lt;dbl&gt;       &lt;dbl&gt;
+ 1      1       6848.
+ 2      2       8089.
+ 3      3       7835.
+ 4      4       8093.
+ 5      5          0 
+ 6      6          0 
+ 7      7          0 
+ 8      8         NA 
+ 9      9         NA 
+10     10         NA 
+# ℹ 404 more rows</code></pre>
 </div>
 </div>
 </section>
 <section id="行を抜き出す-2" class="slide level2">
 <h2>行を抜き出す</h2>
 <ul>
-<li>数字でも指定できる</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">select</span>(blast_animals, <span class="dv">1</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 106 × 2
-   otu     chiba_1_zbj
-   &lt;chr&gt;         &lt;dbl&gt;
- 1 ASV_001       21793
- 2 ASV_002           0
- 3 ASV_003           0
- 4 ASV_004           0
- 5 ASV_005           0
- 6 ASV_006           0
- 7 ASV_007           0
- 8 ASV_008           0
- 9 ASV_009           0
-10 ASV_010           0
-# ℹ 96 more rows</code></pre>
-</div>
-</div>
-</section>
-<section id="行を抜き出す-3" class="slide level2">
-<h2>行を抜き出す</h2>
+<li>全く別な方法もある：<code>$</code>
 <ul>
-<li><code>:</code>で行の範囲を指定できる</li>
+<li><code>$</code>を使うと、<strong>行の中身</strong>が返ってくる（データフレームではなく）</li>
+</ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">select</span>(blast_animals, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>flow_cyt_data<span class="sc">$</span>sample_peak</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 106 × 4
-   otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj
-   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;
- 1 ASV_001       21793           0          4312
- 2 ASV_002           0       18828             0
- 3 ASV_003           0           0             0
- 4 ASV_004           0       12144             0
- 5 ASV_005           0           0             0
- 6 ASV_006           0           0          6918
- 7 ASV_007           0           0             0
- 8 ASV_008           0           0             0
- 9 ASV_009           0        5276             0
-10 ASV_010           0           0          4904
-# ℹ 96 more rows</code></pre>
-</div>
-</div>
-</section>
-<section id="行を抜き出す-4" class="slide level2">
-<h2>行を抜き出す</h2>
-<ul>
-<li><code>:</code>で行の範囲を指定できる</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">select</span>(blast_animals, otu<span class="sc">:</span>gyotoku_zbj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 106 × 5
-   otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj
-   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
- 1 ASV_001       21793           0          4312           0
- 2 ASV_002           0       18828             0           0
- 3 ASV_003           0           0             0       14991
- 4 ASV_004           0       12144             0           0
- 5 ASV_005           0           0             0        7550
- 6 ASV_006           0           0          6918           0
- 7 ASV_007           0           0             0        6518
- 8 ASV_008           0           0             0        5434
- 9 ASV_009           0        5276             0           0
-10 ASV_010           0           0          4904           0
-# ℹ 96 more rows</code></pre>
+<pre><code>  [1]  6847.69  8089.15  7834.95  8093.26     0.00     0.00     0.00       NA
+  [9]       NA       NA  9751.62       NA       NA       NA  8487.68       NA
+ [17]       NA 10504.04       NA 10224.87       NA       NA 11933.59       NA
+ [25]       NA       NA 11557.79       NA  9873.34       NA       NA       NA
+ [33]       NA 23431.05       NA 11624.41  7108.45       NA       NA  6805.19
+ [41]  7978.19 10870.25 23204.67 20443.44 18342.00  8445.05  9053.59       NA
+ [49]       NA       NA 13038.58 10920.38       NA       NA 10908.05 10250.30
+ [57]       NA       NA       NA       NA 21065.42       NA 10885.63       NA
+ [65]       NA       NA  7088.15  6916.84       NA       NA 14592.24       NA
+ [73] 15607.39       NA 15648.77       NA 14836.38       NA       NA 15358.21
+ [81] 14907.62       NA       NA 15501.19       NA       NA       NA 15110.68
+ [89]       NA       NA 15846.25       NA       NA       NA 15468.13       NA
+ [97]       NA 15654.54       NA       NA 15549.21       NA 14993.32 14971.91
+[105]       NA       NA 15766.92       NA       NA       NA 15882.21       NA
+[113]       NA 14764.57 15459.79       NA       NA 15618.64       NA       NA
+[121] 14156.51       NA       NA 15375.92       NA 15646.18       NA       NA
+[129] 15637.52       NA       NA 15260.94       NA 14066.98 14332.10       NA
+[137]       NA 31456.15       NA       NA 21237.13 31079.73       NA       NA
+[145] 30599.29       NA       NA       NA 30330.38       NA       NA       NA
+[153] 30265.68       NA       NA 29467.32       NA       NA 30784.13       NA
+[161]       NA 26668.67       NA 30498.02       NA       NA 28809.97       NA
+[169]       NA 30229.66       NA       NA 21723.27       NA 30892.73       NA
+[177]       NA 30247.34       NA 30696.10       NA 29625.03       NA       NA
+[185] 30739.64       NA       NA 16010.41       NA       NA       NA       NA
+[193]       NA       NA 16072.27 14980.46 15257.21 14641.25 31008.20       NA
+[201] 30779.92 30739.18       NA 30537.03 31514.44       NA       NA 16788.72
+[209]       NA       NA       NA       NA       NA       NA       NA 15888.38
+[217]       NA       NA 28150.10       NA       NA       NA 30494.79 28324.28
+[225]       NA 28271.56 29866.12 28882.77       NA       NA       NA 15782.04
+[233] 16044.87 30696.23 29784.86 15445.38       NA       NA       NA       NA
+[241]  9657.13 15776.70       NA 10581.02 11483.13 17078.50 10654.86       NA
+[249]       NA 18386.86       NA       NA 17506.39       NA 14332.03 12550.84
+[257]       NA       NA       NA       NA  9357.72       NA       NA  9823.48
+[265]       NA       NA       NA 22868.36       NA       NA       NA  9620.30
+[273]  8446.23  8719.02 11488.66  9777.74       NA  8166.90 10367.22 13412.04
+[281] 10608.76 12229.49 10163.71 22596.21 20203.90 17646.40 19760.48 19763.96
+[289] 19472.24 31050.31 23749.96 30622.82 12132.51       NA 12875.97       NA
+[297]       NA       NA 12912.70 12417.50       NA       NA       NA       NA
+[305] 13782.80 14407.52       NA 13775.80       NA 21500.87 15629.06       NA
+[313]       NA 13830.21       NA       NA 30897.98       NA       NA 26658.78
+[321]       NA       NA 13380.44       NA       NA       NA 12926.68       NA
+[329]     0.00     0.00 17234.70       NA 13646.85       NA       NA 13608.18
+[337]       NA 12985.74       NA       NA 13567.33       NA       NA 22866.67
+[345] 15341.17 15151.77 15140.54 26348.12 14915.86 15125.86 15374.81 14144.65
+[353] 13745.90 13776.05       NA 13769.22 13873.82 15107.52 31308.12 28424.08
+[361] 15472.52 14514.95       NA 14683.33       NA 14846.92       NA 12991.96
+[369]       NA 32738.81 32208.01       NA 16237.65       NA 31624.02       NA
+[377] 16119.08       NA 15079.46       NA       NA 14650.77       NA       NA
+[385] 16088.35 14792.69 14610.90 15545.47 14855.49 14266.13 30998.13 14335.63
+[393] 31017.98 31344.02 31116.08 29234.29 28630.08 27774.08 15154.44 28493.28
+[401] 15544.37       NA       NA  8490.81       NA 10890.16       NA  7189.80
+[409]       NA 14315.92 17251.97       NA       NA       NA</code></pre>
 </div>
 </div>
 </section>
@@ -1474,125 +1036,90 @@ Base composition:
 <li><code>filter()</code>である条件に合っている列だけに絞る</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">filter</span>(blast_animals, target_top1 <span class="sc">==</span> <span class="st">"Diaprepes_sp."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="fu">filter</span>(flow_cyt_data, sample_peak <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 55
-  otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
-  &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;         
-1 ASV_014        3279           0           207           0 HQ891438.1    
-2 ASV_025           0           0           670           0 HQ891438.1    
-3 ASV_030           0           0           429           0 HQ891438.1    
-4 ASV_052         109           0             0           0 HQ891438.1    
-# ℹ 49 more variables: target_top1 &lt;chr&gt;, identity_top1 &lt;dbl&gt;,
-#   alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;, accession_top2 &lt;chr&gt;,
-#   target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;, alignment_length_top2 &lt;dbl&gt;,
-#   species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;, target_top3 &lt;chr&gt;,
-#   identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;, species_top3 &lt;chr&gt;,
-#   accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, identity_top4 &lt;dbl&gt;,
-#   alignment_length_top4 &lt;dbl&gt;, species_top4 &lt;chr&gt;, accession_top5 &lt;chr&gt;, …</code></pre>
-</div>
-</div>
-</section>
-<section id="列を絞る-1" class="slide level2">
-<h2>列を絞る</h2>
-<ul>
-<li><code>filter()</code>である条件に合っている列だけに絞る</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">filter</span>(blast_animals, identity_top1 <span class="sc">&gt;</span> <span class="dv">98</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 58 × 55
-   otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
-   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;         
- 1 ASV_002           0       18828             0           0 MK659817.1    
- 2 ASV_003           0           0             0       14991 KF492138.1    
- 3 ASV_006           0           0          6918           0 KY039108.1    
- 4 ASV_007           0           0             0        6518 JX416292.1    
- 5 ASV_009           0        5276             0           0 KY270107.1    
- 6 ASV_011           0           0          4499           0 MT670322.1    
- 7 ASV_012           0        3704             0           0 EU414825.1    
- 8 ASV_015           0           0             0        2309 OL664327.1    
- 9 ASV_016           0           0          2157           0 MT521279.1    
-10 ASV_017           0        1919             0           0 MK473841.1    
-# ℹ 48 more rows
-# ℹ 49 more variables: target_top1 &lt;chr&gt;, identity_top1 &lt;dbl&gt;,
-#   alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;, accession_top2 &lt;chr&gt;,
-#   target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;, alignment_length_top2 &lt;dbl&gt;,
-#   species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;, target_top3 &lt;chr&gt;,
-#   identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;, species_top3 &lt;chr&gt;,
-#   accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, identity_top4 &lt;dbl&gt;, …</code></pre>
+<pre><code># A tibble: 199 × 3
+   id_num tomato_peak sample_peak
+    &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+ 1      1       3975.       6848.
+ 2      2       5452.       8089.
+ 3      3       5496.       7835.
+ 4      4       5050.       8093.
+ 5     11       6176.       9752.
+ 6     15       5402.       8488.
+ 7     18       6294.      10504.
+ 8     20       5039.      10225.
+ 9     23       5669.      11934.
+10     27       5415.      11558.
+# ℹ 189 more rows</code></pre>
 </div>
 </div>
 </section>
 <section id="チャレンジ" class="slide level2">
 <h2>チャレンジ</h2>
-<p><code>blast_animals</code>から”chiba_1_zbj”と”target_top1”のデータを切り出して、ゼロよりも多いOTUだけに絞って、別のcsvファイルとして保存して下さい。</p>
-<ul>
-<li>ヒント：<code>write_csv()</code>でcsvファイルを保存することができる</li>
-</ul>
+<p><code>flow_cyt_data</code>から”sample_peak”と”tomato_peak”のデータを切り出して、それぞれがゼロより大きい列だけに絞って下さい</p>
 </section>
 <section id="データの変換" class="slide level2">
 <h2>データの変換</h2>
 <ul>
-<li><code>mutate()</code>である行のデータを変換することができる。
-<ul>
-<li>例えば、<code>identity_top1</code>をパーセントに変える（０から１まで）</li>
-</ul></li>
+<li><code>mutate()</code>は新しい行を作ることができる</li>
 </ul>
 </section>
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="co"># データをBLASTの最も近い結果だけに絞る</span></span>
-<span id="cb47-2"><a href="#cb47-2"></a>top1 <span class="ot">&lt;-</span> <span class="fu">select</span>(blast_animals, otu, <span class="fu">matches</span>(<span class="st">"top1$"</span>))</span>
-<span id="cb47-3"><a href="#cb47-3"></a><span class="co"># identity_top1をパーセントに変える（上書き）</span></span>
-<span id="cb47-4"><a href="#cb47-4"></a><span class="fu">mutate</span>(top1, <span class="at">identity_top1 =</span> identity_top1 <span class="sc">/</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>tomato_size_pg <span class="ot">&lt;-</span> <span class="fl">1.96</span></span>
+<span id="cb29-2"><a href=""></a></span>
+<span id="cb29-3"><a href=""></a>flow_cyt_data_size <span class="ot">&lt;-</span></span>
+<span id="cb29-4"><a href=""></a>  <span class="fu">mutate</span>(</span>
+<span id="cb29-5"><a href=""></a>    flow_cyt_data,</span>
+<span id="cb29-6"><a href=""></a>    <span class="at">sample_size =</span> sample_peak <span class="sc">*</span> tomato_size_pg <span class="sc">/</span> tomato_peak)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 106 × 6
-   otu     accession_top1 target_top1        identity_top1 alignment_length_top1
-   &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;                      &lt;dbl&gt;                 &lt;dbl&gt;
- 1 ASV_001 MN319604.1     Oxidus_gracilis            0.930                   157
- 2 ASV_002 MK659817.1     Drosophila_ficusp…         1                       157
- 3 ASV_003 KF492138.1     Spodoptera_deprav…         1                       157
- 4 ASV_004 KX053593.1     Lepidopsocidae_sp.         0.885                   157
- 5 ASV_005 MH898572.1     Smicronyx_guinean…         0.929                   155
- 6 ASV_006 KY039108.1     Colasposoma_sp.            1                       157
- 7 ASV_007 JX416292.1     Parapediasia_tete…         1                       157
- 8 ASV_008 EU751122.1     Philodina_plena            0.935                   154
- 9 ASV_009 KY270107.1     Sitticus_penicill…         0.987                   157
-10 ASV_010 KX096927.1     Oxidus_riukiarius          0.958                   143
-# ℹ 96 more rows
-# ℹ 1 more variable: species_top1 &lt;chr&gt;</code></pre>
+<pre><code># A tibble: 414 × 4
+   id_num tomato_peak sample_peak sample_size
+    &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+ 1      1       3975.       6848.        3.38
+ 2      2       5452.       8089.        2.91
+ 3      3       5496.       7835.        2.79
+ 4      4       5050.       8093.        3.14
+ 5      5       5896.          0         0   
+ 6      6       5042.          0         0   
+ 7      7       4896.          0         0   
+ 8      8         NA          NA        NA   
+ 9      9         NA          NA        NA   
+10     10         NA          NA        NA   
+# ℹ 404 more rows</code></pre>
 </div>
 </div>
 </section>
 <section id="データの変換-1" class="slide level2">
 <h2>データの変換</h2>
 <ul>
-<li><code>mutate()</code>は新しい行を作ることもできる</li>
+<li><code>mutate()</code>である行のデータを変換することもできる</li>
 </ul>
 </section>
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="co"># identity_top1をパーセントに変える</span></span>
-<span id="cb49-2"><a href="#cb49-2"></a><span class="fu">mutate</span>(top1, <span class="at">identity_top1_perc =</span> identity_top1 <span class="sc">/</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="co"># 例えば、pgでなく、ng表記がいいとしたら</span></span>
+<span id="cb31-2"><a href=""></a><span class="fu">mutate</span>(flow_cyt_data_size, <span class="at">sample_size =</span> sample_size <span class="sc">*</span> <span class="fl">1e3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 106 × 7
-   otu     accession_top1 target_top1        identity_top1 alignment_length_top1
-   &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;                      &lt;dbl&gt;                 &lt;dbl&gt;
- 1 ASV_001 MN319604.1     Oxidus_gracilis             93.0                   157
- 2 ASV_002 MK659817.1     Drosophila_ficusp…         100                     157
- 3 ASV_003 KF492138.1     Spodoptera_deprav…         100                     157
- 4 ASV_004 KX053593.1     Lepidopsocidae_sp.          88.5                   157
- 5 ASV_005 MH898572.1     Smicronyx_guinean…          92.9                   155
- 6 ASV_006 KY039108.1     Colasposoma_sp.            100                     157
- 7 ASV_007 JX416292.1     Parapediasia_tete…         100                     157
- 8 ASV_008 EU751122.1     Philodina_plena             93.5                   154
- 9 ASV_009 KY270107.1     Sitticus_penicill…          98.7                   157
-10 ASV_010 KX096927.1     Oxidus_riukiarius           95.8                   143
-# ℹ 96 more rows
-# ℹ 2 more variables: species_top1 &lt;chr&gt;, identity_top1_perc &lt;dbl&gt;</code></pre>
+<pre><code># A tibble: 414 × 4
+   id_num tomato_peak sample_peak sample_size
+    &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+ 1      1       3975.       6848.       3376.
+ 2      2       5452.       8089.       2908.
+ 3      3       5496.       7835.       2794.
+ 4      4       5050.       8093.       3141.
+ 5      5       5896.          0           0 
+ 6      6       5042.          0           0 
+ 7      7       4896.          0           0 
+ 8      8         NA          NA          NA 
+ 9      9         NA          NA          NA 
+10     10         NA          NA          NA 
+# ℹ 404 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -1600,11 +1127,11 @@ Base composition:
 <h2>パイプについて</h2>
 <p>今までのやり方では、複数の処理をする際、それぞれのアウトプットに名前をつけていた：</p>
 <blockquote>
-<p><code>blast_animals</code>から”chiba_1_zbj”と”target_top1”のデータを切り出して、ゼロよりも多いOTUだけに絞って、別のcsvファイルとして保存して下さい</p>
+<p><code>flow_cyt_data</code>から”sample_peak”と”tomato_peak”のデータを切り出して、それぞれがゼロより大きい列だけに絞って下さい</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>blast_animals_chiba_1 <span class="ot">&lt;-</span> <span class="fu">select</span>(blast_animals, chiba_1_zbj, target_top1)</span>
-<span id="cb51-2"><a href="#cb51-2"></a>blast_animals_chiba_1_small <span class="ot">&lt;-</span> <span class="fu">filter</span>(blast_animals_chiba_1, chiba_1_zbj <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a>sample_peak_1 <span class="ot">&lt;-</span> <span class="fu">select</span>(flow_cyt_data, sample_peak, tomato_peak)</span>
+<span id="cb33-2"><a href=""></a>sample_peak_2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(sample_peak_1, sample_peak <span class="sc">&gt;</span> <span class="dv">0</span>, tomato_peak <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>でもこれは処理が多くなるとややこしくなってくる。</p>
 <p><strong>もっといい方法はある：パイプ</strong></p>
@@ -1624,28 +1151,24 @@ Base composition:
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>blast_animals <span class="sc">%&gt;%</span></span>
-<span id="cb52-2"><a href="#cb52-2"></a>  <span class="fu">select</span>(chiba_1_zbj, target_top1) <span class="sc">%&gt;%</span></span>
-<span id="cb52-3"><a href="#cb52-3"></a>  <span class="fu">filter</span>(chiba_1_zbj <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a>flow_cyt_data <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href=""></a>  <span class="fu">select</span>(sample_peak, tomato_peak) <span class="sc">%&gt;%</span></span>
+<span id="cb34-3"><a href=""></a>  <span class="fu">filter</span>(sample_peak <span class="sc">&gt;</span> <span class="dv">0</span>, tomato_peak <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 15 × 2
-   chiba_1_zbj target_top1               
-         &lt;dbl&gt; &lt;chr&gt;                     
- 1       21793 Oxidus_gracilis           
- 2        3279 Diaprepes_sp.             
- 3         147 Armadillidium_vulgare     
- 4         224 Gonocephalum_coriaceum    
- 5         158 Leptomias_kangmarensis    
- 6         122 Phytopythium_vexans       
- 7         109 Diaprepes_sp.             
- 8          26 Cucurbitella_mespiliformis
- 9          20 Acanthamoeba_hatchetti    
-10          22 Scepticus_griseus         
-11          21 Xysticus_sp.              
-12          16 Stachybotrys_chartarum    
-13           6 Stachybotrys_chartarum    
-14           5 Spongospora_subterranea   
-15           3 Contracaecum_sp.          </code></pre>
+<pre><code># A tibble: 199 × 2
+   sample_peak tomato_peak
+         &lt;dbl&gt;       &lt;dbl&gt;
+ 1       6848.       3975.
+ 2       8089.       5452.
+ 3       7835.       5496.
+ 4       8093.       5050.
+ 5       9752.       6176.
+ 6       8488.       5402.
+ 7      10504.       6294.
+ 8      10225.       5039.
+ 9      11934.       5669.
+10      11558.       5415.
+# ℹ 189 more rows</code></pre>
 </div>
 </div>
 <ul>
@@ -1654,127 +1177,45 @@ Base composition:
 </section>
 <section id="チャレンジ-1" class="slide level2">
 <h2>チャレンジ</h2>
-<p><code>blast_animals</code>から<strong>行徳</strong>のデータだけに絞って、最も近く一致した種の<strong>和名</strong>を<strong>リード数の順</strong>で並べてください</p>
-</section>
-<section id="データの集計" class="slide level2">
-<h2>データの集計</h2>
-<p><code>summarize()</code>でデータの<strong>集計</strong>ができる：</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">summarize</span>(blast_animals, <span class="at">mean_aln_len =</span> <span class="fu">mean</span>(alignment_length_top1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  mean_aln_len
-         &lt;dbl&gt;
-1         156.</code></pre>
-</div>
-</div>
-</section>
-<section id="グループ化" class="slide level2">
-<h2>グループ化</h2>
-<p>しかし、全体の平均だけを計算してもあまり意味はない。</p>
-<p>それよりも、何か<strong>毎に</strong>データの集計を行いたい方が多い。</p>
-<p>それには<code>group_by()</code>関数を使う。例えば、種ごと。まずはデータのグループを指定する：</p>
-</section>
-<section class="slide level2">
-
-<div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>blast_animals <span class="sc">%&gt;%</span></span>
-<span id="cb56-2"><a href="#cb56-2"></a>  <span class="fu">group_by</span>(target_top1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 106 × 55
-# Groups:   target_top1 [86]
-   otu     chiba_1_zbj chiba_2_zbj tsudanuma_zbj gyotoku_zbj accession_top1
-   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;         
- 1 ASV_001       21793           0          4312           0 MN319604.1    
- 2 ASV_002           0       18828             0           0 MK659817.1    
- 3 ASV_003           0           0             0       14991 KF492138.1    
- 4 ASV_004           0       12144             0           0 KX053593.1    
- 5 ASV_005           0           0             0        7550 MH898572.1    
- 6 ASV_006           0           0          6918           0 KY039108.1    
- 7 ASV_007           0           0             0        6518 JX416292.1    
- 8 ASV_008           0           0             0        5434 EU751122.1    
- 9 ASV_009           0        5276             0           0 KY270107.1    
-10 ASV_010           0           0          4904           0 KX096927.1    
-# ℹ 96 more rows
-# ℹ 49 more variables: target_top1 &lt;chr&gt;, identity_top1 &lt;dbl&gt;,
-#   alignment_length_top1 &lt;dbl&gt;, species_top1 &lt;chr&gt;, accession_top2 &lt;chr&gt;,
-#   target_top2 &lt;chr&gt;, identity_top2 &lt;dbl&gt;, alignment_length_top2 &lt;dbl&gt;,
-#   species_top2 &lt;chr&gt;, accession_top3 &lt;chr&gt;, target_top3 &lt;chr&gt;,
-#   identity_top3 &lt;dbl&gt;, alignment_length_top3 &lt;dbl&gt;, species_top3 &lt;chr&gt;,
-#   accession_top4 &lt;chr&gt;, target_top4 &lt;chr&gt;, identity_top4 &lt;dbl&gt;, …</code></pre>
-</div>
-</div>
-</section>
-<section id="グループ化-1" class="slide level2">
-<h2>グループ化</h2>
-<p>次に、集計する：</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>blast_animals <span class="sc">%&gt;%</span></span>
-<span id="cb58-2"><a href="#cb58-2"></a>  <span class="fu">group_by</span>(target_top1) <span class="sc">%&gt;%</span></span>
-<span id="cb58-3"><a href="#cb58-3"></a>  <span class="fu">summarize</span>(<span class="at">mean_aln_len =</span> <span class="fu">mean</span>(alignment_length_top1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 86 × 2
-   target_top1             mean_aln_len
-   &lt;chr&gt;                          &lt;dbl&gt;
- 1 Acanthamoeba_hatchetti           162
- 2 Adineta_gracilis                 155
- 3 Adineta_vaga                     153
- 4 Agrotis_segetum                  157
- 5 Albugo_sp.                       160
- 6 Ambigolimax_valentianus          154
- 7 Anisodactylus_signatus           157
- 8 Armadillidium_vulgare            157
- 9 Atypus_snetsingeri               157
-10 Caedius_marinus                  157
-# ℹ 76 more rows</code></pre>
-</div>
-</div>
-</section>
-<section id="グループ化-2" class="slide level2">
-<h2>グループ化</h2>
-<p>グループ毎の計算が終わったら、<code>ungroup()</code>でグループの解除をする必要がある場合がある。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>blast_animals <span class="sc">%&gt;%</span></span>
-<span id="cb60-2"><a href="#cb60-2"></a>  <span class="fu">group_by</span>(target_top1) <span class="sc">%&gt;%</span></span>
-<span id="cb60-3"><a href="#cb60-3"></a>  <span class="fu">summarize</span>(<span class="at">mean_aln_len =</span> <span class="fu">mean</span>(alignment_length_top1)) <span class="sc">%&gt;%</span></span>
-<span id="cb60-4"><a href="#cb60-4"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 86 × 2
-   target_top1             mean_aln_len
-   &lt;chr&gt;                          &lt;dbl&gt;
- 1 Acanthamoeba_hatchetti           162
- 2 Adineta_gracilis                 155
- 3 Adineta_vaga                     153
- 4 Agrotis_segetum                  157
- 5 Albugo_sp.                       160
- 6 Ambigolimax_valentianus          154
- 7 Anisodactylus_signatus           157
- 8 Armadillidium_vulgare            157
- 9 Atypus_snetsingeri               157
-10 Caedius_marinus                  157
-# ℹ 76 more rows</code></pre>
-</div>
-</div>
-</section>
-<section id="まとめ" class="slide level2">
-<h2>まとめ</h2>
-<p>初めての方にはとてもコードの量が多いように思えるでしょうが、このようなツールを毎日使うって、慣れていくとそのうちどのようなデータでもRで扱えるようになる！</p>
-</section></section>
-<section>
-<section id="day-3-データの可視化" class="title-slide slide level1 center">
-<h1>Day 3: データの可視化</h1>
-<p>2023-10-26</p>
-</section>
-<section id="データの可視化について" class="slide level2">
-<h2>データの可視化について</h2>
 <ul>
-<li>EDA（<strong>E</strong>ploratory <strong>D</strong>ata <strong>A</strong>nalysis）の際、データの<strong>可視化</strong>が重要なツールになる</li>
+<li>パイプを使うことによって以下の段階を含むパイプラインを組んでください：
+<ul>
+<li>生データを読み込む</li>
+<li>必要な行だけに絞る</li>
+<li>欠測データを排除する</li>
+<li>ゲノムサイズを計算する</li>
+</ul></li>
 </ul>
+<!--
+
+::: {.cell}
+
+```{.r .cell-code}
+flow_cyt_data <- 
+  # 生データを読み込む
+  read_excel("data_raw/itadori_flowcyt.xlsx", sheet = 2) %>%
+  # 必要な行だけに絞る
+  select(id_num = 通し番号,
+    tomato_peak = トマト数値, sample_peak = サンプル数値) %>%
+  # 欠測データを排除する
+  filter(sample_peak > 0, tomato_peak > 0) %>%
+  # ノムサイズを計算する
+  mutate(sample_size = sample_peak * tomato_size_pg / tomato_peak)
+```
+:::
+
+-->
+</section></section>
+<section id="休憩" class="title-slide slide level1 center">
+<h1>休憩</h1>
+
 </section>
-<section class="slide level2">
 
+<section>
+<section id="part-ii-ggplot2による図の作成" class="title-slide slide level1 center">
+<h1>Part II: ggplot2による図の作成</h1>
 
-<img data-src="images/ggplot2_exploratory.png" class="r-stretch quarto-figure-center"><p class="caption">Image by Allison Horst</p></section>
+</section>
 <section id="ggplot2について" class="slide level2">
 <h2>ggplot2について</h2>
 <ul>
@@ -1829,10 +1270,14 @@ Base composition:
 
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="fu">ggplot</span>(blast_animals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a><span class="fu">ggplot</span>(flow_cyt_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-40-1.png" width="960"></p>
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-25-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -1841,15 +1286,19 @@ Base composition:
 
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb63-2"><a href="#cb63-2"></a>  blast_animals,</span>
-<span id="cb63-3"><a href="#cb63-3"></a>  <span class="fu">aes</span>(</span>
-<span id="cb63-4"><a href="#cb63-4"></a>    <span class="at">x =</span> chiba_1_zbj,</span>
-<span id="cb63-5"><a href="#cb63-5"></a>    <span class="at">y =</span> chiba_2_zbj)</span>
-<span id="cb63-6"><a href="#cb63-6"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb37-2"><a href=""></a>  flow_cyt_data,</span>
+<span id="cb37-3"><a href=""></a>  <span class="fu">aes</span>(</span>
+<span id="cb37-4"><a href=""></a>    <span class="at">x =</span> sample_peak,</span>
+<span id="cb37-5"><a href=""></a>    <span class="at">y =</span> tomato_peak)</span>
+<span id="cb37-6"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-41-1.png" width="960"></p>
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -1858,53 +1307,460 @@ Base composition:
 
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb64-2"><a href="#cb64-2"></a>  blast_animals,</span>
-<span id="cb64-3"><a href="#cb64-3"></a>  <span class="fu">aes</span>(</span>
-<span id="cb64-4"><a href="#cb64-4"></a>    <span class="at">x =</span> chiba_1_zbj,</span>
-<span id="cb64-5"><a href="#cb64-5"></a>    <span class="at">y =</span> chiba_2_zbj)</span>
-<span id="cb64-6"><a href="#cb64-6"></a>  ) <span class="sc">+</span></span>
-<span id="cb64-7"><a href="#cb64-7"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb38-2"><a href=""></a>  flow_cyt_data,</span>
+<span id="cb38-3"><a href=""></a>  <span class="fu">aes</span>(</span>
+<span id="cb38-4"><a href=""></a>    <span class="at">x =</span> sample_peak,</span>
+<span id="cb38-5"><a href=""></a>    <span class="at">y =</span> tomato_peak)</span>
+<span id="cb38-6"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb38-7"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-42-1.png" width="960"></p>
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
 </section>
 <section id="チャレンジ-2" class="slide level2">
 <h2>チャレンジ</h2>
-<p><code>chiba_1_zbj</code>を横軸、<code>tsudanuma_zbj</code>を縦軸にして、点グラフを作成して下さい</p>
+<p><code>sample_size</code>を横軸、<code>sample_peak</code>を縦軸にして、点グラフを作成して下さい</p>
 </section>
-<section id="データの整理と可視化を一緒に-しよう" class="slide level2">
-<h2>データの整理と可視化を一緒に<br>しよう</h2>
+<section id="倍数性の解析と可視化を一緒に-しよう" class="slide level2">
+<h2>倍数性の解析と可視化を一緒に<br>しよう</h2>
 <ul>
-<li><code>chiba_1_zbj</code>の動物のリード数（個体数）を可視化しよう</li>
+<li><p>フローサイトメーターは直接に倍数性を教えてくれない。</p></li>
+<li><p>このデータからどうやって倍数性を推測することができるのか？</p></li>
+<li><p>まずはゲノムサイズの<strong>分布</strong>を可視化してみよう</p></li>
 </ul>
 </section>
-<section id="データの整理と可視化を一緒に-しよう-1" class="slide level2">
-<h2>データの整理と可視化を一緒に<br>しよう</h2>
-<ul>
-<li>まずは<code>chiba_1_zbj</code>だけの種ごとにリード数の合計を計算する</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a>chiba_1_reads <span class="ot">&lt;-</span></span>
-<span id="cb65-2"><a href="#cb65-2"></a>  blast_animals <span class="sc">%&gt;%</span></span>
-<span id="cb65-3"><a href="#cb65-3"></a>    <span class="fu">filter</span>(chiba_1_zbj <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb65-4"><a href="#cb65-4"></a>    <span class="fu">group_by</span>(target_top1) <span class="sc">%&gt;%</span></span>
-<span id="cb65-5"><a href="#cb65-5"></a>    <span class="fu">summarize</span>(<span class="at">reads =</span> <span class="fu">sum</span>(chiba_1_zbj))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="ヒストグラムの作成" class="slide level2">
+<h2>ヒストグラムの作成</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb39-2"><a href=""></a>  flow_cyt_data,</span>
+<span id="cb39-3"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> sample_size)) <span class="sc">+</span></span>
+<span id="cb39-4"><a href=""></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-28-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ヒストグラムの作成-1" class="slide level2">
+<h2>ヒストグラムの作成</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb41-2"><a href=""></a>  flow_cyt_data,</span>
+<span id="cb41-3"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> sample_size)) <span class="sc">+</span></span>
+<span id="cb41-4"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-29-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="チャレンジ-3" class="slide level2">
 <h2>チャレンジ</h2>
 <ul>
-<li><code>chiba_1_reads</code>を使って、<code>reads</code>が横軸、<code>target_top1</code>が縦軸になっている棒グラフを作成して下さい
+<li><p><code>bins</code>の値を色々試して見てください。</p></li>
+<li><p>どの設定が一番いいと思いますか？</p></li>
+</ul>
+</section>
+<section id="倍数性の測定" class="slide level2">
+<h2>倍数性の測定</h2>
 <ul>
-<li>ヒント：形（geometry）の指定は<code>geom_col()</code>を使って下さい</li>
+<li>倍数性とゲノムサイズは相関関係があるはず
+<ul>
+<li>4xは2xの倍の大きさ、など</li>
+</ul></li>
+<li>先行研究では、イタドリは2x, 4x, 6x, 8xが知られている（とする）</li>
+</ul>
+</section>
+<section id="チャレンジ-4" class="slide level2">
+<h2>チャレンジ</h2>
+<ul>
+<li><p>もう一度ヒストグラムを作成してください。</p></li>
+<li><p>ヒストグラムのどこからどこまでがそれぞれの倍数性に一致すると思いますか？</p></li>
+</ul>
+</section></section>
+<section id="休憩-1" class="title-slide slide level1 center">
+<h1>休憩</h1>
+
+</section>
+
+<section>
+<section id="part-iii-kmeans法に-よる倍数性の分け方" class="title-slide slide level1 center">
+<h1>Part III: kmeans法に<br>よる倍数性の分け方</h1>
+
+</section>
+<section id="チャレンジ-5" class="slide level2">
+<h2>チャレンジ</h2>
+<blockquote>
+<p>もう一度ヒストグラムを作成してください。</p>
+</blockquote>
+<blockquote>
+<p>ヒストグラムのどこからどこまでがそれぞれの倍数性に一致すると思いますか？</p>
+</blockquote>
+</section>
+<section id="グループ分けの仕方" class="slide level2">
+<h2>グループ分けの仕方</h2>
+<ul>
+<li><p>目で見て判断するのはなかなか<strong>難しい</strong>ですね。</p></li>
+<li><p>適当に決めるのではなく、<strong>アルゴリズム</strong>を使ってみよう</p></li>
+</ul>
+</section>
+<section id="グループ分けの仕方kmeans" class="slide level2">
+<h2>グループ分けの仕方：kmeans</h2>
+<ul>
+<li>kmeansとは、連続的なデータを<strong>グループ分けする<br>アルゴリズム</strong></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p><img data-src="https://miro.medium.com/v2/resize:fit:1200/1*rw8IUza1dbffBhiA4i0GNQ.png"></p>
+
+<aside><div>
+<div class="small">
+<p>https://miro.medium.com/v2/resize:fit:1200/1*rw8IUza1dbffBhiA4i0GNQ.png</p>
+</div>
+</div></aside></section>
+<section id="kmeansの仕組み" class="slide level2">
+<h2>kmeansの仕組み</h2>
+<ol type="1">
+<li>最初の重点を<em>k</em>個ランダムに置く（◯）</li>
+<li>格データポイント（◾️）を最も近い重点（◯）によってグールプ分けする（色）</li>
+<li>それぞれのグループの新しい重点を計算する</li>
+<li>グループが変わらないまで 2.–3. を繰り返す</li>
+</ol>
+
+<img data-src="images/kmeans.png" class="r-stretch"></section>
+<section id="kmeansの仕組み-1" class="slide level2">
+<h2>kmeansの仕組み</h2>
+
+<img data-src="https://upload.wikimedia.org/wikipedia/commons/e/ea/K-means_convergence.gif" class="r-stretch"></section>
+<section id="kmeansの仕組みポイント" class="slide level2">
+<h2>kmeansの仕組み：ポイント</h2>
+<ul>
+<li>あらかじめグループの数（<em>k</em>）を設定する必要がある</li>
+<li>始まりが<strong>ランダム</strong></li>
+<li>よって、毎回結果が<strong>違う</strong></li>
+</ul>
+</section></section>
+<section>
+<section id="早速倍数性データに使ってみよう" class="title-slide slide level1 center">
+<h1>早速、倍数性データに使ってみよう</h1>
+
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a><span class="fu">kmeans</span>(flow_cyt_data<span class="sc">$</span>sample_size, <span class="at">centers =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>K-means clustering with 4 clusters of sizes 17, 31, 51, 100
+
+Cluster means:
+      [,1]
+1 6.073266
+2 3.025890
+3 8.068650
+4 4.031496
+
+Clustering vector:
+  [1] 2 2 2 2 2 2 2 4 4 4 4 3 4 2 2 2 4 3 3 1 2 2 4 4 4 4 1 4 2 2 4 4 4 4 4 4 4
+ [38] 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 3 1 3 3 3 3 3 3 3 3 3 3 1 3 3 3 3 3
+ [75] 4 4 4 4 4 3 3 3 3 3 4 4 3 3 3 3 3 3 4 4 3 3 4 2 4 4 4 1 4 1 1 4 2 2 2 3 2
+[112] 2 2 2 2 2 2 4 2 4 2 3 1 1 1 1 1 3 1 3 2 4 4 4 4 4 4 1 4 4 3 3 4 2 1 4 4 4
+[149] 4 1 4 4 4 1 4 4 4 4 4 4 4 4 4 3 3 4 4 4 4 4 3 3 4 3 4 4 4 4 4 4 4 4 4 3 4
+[186] 3 3 3 3 3 3 4 3 4 2 4 2 4 4
+
+Within cluster sum of squares by cluster:
+[1] 3.277437 2.527355 6.267951 6.592609
+ (between_SS / total_SS =  97.4 %)
+
+Available components:
+
+[1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss"
+[6] "betweenss"    "size"         "iter"         "ifault"      </code></pre>
+</div>
+</div>
+</section>
+<section id="チャレンジ-6" class="slide level2">
+<h2>チャレンジ</h2>
+<p><code>kmeans()</code>関数をもう一度、<strong>全く同じように</strong>使ってみて、前の結果と比べてみてください。何かに気が付きましたか？</p>
+</section>
+<section id="乱数生成" class="slide level2">
+<h2>乱数生成</h2>
+<div>
+<ul>
+<li class="fragment"><code>kmeans()</code>は<strong>ランダム</strong>なところからスタートすることによって、<strong>結果が毎回（ちょっと）違う</strong></li>
+<li class="fragment">でも解析を<strong>再現したいとき</strong>はどうすれば良い？毎回違うと困るのではないか？</li>
+<li class="fragment">解決方法：<code>set.seed()</code>によって、ランダムな数字を<strong>固定させる</strong></li>
+</ul>
+</div>
+</section>
+<section id="乱数生成-1" class="slide level2">
+<h2>乱数生成</h2>
+<p><code>runif()</code>は0-1の間のランダムな数字を返す</p>
+<div class="large">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a><span class="fu">runif</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2314378</code></pre>
+</div>
+</div>
+</div>
+<p>皆さんの結果はどうですか？私のと同じでしょうか？</p>
+</section>
+<section id="乱数生成-2" class="slide level2">
+<h2>乱数生成</h2>
+<p><code>set.seed()</code>は、ランダムな数字を<strong>固定させる</strong></p>
+<div class="large">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># インプットは数字であれば、なんでも良い</span></span>
+<span id="cb46-2"><a href=""></a><span class="fu">runif</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2875775</code></pre>
+</div>
+</div>
+</div>
+<p>今度はどうですか？</p>
+</section>
+<section id="乱数生成-3" class="slide level2">
+<h2>乱数生成</h2>
+<p>というわけで、<code>kmeans()</code>を使う前に、<code>set.seed()</code>を使いましょう。</p>
+</section>
+<section id="kmeansによる倍数性のグループ分け" class="slide level2">
+<h2>kmeansによる倍数性のグループ分け</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb48-2"><a href=""></a>size_clusters <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(flow_cyt_data<span class="sc">$</span>sample_size, <span class="at">centers =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>K-means clustering with 4 clusters of sizes 17, 51, 31, 100
+
+Cluster means:
+      [,1]
+1 6.073266
+2 8.068650
+3 3.025890
+4 4.031496
+
+Clustering vector:
+  [1] 3 3 3 3 3 3 3 4 4 4 4 2 4 3 3 3 4 2 2 1 3 3 4 4 4 4 1 4 3 3 4 4 4 4 4 4 4
+ [38] 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 2 1 2 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2
+ [75] 4 4 4 4 4 2 2 2 2 2 4 4 2 2 2 2 2 2 4 4 2 2 4 3 4 4 4 1 4 1 1 4 3 3 3 2 3
+[112] 3 3 3 3 3 3 4 3 4 3 2 1 1 1 1 1 2 1 2 3 4 4 4 4 4 4 1 4 4 2 2 4 3 1 4 4 4
+[149] 4 1 4 4 4 1 4 4 4 4 4 4 4 4 4 2 2 4 4 4 4 4 2 2 4 2 4 4 4 4 4 4 4 4 4 2 4
+[186] 2 2 2 2 2 2 4 2 4 3 4 3 4 4
+
+Within cluster sum of squares by cluster:
+[1] 3.277437 6.267951 2.527355 6.592609
+ (between_SS / total_SS =  97.4 %)
+
+Available components:
+
+[1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss"
+[6] "betweenss"    "size"         "iter"         "ifault"      </code></pre>
+</div>
+</div>
+</section>
+<section id="リストについて" class="slide level2">
+<h2>リストについて</h2>
+<p><code>kmeans()</code>の出力は<strong>リスト</strong>となっている。</p>
+<p>リストの要素を取り出すのに、<code>$</code>を使う：</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a>size_clusters<span class="sc">$</span>centers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      [,1]
+1 6.073266
+2 8.068650
+3 3.025890
+4 4.031496</code></pre>
+</div>
+</div>
+<p>図を作る時、このリストに入っているデータを使う。</p>
+</section>
+<section id="分けたグループをプロットしよう" class="slide level2">
+<h2>分けたグループをプロットしよう</h2>
+<p>kmeansのグループを倍数性に当てる</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href=""></a>flow_cyt_data <span class="ot">&lt;-</span></span>
+<span id="cb52-2"><a href=""></a>  flow_cyt_data <span class="sc">%&gt;%</span></span>
+<span id="cb52-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">cluster =</span> size_clusters<span class="sc">$</span>cluster) <span class="sc">%&gt;%</span></span>
+<span id="cb52-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">ploidy =</span> <span class="fu">case_when</span>(</span>
+<span id="cb52-5"><a href=""></a>    cluster <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"6x"</span>,</span>
+<span id="cb52-6"><a href=""></a>    cluster <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"8x"</span>,</span>
+<span id="cb52-7"><a href=""></a>    cluster <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"2x"</span>,</span>
+<span id="cb52-8"><a href=""></a>    cluster <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">"4x"</span></span>
+<span id="cb52-9"><a href=""></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb52-10"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">ploidy =</span> <span class="fu">factor</span>(ploidy, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"2x"</span>, <span class="st">"4x"</span>, <span class="st">"6x"</span>, <span class="st">"8x"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="分けたグループをプロットしよう-1" class="slide level2">
+<h2>分けたグループをプロットしよう</h2>
+<p>まずは、ポイント（点）だけ</p>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a><span class="fu">ggplot</span>(flow_cyt_data,</span>
+<span id="cb53-2"><a href=""></a>  <span class="fu">aes</span>(</span>
+<span id="cb53-3"><a href=""></a>    <span class="at">x =</span> sample_size,</span>
+<span id="cb53-4"><a href=""></a>    <span class="at">y =</span> ploidy)) <span class="sc">+</span></span>
+<span id="cb53-5"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-37-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>でも点が重なっていて見づらい・・</p>
+</section>
+<section class="slide level2">
+
+<ul>
+<li>geom_point()ではなく、geom_jitter()を使いましょう
+<ul>
+<li>geom_jitter()はポイントの位置を適当にバラす</li>
 </ul></li>
 </ul>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href=""></a><span class="fu">ggplot</span>(flow_cyt_data,</span>
+<span id="cb54-2"><a href=""></a>  <span class="fu">aes</span>(</span>
+<span id="cb54-3"><a href=""></a>    <span class="at">x =</span> sample_size,</span>
+<span id="cb54-4"><a href=""></a>    <span class="at">y =</span> ploidy)) <span class="sc">+</span></span>
+<span id="cb54-5"><a href=""></a>  <span class="fu">geom_jitter</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-38-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>わかりやすくなりました。</p>
+<p>次に、またヒストグラムに戻りましょう。</p>
+</section>
+<section class="slide level2">
+
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a><span class="fu">ggplot</span>(flow_cyt_data,</span>
+<span id="cb55-2"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> sample_size)) <span class="sc">+</span></span>
+<span id="cb55-3"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-39-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p><code>geom_vline()</code>（縦線を書く関数）を使って、重点の位置をプロットしよう</p>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a><span class="fu">ggplot</span>(flow_cyt_data,</span>
+<span id="cb56-2"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> sample_size)) <span class="sc">+</span></span>
+<span id="cb56-3"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb56-4"><a href=""></a>  <span class="fu">geom_vline</span>(</span>
+<span id="cb56-5"><a href=""></a>    <span class="at">data =</span> <span class="fu">as_tibble</span>(</span>
+<span id="cb56-6"><a href=""></a>      size_clusters<span class="sc">$</span>centers),</span>
+<span id="cb56-7"><a href=""></a>    <span class="fu">aes</span>(<span class="at">xintercept =</span> V1)</span>
+<span id="cb56-8"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-40-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p><code>geom_rug()</code>（マージンにデータをプロットする関数）を使って、ポイントの位置を確かめよう</p>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a><span class="fu">ggplot</span>(flow_cyt_data,</span>
+<span id="cb57-2"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> sample_size)) <span class="sc">+</span></span>
+<span id="cb57-3"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb57-4"><a href=""></a>  <span class="fu">geom_vline</span>(</span>
+<span id="cb57-5"><a href=""></a>    <span class="at">data =</span> <span class="fu">as_tibble</span>(</span>
+<span id="cb57-6"><a href=""></a>      size_clusters<span class="sc">$</span>centers),</span>
+<span id="cb57-7"><a href=""></a>    <span class="fu">aes</span>(<span class="at">xintercept =</span> V1)</span>
+<span id="cb57-8"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb57-9"><a href=""></a>  <span class="fu">geom_rug</span>(<span class="fu">aes</span>(<span class="at">color =</span> ploidy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-41-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div>
+<ul>
+<li class="fragment">倍数性プロットの完成！</li>
+</ul>
+</div>
+</section>
+<section id="チャレンジ-7" class="slide level2">
+<h2>チャレンジ</h2>
+<ul>
+<li><p>倍数性はこれでいいと思いますか？</p></li>
+<li><p>怪しい点はありませんか？</p></li>
+</ul>
+</section>
+<section id="まとめ" class="slide level2">
+<h2>まとめ</h2>
+<div>
+<ul>
+<li class="fragment"><p><strong>データ</strong>と<strong>コード</strong>があれば、計算結果の<strong>再現</strong>ができる</p></li>
+<li class="fragment"><p>倍数性は目で適当に決めるよりも、アルゴリズムを使った方が<strong>客観的で再現性が高い</strong></p>
+<ul>
+<li class="fragment">でも、<strong>だからと言って絶対に正解だと言えない</strong>（そもそものデータにノイズが多すぎると、無理なこともある）</li>
+<li class="fragment">他のデータ（<strong>染色体観察</strong>など）で確かめる必要がある</li>
+</ul></li>
+</ul>
+</div>
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
-<p><a href="https://joelnitta.github.io/gap-term-2023">https://joelnitta.github.io/gap-term-2023</a></p>
+<p><a href="https://joelnitta.github.io/gap-term-2024">https://joelnitta.github.io/gap-term-2024</a></p>
+</div>
 </div>
 </section></section>
     </div>
@@ -1933,7 +1789,6 @@ Base composition:
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -2232,10 +2087,9 @@ Base composition:
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -2245,8 +2099,17 @@ Base composition:
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 

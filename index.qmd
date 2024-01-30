@@ -1,5 +1,5 @@
 ---
-title: "Gap Term 2023"
+title: "Gap Term 2024 春"
 format:
   revealjs:
     incremental: false
@@ -27,7 +27,7 @@ execute:
   echo: true
 author: ニッタ ジョエル
 institute: <a href="https://joelnitta.com">https://joelnitta.com</a>
-footer: <a href="https://joelnitta.github.io/gap-term-2023">https://joelnitta.github.io/gap-term-2023</a>
+footer: <a href="https://joelnitta.github.io/gap-term-2024">https://joelnitta.github.io/gap-term-2024</a>
 html:
   mathjax: true
 ---
@@ -37,9 +37,21 @@ html:
 options(width = 80)
 ```
 
-# Day 1: RStudio入門、BLAST、データ入力
+## 目的
 
-2023-10-12
+本授業の目的は**Rを使うことによって<br>フローサイトメーターのデータを解析する**<br>ことである
+
+- Rの基本的な操作
+- データ処理
+- データの可視化
+
+## リンク
+
+- スライド： <https://joelnitta.github.io/gap-term-2024>
+
+- コード： <https://github.com/joelnitta/gap-term-2023/blob/main/ploidy-analysis.R>
+
+# Part I: R入門
 
 ## なぜコードを使うのか？
 
@@ -47,7 +59,7 @@ options(width = 80)
 
 ## 再現性とは？
 
-- 他の人（**将来の自分**を含めて）があなたの解析を**再度行って、同じ結果**を得ることができること
+- 他の人（**将来の自分**を含めて）があなたの解析を<br>**再度行って、同じ結果**を得ることができること
 
 ## なぜR?
 
@@ -113,7 +125,7 @@ options(width = 80)
 
 - File → New Project → New Directory → New Project
 
-- 名前と置く場所を選択する。名前は`mukudori-analysis`にしよう。
+- 名前と置く場所を選択する。名前は`flowcyt-analysis`にしよう。
 
 - 場所は**自分が後で探しやすいところ**にしましょう（**デスクトップ**がおすすめ）
 
@@ -126,7 +138,7 @@ options(width = 80)
 - RStudioが再起動されて、新しいプロジェクトに入る
 
 - 右下の「Files」パネルに以下のファイルが入っていることを確認：
-  - `mukudori-analysis.Rproj`
+  - `flowcyt-analysis.Rproj`
   - `.gitignore`（gitを使っている場合のみ）
 
 ---
@@ -135,10 +147,10 @@ options(width = 80)
 
 ## `.Rproj`ファイルについて
 
-- `mukudori-analysis.Rproj`はRStudioの設定を保存するためのファイルで、基本的には**手でイジる必要はない**
+- `flowcyt-analysis.Rproj`はRStudioの設定を保存するためのファイルで、基本的には**手でイジる必要はない**
 
 - でも、このプロジェクトを開くためには便利
-  - 一旦RStudioを閉じて、`mukudori-analysis.Rproj`のアイコンをダブルクリックすると、またプロジェクトに入ることが出来る。
+  - 一旦RStudioを閉じて、`flowcyt-analysis.Rproj`のアイコンをダブルクリックすると、またプロジェクトに入ることが出来る。
 
 ---
 
@@ -155,10 +167,7 @@ options(width = 80)
 ## データを置く場所を作る
 
 - Teamsで共有した以下のファイルをダウンロードして、`data_raw`に置きましょう
-  - `Chiba-1-ZBJ.fasta`
-  - `Chiba-1-trnL.fasta`
-  - `4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx`
-  - `4_全生物種リスト(BLAST結果10位まで).xlsx`
+  - `itadori_flowcyt.xlsx`
 
 ---
 
@@ -170,10 +179,6 @@ options(width = 80)
   - **生データを手でいじらないのが鉄則**
   - Rに読み込んだ上でRの中で操りましょう
 
----
-
-![](images/read-only.png)
-
 ## 他のフォルダーを作る{.smaller}
 
 続いて、同じように他の以下のフォルダーも作る：
@@ -184,8 +189,6 @@ options(width = 80)
   - コードによって整えられたデータを置く場所。使い捨てのつもりで良い。
 - `results/`
   - コードによって得られた結果を置く場所。これも使い捨て。
-- `code/`
-  - コードを置く場所。ベストプラクティスはgitでバージョン管理を施す。
 
 **生データ**と**コード**があればいつでも結果は得られる（再現できる）
 
@@ -206,102 +209,6 @@ Tools → Global Options → General → Workspace
 
 ![](images/settings_change.png){fig-alt="Screenshot showing how to change Rstudio settings for .RData"}
 
-## DNAバーコードとは？
-
-::: {.columns}
-::: {.column}
-
-- DNAによって**種同定**を行う
-  - 今まで種の同定の仕様がなかった・非常に難しかったケース（食性解析）に便利
-:::
-::: {.column}
-![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRILebKXDqs9YG9XcUE52KFwYbe0aHljP_c5g&usqp=CAU)
-:::
-:::
-
-- **DNAの類似度を測るツールが必要** ➡︎ `BLAST`
-
-## `BLAST`とは？
-
-- Basic Local **Alignment** Search Tool
-
-- **Alignment** （アラインメント）：二つ以上のDNA塩基配列を並べたもの
-
-![](images/alignment.png)
-
-![](images/alignment_text.png)
-
-## `BLAST`の使い方
-
-- Subject（「主体」、手元にあるシーケンス）を**標準データベース**に対して検索し、Target（「対象」、当たったシーケンス）との類似度を測る
-
-- **結果は標準データベースによる（重要！）**
-
-- Targetが複数ある場合もあるし、何にも当たらない場合もある
-
-## `BLAST`を使ってみよう
-
-- ムクドリ調査で得られた配列を**GenBank**（最も大きなオンラインDNAデータベース）に対して検索してみよう
-
-  - GenBankとDDBJ（DNA Data Bank of Japan）に入っているデータは基本的に一緒。別のデータベースがあるのは、それぞれの地域のユーザーのため。
-
-## `BLAST`を使ってみよう
-
-- <https://blast.ncbi.nlm.nih.gov/>に行って、「Nucleotide BLAST」をクリック
-  - Nucleotide = DNA塩基配列
-
----
-
-![](images/blast-site.png)
-
-## `BLAST`を使ってみよう
-
-- `Chiba-1-ZBJ.fasta`をRStudioで開いて、最初の二行をコピーして、検索パネルに貼り付ける
-
-- `Program Selection`で、「Somewhat similar sequences (blastn)」を選択する（シーケンス業者が使ったと一緒、一般的な`BLAST`の種類）
-  - `BLAST`には複数の種類と様々な設定がある！今回はデフォルトを使うけど、これも**結果を影響する**ので、本当は設定を理解する必要がある
-
-- `BLAST`ボタンを押して、結果が出るまで待つ（大体１分以内に終わる）
-
----
-
-![](images/blast-input.png)
-
-## `BLAST`を使ってみよう
-
-- 結果には**複数の配列が返ってくる**
-
-- 重要な項目
-  - `e-value`: subjectとtargetが偶然に一致する確率。低い方がいい（`4e-72` = $4 \times 10^{-72}$）
-  - `identity`：類似度（パーセント）
-
-この場合、当たったシーケンスの中で、一つだけが他のより類似度がグンと高い（`Polydesmus sp`、100％）。それをクリックしてみよう。
-
----
-
-![](images/blast-results.png)
-
----
-
-![](images/blast-results-2.png)
-
-## `BLAST`を使ってみよう
-
-クリックしたら、subjectとtargetのアラインメントが見える。
-
-- 最も近いtargetと次に近いtargetの結果を比べてみよう。何が違う？
-
-- あなたなら、このシーケンスを何と同定しますか？
-
-## `BLAST`を使ってみよう
-
-もう一回、同じ作業をしてみよう。
-
-今回は`Chiba-1-trnL.fasta`に入っている最初の２行を使ってみよう。
-
-- 最も近いtargetと次に近いtargetの結果を比べてみよう。何が違う？
-
-- あなたなら、このシーケンスを何と同定しますか？
 
 ## Rを計算機として使う
 
@@ -315,11 +222,13 @@ Tools → Global Options → General → Workspace
 
 :::
 
-おめでとうございます！Rプログラミングができました！
+::: {.incremental}
+- おめでとうございます！Rプログラミングができました！
+:::
 
 ## オブジェクト（変数）について
 
-- 次に、Rの中のデータを変数（Rでは、「オブジェクト Object」と呼ぶ）として保存しよう：
+- 次に、Rの中のデータを変数（Rでは、「**オブジェクト** Object」と呼ぶ）として**保存**しよう：
 
 ::: large
 
@@ -397,14 +306,18 @@ round(3.1415, digits = 1)
 
 Rパッケージのインストールを行うには、`install.packages()`を使う：
 
+::: large
+
 ```{r}
 #| label: install
 #| echo: true
 #| eval: false
-install.packages(c("readxl", "janitor", "tidyverse"))
+install.packages(c("readxl", "tidyverse"))
 ```
 
-一回インストールしたら、次回からはしなくて良いので、これはコードとして保存しない
+:::
+
+一回インストールしたら、次回からはしなくて良いので、**これはコードとして書かない**
 
 ## パッケージのロード
 
@@ -426,27 +339,35 @@ library(tidyverse)
 
 - 今回のデータは`.xlsx`なので、`readxl`パッケージの`read_excel()`関数を使う。
 
-- このコードを`barcode-analysis.R`として保存してください：
+- このコードを`flowcyt-analysis.R`として保存してください：
 
 ```{r}
 #| label: load-animals
 library(readxl)
 
-blast_animals <- read_excel(
-  "data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx"
+flow_cyt_data_raw <- read_excel(
+  "data_raw/itadori_flowcyt.xlsx", sheet = 2
 )
 ```
 
 ## データの読み込み
 
-`blast_animals`を打つと、読み込まれたデータが表示される：
+`flow_cyt_data_raw`を打つと、読み込まれたデータが表示され、基本情報（列と行の数など）が表示される：
 
 ```{r}
 #| label: show-animals
 #| eval: true
 
-blast_animals
+flow_cyt_data_raw
 ```
+
+## データの読み込み
+
+- `Environment`パネルの`flow_cyt_data_raw`をクリックすると、エクセルのような画面が出てくる
+
+---
+
+![](images/rstudio-viewer.png)
 
 ## データを整える
 
@@ -454,8 +375,7 @@ blast_animals
 
 ::: {.incremental}
 
-- 大文字と小文字、スペースやシャープが入っているでしょう？これはコードを打つ以上、邪魔になるので、**簡単な**行名に変えよう
-  - `janitor`パッケージの`clean_names()`関数を使う
+- 文字化けを防ぐために、なるべくローマ字表記がいい。ローマ字に変えよう
 
 :::
 
@@ -465,28 +385,14 @@ blast_animals
 
 ```{r}
 #| label: clean-names-show
-#| eval: false
-library(readxl)
-library(janitor)
-
-blast_animals <- read_excel(
-  "data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx"
-)
-
-clean_names(blast_animals)
+select(
+  flow_cyt_data_raw,
+  id_num = 通し番号,
+  tomato_peak = トマト数値,
+  sample_peak = サンプル数値)
 ```
 
 ---
-
-```{r}
-#| label: clean-names-hide
-#| eval: true
-#| echo: false
-library(readxl)
-library(janitor)
-
-clean_names(blast_animals)
-```
 
 ## データを整える
 
@@ -494,239 +400,30 @@ clean_names(blast_animals)
 
 でも、どうやってこのデータのバージョンの保存ができるのでしょうか？
 
-## データを整える
+## データの（Rの中での）保存
 
 ```{r}
 #| label: clean-names-save
 library(readxl)
-library(janitor)
 
-blast_animals <- read_excel(
-  "data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx"
+flow_cyt_data_raw <- read_excel(
+  "data_raw/itadori_flowcyt.xlsx", sheet = 2
 )
 
-blast_animals <- clean_names(blast_animals)
+flow_cyt_data <- select(
+  flow_cyt_data_raw,
+  id_num = 通し番号,
+  tomato_peak = トマト数値,
+  sample_peak = サンプル数値)
 ```
 
-とりあえずこれで良い。もっとスマートなやり方もあるけど、それは次回の楽しみにしよう。
+## データの（Rの中での）保存
 
-## 宿題
+- **大事：** **`<-`**を使わないと計算結果が**保存されない**
 
-- 宿題は`day1-hw.R`に入っている（teamsかgithubらダウンロード）
+- 同じ名前で保存すると（注意なしで）前のデータが上書きされる
 
-- 「答え」にRコードを書いてください
-
-- 次回までにメールでニッタまで送ってください
-
-# Day 2: データの整理
-
-2023-10-19
-
-## おさらい
-
-- Rの基本的な使い方を学んだ
-  - 計算機としての使い方
-  - オブジェクト（変数）
-  - 関数
-
-## おさらい
-
-- BLASTの使い方とデータについて学んだ
-  - BLASTしたからと言って、必ず種名がわからない
-  - 結果が検索対象の**データベースによる**
-
-## 宿題
-
-> Chiba-1-trnL.fastaに入っているシーケンス（DNA配列）の長さはどれくらい（何塩基）でしょうか？
-
-```{r}
-#| eval: false
-library(ape)
-read.FASTA("data_raw/Chiba-1-trnL.fasta")
-```
-
-## 宿題
-
-```{r}
-#| echo: false
-library(ape)
-read.FASTA("data_raw/Chiba-1-trnL.fasta")
-```
-
-- `All sequences of same length: 145`の**length**が145なので、答えは145延期です（`Total`はこの全部のデータに含まれている延期の数）
-
-## 宿題
-
-- `library()`でパッケージをロードする時、一つずつロードする必要がある
-
-OK:
-```{r}
-#| eval: false
-library(ape)
-library(janitor)
-```
-
-## 宿題
-
-- `library()`でパッケージをロードする時、一つずつロードする必要がある
-
-ダメ：
-```{r}
-#| eval: false
-library(ape, janitor)
-```
-
-- エラーが出ないけど、`janitor`がちゃんとロードされていない
-
-## エラー
-
-- そもそもエラーって何？
-
-- Rを実行している途中に（Rにとって）**間違った**コマンドを受けた時の反応
-  - ここ以上**進めない**
-  - その代わり、エラーメッセージ（赤い文字）を発信する
-
-::: {.large}
-
-```{r}
-#| error: true
-round("1")
-```
-
-:::
-
-## エラー
-
-- エラーが出た時にはどうすればいい？
-  - まずは、**慌てない**
-  - 冷静にエラーメッセージを読んで、その意味を考えてください
-  - ヘルプファイル（例：`?round`）を読んだり、エラーメッセージをググったりしてみる
-
-- **`non-numeric`** `argument to mathematical function`
-  - インプットは数字ではなかった！
-
-## 今日のトピック
-
-- データラングリング
-- EDA （Exploratory Data Analysis）
-
-## 「データラングリング」とは？
-
-. . .
-
-- 「wrangle」= （元々は牛などを）思う通りに整理すること
-
-- データが手に入ったら、必ずしも**解析しやすい**形になっていない
-  - データを**整える必要がある**
-
----
-
-![Getty Images](https://media.istockphoto.com/id/172342607/photo/cattle-drive.jpg?s=612x612&w=0&k=20&c=Fz--vTqe2gMWKxbHvgdLCgfUveH_Y3-k0js5H1m9Snc=)
-
----
-
-![Image by Allison Horst](https://datasciencecampus.github.io/DSCA_data_wrangling_with_r/slides/images/data_cowboy.png){fig-alt="data wrangling monsters"}
-
-## EDAとは？
-
-. . .
-
-- EDA = **E**ploratory **D**ata **A**nalysis
-
-- 本格的なデータ解析（モデルの構築など）に入る前に、とりあえずデータの基本的な特徴をつかむこと
-
----
-
-![Image by Allison Horst](images/ggplot2_exploratory.png)
-
-
-## データラングリングとEDA
-
-- データラングリングとEDAを**一緒に**にすることが多い
-
-- 様々なRパッケージがあるが、ここでは`tidyverse`を使う
-  - 初心者に（上級者にも）使いやすい
-  - 本当は複数のパッケージを含む（`dplyr`、`tidyr`、`ggplot`など）
-
-- DNAバーコードデータのデータラングリングとEDAをやってみましょう！
-
----
-
-![Image by Allison Horst](images/tidyverse_celestial.png)
-
-## `tidyverse`のインストール
-
-- まずは、`tidyverse`をインストールしましょう（複数のパッケージを含むので、ちょっと時間かかる）
-
-```{r}
-#| eval: false
-install.packages("tidyverse")
-```
-
-## データを読み込む
-
-- `barcode-analysis.R`に入っているコードで前回と同じようにデータを読み込みましょう
-
-- これからは`tidyverse`を使うので、`library(tidyverse)`を加える
-
-```{r}
-library(tidyverse)
-library(readxl)
-library(janitor)
-
-blast_animals <- read_excel(
-  "data_raw/4_相同性が高い生物種リスト(BLAST結果10位まで)_ALL.xlsx"
-)
-
-blast_animals <- clean_names(blast_animals)
-```
-
-## まず、データを眺める
-
-`blast_animals`をコンソールで打つと、基本的な情報が返ってくる
-
-- 行のデータの種類
-- 列の数
-- 行の数
-
-## まず、データを眺める
-
-- このデータがどうなっているのか理解するためには、まず全体の様子を見てみましょう
-
-- `Environment`パネルの`blast_animals`をクリックすると、エクセルのような画面が出てくる
-
----
-
-![](images/rstudio-viewer.png)
-
-## まず、データを眺める
-
-- `number_otu_id`: OTUの個人番号みたいな物。一シーケンスあたり、一つの番号がついている
-- `chiba_1_zbj`、`chiba_2_zbj`など：それぞれの地点において、各OTUの頻度（リードの数）
-
-## まず、データを眺める{.smaller}
-
-- `_top1`で終わる行はBLASTの結果
-  - `accession_top1`:一致したシーケンスのID
-  - `target_top1`:一致したシーケンスの学名
-  - `identity_top1`:一致したシーケンスとOTUとの類似度
-  - `alignment_length_top1`:一致したシーケンスとOTUとのアラインメントの長さ
-  - `species_top1`:一致したシーケンスの和名
-
-`_top1`は最も近い「当たり」、`_top2`はその次に高いもの、など
-
-## 行の名前を変える
-
-- 生データの行の名前が長くて打ちづらいことがよくある。前回は`clean_names()`で自動的に名前をと整えたが、さらに短くしたい。
-
-- `rename()`関数で行の名前を変える
-
----
-
-```{r}
-blast_animals <- rename(blast_animals, otu = number_otu_id)
-blast_animals
-```
+- **コード**があれば、計算結果を**再現できる**ので、上書き・消去は**気にしなくて良い**
 
 ## 列の順を並び変える
 
@@ -736,7 +433,7 @@ blast_animals
 ---
 
 ```{r}
-arrange(blast_animals, chiba_1_zbj)
+arrange(flow_cyt_data, sample_peak)
 ```
 
 ## 列の順を並び変える
@@ -747,18 +444,7 @@ arrange(blast_animals, chiba_1_zbj)
 ---
 
 ```{r}
-arrange(blast_animals, desc(chiba_1_zbj))
-```
-
-## 列の順を並び変える
-
-- `arrange(data, column1, column2)`で複数の行によって並び変える
-
-
----
-
-```{r}
-arrange(blast_animals, target_top1, identity_top1)
+arrange(flow_cyt_data, desc(sample_peak))
 ```
 
 ## 行を抜き出す
@@ -766,7 +452,7 @@ arrange(blast_animals, target_top1, identity_top1)
 - `select(data, column)`で行を抜き出す
 
 ```{r}
-select(blast_animals, otu, chiba_1_zbj)
+select(flow_cyt_data, sample_peak)
 ```
 
 ## 行を抜き出す
@@ -775,31 +461,16 @@ select(blast_animals, otu, chiba_1_zbj)
   - 複数の行を選ぶこともできる
 
 ```{r}
-select(blast_animals, otu, chiba_1_zbj, target_top1)
+select(flow_cyt_data, id_num, sample_peak)
 ```
 
 ## 行を抜き出す
 
-- 数字でも指定できる
+- 全く別な方法もある：`$`
+  - `$`を使うと、**行の中身**が返ってくる（データフレームではなく）
 
 ```{r}
-select(blast_animals, 1, 2)
-```
-
-## 行を抜き出す
-
-- `:`で行の範囲を指定できる
-
-```{r}
-select(blast_animals, 1:4)
-```
-
-## 行を抜き出す
-
-- `:`で行の範囲を指定できる
-
-```{r}
-select(blast_animals, otu:gyotoku_zbj)
+flow_cyt_data$sample_peak
 ```
 
 ## 列を絞る
@@ -807,57 +478,53 @@ select(blast_animals, otu:gyotoku_zbj)
 - `filter()`である条件に合っている列だけに絞る
 
 ```{r}
-filter(blast_animals, target_top1 == "Diaprepes_sp.")
-```
-
-## 列を絞る
-
-- `filter()`である条件に合っている列だけに絞る
-
-```{r}
-filter(blast_animals, identity_top1 > 98)
+filter(flow_cyt_data, sample_peak > 0)
 ```
 
 ## チャレンジ
 
-`blast_animals`から"chiba_1_zbj"と"target_top1"のデータを切り出して、ゼロよりも多いOTUだけに絞って、別のcsvファイルとして保存して下さい。
-
-- ヒント：`write_csv()`でcsvファイルを保存することができる
+`flow_cyt_data`から"sample_peak"と"tomato_peak"のデータを切り出して、それぞれがゼロより大きい列だけに絞って下さい
 
 ## データの変換
 
-- `mutate()`である行のデータを変換することができる。
-  - 例えば、`identity_top1`をパーセントに変える（０から１まで）
+- `mutate()`は新しい行を作ることができる
 
 ---
 
 ```{r}
-# データをBLASTの最も近い結果だけに絞る
-top1 <- select(blast_animals, otu, matches("top1$"))
-# identity_top1をパーセントに変える（上書き）
-mutate(top1, identity_top1 = identity_top1 / 100)
+tomato_size_pg <- 1.96
+
+flow_cyt_data_size <-
+  mutate(
+    flow_cyt_data,
+    sample_size = sample_peak * tomato_size_pg / tomato_peak)
+```
+
+```{r}
+#| echo: false
+flow_cyt_data_size
 ```
 
 ## データの変換
 
-- `mutate()`は新しい行を作ることもできる
+- `mutate()`である行のデータを変換することもできる
 
 ---
 
 ```{r}
-# identity_top1をパーセントに変える
-mutate(top1, identity_top1_perc = identity_top1 / 100)
+# 例えば、pgでなく、ng表記がいいとしたら
+mutate(flow_cyt_data_size, sample_size = sample_size * 1e3)
 ```
 
 ## パイプについて
 
 今までのやり方では、複数の処理をする際、それぞれのアウトプットに名前をつけていた：
 
-> `blast_animals`から"chiba_1_zbj"と"target_top1"のデータを切り出して、ゼロよりも多いOTUだけに絞って、別のcsvファイルとして保存して下さい
+> `flow_cyt_data`から"sample_peak"と"tomato_peak"のデータを切り出して、それぞれがゼロより大きい列だけに絞って下さい
 
 ```{r}
-blast_animals_chiba_1 <- select(blast_animals, chiba_1_zbj, target_top1)
-blast_animals_chiba_1_small <- filter(blast_animals_chiba_1, chiba_1_zbj > 0)
+sample_peak_1 <- select(flow_cyt_data, sample_peak, tomato_peak)
+sample_peak_2 <- filter(sample_peak_1, sample_peak > 0, tomato_peak > 0)
 ```
 
 でもこれは処理が多くなるとややこしくなってくる。
@@ -879,76 +546,39 @@ blast_animals_chiba_1_small <- filter(blast_animals_chiba_1, chiba_1_zbj > 0)
 ---
 
 ```{r}
-blast_animals %>%
-  select(chiba_1_zbj, target_top1) %>%
-  filter(chiba_1_zbj > 0)
+flow_cyt_data %>%
+  select(sample_peak, tomato_peak) %>%
+  filter(sample_peak > 0, tomato_peak > 0)
 ```
 
 - この方がスッキリするでしょう？
 
 ## チャレンジ
 
-`blast_animals`から**行徳**のデータだけに絞って、最も近く一致した種の**和名**を**リード数の順**で並べてください
+- パイプを使うことによって以下の段階を含むパイプラインを組んでください：
+  - 生データを読み込む
+  - 必要な行だけに絞る
+  - 欠測データを排除する
+  - ゲノムサイズを計算する
 
-## データの集計
-
-`summarize()`でデータの**集計**ができる：
-
+<!--
 ```{r}
-summarize(blast_animals, mean_aln_len = mean(alignment_length_top1))
+flow_cyt_data <- 
+  # 生データを読み込む
+  read_excel("data_raw/itadori_flowcyt.xlsx", sheet = 2) %>%
+  # 必要な行だけに絞る
+  select(id_num = 通し番号,
+    tomato_peak = トマト数値, sample_peak = サンプル数値) %>%
+  # 欠測データを排除する
+  filter(sample_peak > 0, tomato_peak > 0) %>%
+  # ノムサイズを計算する
+  mutate(sample_size = sample_peak * tomato_size_pg / tomato_peak)
 ```
+-->
 
-## グループ化
+# 休憩
 
-しかし、全体の平均だけを計算してもあまり意味はない。
-
-それよりも、何か**毎に**データの集計を行いたい方が多い。
-
-それには`group_by()`関数を使う。例えば、種ごと。まずはデータのグループを指定する：
-
----
-
-```{r}
-blast_animals %>%
-  group_by(target_top1)
-```
-
-## グループ化
-
-次に、集計する：
-
-```{r}
-blast_animals %>%
-  group_by(target_top1) %>%
-  summarize(mean_aln_len = mean(alignment_length_top1))
-```
-
-## グループ化
-
-グループ毎の計算が終わったら、`ungroup()`でグループの解除をする必要がある場合がある。
-
-```{r}
-blast_animals %>%
-  group_by(target_top1) %>%
-  summarize(mean_aln_len = mean(alignment_length_top1)) %>%
-  ungroup()
-```
-
-## まとめ
-
-初めての方にはとてもコードの量が多いように思えるでしょうが、このようなツールを毎日使うって、慣れていくとそのうちどのようなデータでもRで扱えるようになる！
-
-# Day 3: データの可視化
-
-2023-10-26
-
-## データの可視化について
-
-- EDA（**E**ploratory **D**ata **A**nalysis）の際、データの**可視化**が重要なツールになる
-
----
-
-![Image by Allison Horst](images/ggplot2_exploratory.png)
+# Part II: ggplot2による図の作成
 
 ## ggplot2について
 
@@ -1011,7 +641,7 @@ https://clauswilke.com/dataviz/aesthetic-mapping.html
 
 ```{r}
 #| output-location: column
-ggplot(blast_animals)
+ggplot(flow_cyt_data)
 ```
 
 ---
@@ -1019,10 +649,10 @@ ggplot(blast_animals)
 ```{r}
 #| output-location: column
 ggplot(
-  blast_animals,
+  flow_cyt_data,
   aes(
-    x = chiba_1_zbj,
-    y = chiba_2_zbj)
+    x = sample_peak,
+    y = tomato_peak)
   )
 ```
 
@@ -1031,35 +661,306 @@ ggplot(
 ```{r}
 #| output-location: column
 ggplot(
-  blast_animals,
+  flow_cyt_data,
   aes(
-    x = chiba_1_zbj,
-    y = chiba_2_zbj)
+    x = sample_peak,
+    y = tomato_peak)
   ) +
   geom_point()
 ```
 
 ## チャレンジ
 
-`chiba_1_zbj`を横軸、`tsudanuma_zbj`を縦軸にして、点グラフを作成して下さい
+`sample_size`を横軸、`sample_peak`を縦軸にして、点グラフを作成して下さい
 
-## データの整理と可視化を一緒に<br>しよう
+## 倍数性の解析と可視化を一緒に<br>しよう
 
-- `chiba_1_zbj`の動物のリード数（個体数）を可視化しよう
+- フローサイトメーターは直接に倍数性を教えてくれない。
 
-## データの整理と可視化を一緒に<br>しよう
+- このデータからどうやって倍数性を推測することができるのか？
 
-- まずは`chiba_1_zbj`だけの種ごとにリード数の合計を計算する
+- まずはゲノムサイズの**分布**を可視化してみよう
+
+## ヒストグラムの作成
 
 ```{r}
-chiba_1_reads <-
-  blast_animals %>%
-    filter(chiba_1_zbj > 0) %>%
-    group_by(target_top1) %>%
-    summarize(reads = sum(chiba_1_zbj))
+#| output-location: column
+#| warning: true
+ggplot(
+  flow_cyt_data,
+  aes(x = sample_size)) +
+  geom_histogram()
+```
+
+## ヒストグラムの作成
+
+```{r}
+#| output-location: column
+ggplot(
+  flow_cyt_data,
+  aes(x = sample_size)) +
+  geom_histogram(bins = 50)
 ```
 
 ## チャレンジ
 
-- `chiba_1_reads`を使って、`reads`が横軸、`target_top1`が縦軸になっている棒グラフを作成して下さい
-  - ヒント：形（geometry）の指定は`geom_col()`を使って下さい
+- `bins`の値を色々試して見てください。
+
+- どの設定が一番いいと思いますか？
+
+## 倍数性の測定
+
+- 倍数性とゲノムサイズは相関関係があるはず
+  - 4xは2xの倍の大きさ、など
+
+- 先行研究では、イタドリは2x, 4x, 6x, 8xが知られている（とする）
+
+## チャレンジ
+
+- もう一度ヒストグラムを作成してください。
+
+- ヒストグラムのどこからどこまでがそれぞれの倍数性に一致すると思いますか？
+
+# 休憩
+
+# Part III: kmeans法に<br>よる倍数性の分け方
+
+## チャレンジ
+
+> もう一度ヒストグラムを作成してください。
+
+> ヒストグラムのどこからどこまでがそれぞれの倍数性に一致すると思いますか？
+
+## グループ分けの仕方
+
+- 目で見て判断するのはなかなか**難しい**ですね。
+
+- 適当に決めるのではなく、**アルゴリズム**を使ってみよう
+
+## グループ分けの仕方：kmeans
+
+- kmeansとは、連続的なデータを**グループ分けする<br>アルゴリズム**
+
+---
+
+![](https://miro.medium.com/v2/resize:fit:1200/1*rw8IUza1dbffBhiA4i0GNQ.png)
+
+:::: {.aside}
+::: {.small}
+https://miro.medium.com/v2/resize:fit:1200/1*rw8IUza1dbffBhiA4i0GNQ.png
+:::
+::::
+
+## kmeansの仕組み
+
+1. 最初の重点を*k*個ランダムに置く（◯）
+2. 格データポイント（◾️）を最も近い重点（◯）によってグールプ分けする（色）
+3. それぞれのグループの新しい重点を計算する
+4. グループが変わらないまで 2.--3. を繰り返す
+
+![](images/kmeans.png)
+
+## kmeansの仕組み
+
+![](https://upload.wikimedia.org/wikipedia/commons/e/ea/K-means_convergence.gif)
+
+## kmeansの仕組み：ポイント
+
+- あらかじめグループの数（*k*）を設定する必要がある
+- 始まりが**ランダム**
+- よって、毎回結果が**違う**
+
+# 早速、倍数性データに使ってみよう
+
+---
+
+```{r}
+kmeans(flow_cyt_data$sample_size, centers = 4)
+```
+
+## チャレンジ
+
+`kmeans()`関数をもう一度、**全く同じように**使ってみて、前の結果と比べてみてください。何かに気が付きましたか？
+
+## 乱数生成
+
+::: {.incremental}
+
+- `kmeans()`は**ランダム**なところからスタートすることによって、**結果が毎回（ちょっと）違う**
+- でも解析を**再現したいとき**はどうすれば良い？毎回違うと困るのではないか？
+- 解決方法：`set.seed()`によって、ランダムな数字を**固定させる**
+
+:::
+
+## 乱数生成
+
+`runif()`は0-1の間のランダムな数字を返す
+
+::: large
+
+```{r}
+runif(1)
+```
+
+:::
+
+皆さんの結果はどうですか？私のと同じでしょうか？
+
+## 乱数生成
+
+`set.seed()`は、ランダムな数字を**固定させる**
+
+::: large
+
+```{r}
+set.seed(123) # インプットは数字であれば、なんでも良い
+runif(1)
+```
+
+:::
+
+今度はどうですか？
+
+## 乱数生成
+
+というわけで、`kmeans()`を使う前に、`set.seed()`を使いましょう。
+
+## kmeansによる倍数性のグループ分け
+
+```{r}
+set.seed(123)
+size_clusters <- kmeans(flow_cyt_data$sample_size, centers = 4)
+```
+
+```{r}
+#| echo: false
+size_clusters
+```
+
+## リストについて
+
+`kmeans()`の出力は**リスト**となっている。
+
+リストの要素を取り出すのに、`$`を使う：
+
+```{r}
+size_clusters$centers
+```
+
+図を作る時、このリストに入っているデータを使う。
+
+## 分けたグループをプロットしよう
+
+kmeansのグループを倍数性に当てる
+
+```{r}
+flow_cyt_data <-
+  flow_cyt_data %>%
+  mutate(cluster = size_clusters$cluster) %>%
+  mutate(ploidy = case_when(
+    cluster == 1 ~ "6x",
+    cluster == 2 ~ "8x",
+    cluster == 3 ~ "2x",
+    cluster == 4 ~ "4x"
+  )) %>%
+  mutate(ploidy = factor(ploidy, levels = c("2x", "4x", "6x", "8x")))
+```
+
+## 分けたグループをプロットしよう
+
+まずは、ポイント（点）だけ
+
+```{r}
+#| output-location: column
+ggplot(flow_cyt_data,
+  aes(
+    x = sample_size,
+    y = ploidy)) +
+  geom_point()
+```
+
+でも点が重なっていて見づらい・・
+
+---
+
+- geom_point()ではなく、geom_jitter()を使いましょう
+  - geom_jitter()はポイントの位置を適当にバラす
+
+```{r}
+#| output-location: column
+ggplot(flow_cyt_data,
+  aes(
+    x = sample_size,
+    y = ploidy)) +
+  geom_jitter()
+```
+
+わかりやすくなりました。
+
+次に、またヒストグラムに戻りましょう。
+
+---
+
+```{r}
+#| output-location: column
+ggplot(flow_cyt_data,
+  aes(x = sample_size)) +
+  geom_histogram(bins = 50)
+```
+
+---
+
+`geom_vline()`（縦線を書く関数）を使って、重点の位置をプロットしよう
+
+```{r}
+#| output-location: column
+ggplot(flow_cyt_data,
+  aes(x = sample_size)) +
+  geom_histogram(bins = 50) +
+  geom_vline(
+    data = as_tibble(
+      size_clusters$centers),
+    aes(xintercept = V1)
+  )
+```
+
+---
+
+`geom_rug()`（マージンにデータをプロットする関数）を使って、ポイントの位置を確かめよう
+
+```{r}
+#| output-location: column
+ggplot(flow_cyt_data,
+  aes(x = sample_size)) +
+  geom_histogram(bins = 50) +
+  geom_vline(
+    data = as_tibble(
+      size_clusters$centers),
+    aes(xintercept = V1)
+  ) +
+  geom_rug(aes(color = ploidy))
+```
+
+::: {.incremental}
+
+- 倍数性プロットの完成！
+
+:::
+
+## チャレンジ
+
+- 倍数性はこれでいいと思いますか？
+
+- 怪しい点はありませんか？
+
+## まとめ
+
+::: {.incremental}
+
+- **データ**と**コード**があれば、計算結果の**再現**ができる
+
+- 倍数性は目で適当に決めるよりも、アルゴリズムを使った方が**客観的で再現性が高い**
+  - でも、**だからと言って絶対に正解だと言えない**（そもそものデータにノイズが多すぎると、無理なこともある）
+  - 他のデータ（**染色体観察**など）で確かめる必要がある
+
+:::
