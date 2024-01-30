@@ -964,3 +964,11 @@ ggplot(flow_cyt_data,
   - 他のデータ（**染色体観察**など）で確かめる必要がある
 
 :::
+
+---
+
+![](images/squash.png)
+
+::: {.small}
+Motsa, M.M., Bester, C., Slabbert, M.M. et al. Flow cytometry: a quick method to determine ploidy levels in honeybush (Cyclopia spp.). Genet Resour Crop Evol 65, 1711–1724 (2018). 
+:::

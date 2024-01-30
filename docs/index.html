@@ -1475,25 +1475,25 @@ flow_cyt_data <-
 <div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a><span class="fu">kmeans</span>(flow_cyt_data<span class="sc">$</span>sample_size, <span class="at">centers =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>K-means clustering with 4 clusters of sizes 17, 31, 51, 100
+<pre><code>K-means clustering with 4 clusters of sizes 51, 17, 31, 100
 
 Cluster means:
       [,1]
-1 6.073266
-2 3.025890
-3 8.068650
+1 8.068650
+2 6.073266
+3 3.025890
 4 4.031496
 
 Clustering vector:
-  [1] 2 2 2 2 2 2 2 4 4 4 4 3 4 2 2 2 4 3 3 1 2 2 4 4 4 4 1 4 2 2 4 4 4 4 4 4 4
- [38] 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 3 1 3 3 3 3 3 3 3 3 3 3 1 3 3 3 3 3
- [75] 4 4 4 4 4 3 3 3 3 3 4 4 3 3 3 3 3 3 4 4 3 3 4 2 4 4 4 1 4 1 1 4 2 2 2 3 2
-[112] 2 2 2 2 2 2 4 2 4 2 3 1 1 1 1 1 3 1 3 2 4 4 4 4 4 4 1 4 4 3 3 4 2 1 4 4 4
-[149] 4 1 4 4 4 1 4 4 4 4 4 4 4 4 4 3 3 4 4 4 4 4 3 3 4 3 4 4 4 4 4 4 4 4 4 3 4
-[186] 3 3 3 3 3 3 4 3 4 2 4 2 4 4
+  [1] 3 3 3 3 3 3 3 4 4 4 4 1 4 3 3 3 4 1 1 2 3 3 4 4 4 4 2 4 3 3 4 4 4 4 4 4 4
+ [38] 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 1 2 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1
+ [75] 4 4 4 4 4 1 1 1 1 1 4 4 1 1 1 1 1 1 4 4 1 1 4 3 4 4 4 2 4 2 2 4 3 3 3 1 3
+[112] 3 3 3 3 3 3 4 3 4 3 1 2 2 2 2 2 1 2 1 3 4 4 4 4 4 4 2 4 4 1 1 4 3 2 4 4 4
+[149] 4 2 4 4 4 2 4 4 4 4 4 4 4 4 4 1 1 4 4 4 4 4 1 1 4 1 4 4 4 4 4 4 4 4 4 1 4
+[186] 1 1 1 1 1 1 4 1 4 3 4 3 4 4
 
 Within cluster sum of squares by cluster:
-[1] 3.277437 2.527355 6.267951 6.592609
+[1] 6.267951 3.277437 2.527355 6.592609
  (between_SS / total_SS =  97.4 %)
 
 Available components:
@@ -1524,7 +1524,7 @@ Available components:
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a><span class="fu">runif</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2314378</code></pre>
+<pre><code>[1] 0.05076572</code></pre>
 </div>
 </div>
 </div>
@@ -1756,6 +1756,13 @@ Available components:
 <li class="fragment">他のデータ（<strong>染色体観察</strong>など）で確かめる必要がある</li>
 </ul></li>
 </ul>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/squash.png" class="r-stretch"><div class="small">
+<p>Motsa, M.M., Bester, C., Slabbert, M.M. et al.&nbsp;Flow cytometry: a quick method to determine ploidy levels in honeybush (Cyclopia spp.). Genet Resour Crop Evol 65, 1711–1724 (2018).</p>
 </div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
