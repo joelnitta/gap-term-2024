@@ -179,7 +179,7 @@ options(width = 80)
   - **生データを手でいじらないのが鉄則**
   - Rに読み込んだ上でRの中で操りましょう
 
-## 他のフォルダーを作る{.smaller}
+## 他のフォルダーを作る（割愛）{.smaller}
 
 続いて、同じように他の以下のフォルダーも作る：
 
@@ -295,6 +295,22 @@ round(3.1415, digits = 1)
 
 :::
 
+## スクリプト
+
+- 今まではRに直接にコマンドを出していたが、これを毎回繰り返すのが面倒なので、コマンドを**スクリプト**（テキストファイル）に保存するのがおすすめ
+  - Rのスクリプトは`.R`もしくは`.r`の拡張子を使う
+
+- RStudioで新しいスクリプトを作成する方法
+  - File → New File → RScript
+
+## スクリプト
+
+- 二つのスクリプトを作りましょう：
+  - `practice.R`
+    - 練習用（メモ書き）
+  - `ploidy-analysis.R`
+    - 解析用
+
 ## パッケージとは
 
 - Rパッケージとは、Rが出来ることを大幅に増やす「追加」のソフト（関数のまとまり）
@@ -317,7 +333,7 @@ install.packages(c("readxl", "tidyverse"))
 
 :::
 
-一回インストールしたら、次回からはしなくて良いので、**これはコードとして書かない**
+一回インストールしたら、次回からはしなくて良いので、**これはスクリプトに書かない**
 
 ## パッケージのロード
 
@@ -683,6 +699,9 @@ ggplot(
 
 ## ヒストグラムの作成
 
+- `geom_histogram()`でヒストグラムを作る
+  - `aes()`は`x`だけで良い
+
 ```{r}
 #| output-location: column
 #| warning: true
@@ -694,12 +713,28 @@ ggplot(
 
 ## ヒストグラムの作成
 
+- ビン（箱）の数はデフォルトで30
+  - `bins`設定で変更可能
+
 ```{r}
 #| output-location: column
 ggplot(
   flow_cyt_data,
   aes(x = sample_size)) +
   geom_histogram(bins = 50)
+```
+
+## ヒストグラムの作成
+
+- `geom_rug()`を追加するとデータが実際にどこにあるのか、可視化する
+
+```{r}
+#| output-location: column
+ggplot(
+  flow_cyt_data,
+  aes(x = sample_size)) +
+  geom_histogram(bins = 50) +
+  geom_rug()
 ```
 
 ## チャレンジ

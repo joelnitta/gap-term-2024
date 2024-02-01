@@ -8,7 +8,7 @@
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.549">
+  <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="ニッタ ジョエル">
   <title>Gap Term 2024 春</title>
@@ -31,7 +31,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -222,8 +222,7 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -587,8 +586,8 @@
 </ul></li>
 </ul>
 </section>
-<section id="他のフォルダーを作る" class="slide level2 smaller">
-<h2>他のフォルダーを作る</h2>
+<section id="他のフォルダーを作る割愛" class="slide level2 smaller">
+<h2>他のフォルダーを作る（割愛）</h2>
 <p>続いて、同じように他の以下のフォルダーも作る：</p>
 <ul>
 <li><code>data_raw/</code>
@@ -629,7 +628,7 @@
 </ul>
 <div class="large">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 40</code></pre>
 </div>
@@ -648,7 +647,7 @@
 </ul>
 <div class="large">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>age <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>age <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -658,7 +657,7 @@
 <p>変数の内容を確認するには、コンソールにその変数の名前を打てば良い：</p>
 <div class="large">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>age</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>age</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 40</code></pre>
 </div>
@@ -684,7 +683,7 @@
 <p>例えば</p>
 <div class="large">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">round</span>(<span class="fl">3.1415</span>, <span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">round</span>(<span class="fl">3.1415</span>, <span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.1</code></pre>
 </div>
@@ -696,9 +695,38 @@
 <p>関数の使い方を確認したい時は<code>?関数名</code>と打って、ヘルプファイルを参照すれば良い</p>
 <div class="large">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>?round</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>?round</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
+</section>
+<section id="スクリプト" class="slide level2">
+<h2>スクリプト</h2>
+<ul>
+<li>今まではRに直接にコマンドを出していたが、これを毎回繰り返すのが面倒なので、コマンドを<strong>スクリプト</strong>（テキストファイル）に保存するのがおすすめ
+<ul>
+<li>Rのスクリプトは<code>.R</code>もしくは<code>.r</code>の拡張子を使う</li>
+</ul></li>
+<li>RStudioで新しいスクリプトを作成する方法
+<ul>
+<li>File → New File → RScript</li>
+</ul></li>
+</ul>
+</section>
+<section id="スクリプト-1" class="slide level2">
+<h2>スクリプト</h2>
+<ul>
+<li>二つのスクリプトを作りましょう：
+<ul>
+<li><code>practice.R</code>
+<ul>
+<li>練習用（メモ書き）</li>
+</ul></li>
+<li><code>ploidy-analysis.R</code>
+<ul>
+<li>解析用</li>
+</ul></li>
+</ul></li>
+</ul>
 </section>
 <section id="パッケージとは" class="slide level2">
 <h2>パッケージとは</h2>
@@ -715,10 +743,10 @@
 <p>Rパッケージのインストールを行うには、<code>install.packages()</code>を使う：</p>
 <div class="large">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"readxl"</span>, <span class="st">"tidyverse"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"readxl"</span>, <span class="st">"tidyverse"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<p>一回インストールしたら、次回からはしなくて良いので、<strong>これはコードとして書かない</strong></p>
+<p>一回インストールしたら、次回からはしなくて良いので、<strong>これはスクリプトに書かない</strong></p>
 </section>
 <section id="パッケージのロード" class="slide level2">
 <h2>パッケージのロード</h2>
@@ -732,7 +760,7 @@
 <p><code>library()</code>関数でロードする：</p>
 <div class="large">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -743,18 +771,18 @@
 <li><p>このコードを<code>flowcyt-analysis.R</code>として保存してください：</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">library</span>(readxl)</span>
-<span id="cb11-2"><a href=""></a></span>
-<span id="cb11-3"><a href=""></a>flow_cyt_data_raw <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
-<span id="cb11-4"><a href=""></a>  <span class="st">"data_raw/itadori_flowcyt.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">2</span></span>
-<span id="cb11-5"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a>flow_cyt_data_raw <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="st">"data_raw/itadori_flowcyt.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">2</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="データの読み込み-1" class="slide level2">
 <h2>データの読み込み</h2>
 <p><code>flow_cyt_data_raw</code>を打つと、読み込まれたデータが表示され、基本情報（列と行の数など）が表示される：</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>flow_cyt_data_raw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>flow_cyt_data_raw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 414 × 12
    通し番号 登録番号 種名    採取日 採取者 採取地    GPS   倍数性...8 トマト数値
@@ -799,11 +827,11 @@
 <h2>データを整える</h2>
 <p>以下のコードを試してください：</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="fu">select</span>(</span>
-<span id="cb14-2"><a href=""></a>  flow_cyt_data_raw,</span>
-<span id="cb14-3"><a href=""></a>  <span class="at">id_num =</span> 通し番号,</span>
-<span id="cb14-4"><a href=""></a>  <span class="at">tomato_peak =</span> トマト数値,</span>
-<span id="cb14-5"><a href=""></a>  <span class="at">sample_peak =</span> サンプル数値)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">select</span>(</span>
+<span id="cb14-2"><a href="#cb14-2"></a>  flow_cyt_data_raw,</span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="at">id_num =</span> 通し番号,</span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="at">tomato_peak =</span> トマト数値,</span>
+<span id="cb14-5"><a href="#cb14-5"></a>  <span class="at">sample_peak =</span> サンプル数値)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 414 × 3
    id_num tomato_peak sample_peak
@@ -830,17 +858,17 @@
 <section id="データのrの中での保存" class="slide level2">
 <h2>データの（Rの中での）保存</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="fu">library</span>(readxl)</span>
-<span id="cb16-2"><a href=""></a></span>
-<span id="cb16-3"><a href=""></a>flow_cyt_data_raw <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
-<span id="cb16-4"><a href=""></a>  <span class="st">"data_raw/itadori_flowcyt.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">2</span></span>
-<span id="cb16-5"><a href=""></a>)</span>
-<span id="cb16-6"><a href=""></a></span>
-<span id="cb16-7"><a href=""></a>flow_cyt_data <span class="ot">&lt;-</span> <span class="fu">select</span>(</span>
-<span id="cb16-8"><a href=""></a>  flow_cyt_data_raw,</span>
-<span id="cb16-9"><a href=""></a>  <span class="at">id_num =</span> 通し番号,</span>
-<span id="cb16-10"><a href=""></a>  <span class="at">tomato_peak =</span> トマト数値,</span>
-<span id="cb16-11"><a href=""></a>  <span class="at">sample_peak =</span> サンプル数値)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb16-2"><a href="#cb16-2"></a></span>
+<span id="cb16-3"><a href="#cb16-3"></a>flow_cyt_data_raw <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="st">"data_raw/itadori_flowcyt.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">2</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>)</span>
+<span id="cb16-6"><a href="#cb16-6"></a></span>
+<span id="cb16-7"><a href="#cb16-7"></a>flow_cyt_data <span class="ot">&lt;-</span> <span class="fu">select</span>(</span>
+<span id="cb16-8"><a href="#cb16-8"></a>  flow_cyt_data_raw,</span>
+<span id="cb16-9"><a href="#cb16-9"></a>  <span class="at">id_num =</span> 通し番号,</span>
+<span id="cb16-10"><a href="#cb16-10"></a>  <span class="at">tomato_peak =</span> トマト数値,</span>
+<span id="cb16-11"><a href="#cb16-11"></a>  <span class="at">sample_peak =</span> サンプル数値)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="データのrの中での保存-1" class="slide level2">
@@ -863,7 +891,7 @@
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">arrange</span>(flow_cyt_data, sample_peak)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">arrange</span>(flow_cyt_data, sample_peak)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 414 × 3
    id_num tomato_peak sample_peak
@@ -892,7 +920,7 @@
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">arrange</span>(flow_cyt_data, <span class="fu">desc</span>(sample_peak))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">arrange</span>(flow_cyt_data, <span class="fu">desc</span>(sample_peak))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 414 × 3
    id_num tomato_peak sample_peak
@@ -917,7 +945,7 @@
 <li><code>select(data, column)</code>で行を抜き出す</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">select</span>(flow_cyt_data, sample_peak)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">select</span>(flow_cyt_data, sample_peak)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 414 × 1
    sample_peak
@@ -945,7 +973,7 @@
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="fu">select</span>(flow_cyt_data, id_num, sample_peak)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">select</span>(flow_cyt_data, id_num, sample_peak)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 414 × 2
    id_num sample_peak
@@ -973,7 +1001,7 @@
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>flow_cyt_data<span class="sc">$</span>sample_peak</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>flow_cyt_data<span class="sc">$</span>sample_peak</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1]  6847.69  8089.15  7834.95  8093.26     0.00     0.00     0.00       NA
   [9]       NA       NA  9751.62       NA       NA       NA  8487.68       NA
@@ -1036,7 +1064,7 @@
 <li><code>filter()</code>である条件に合っている列だけに絞る</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="fu">filter</span>(flow_cyt_data, sample_peak <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">filter</span>(flow_cyt_data, sample_peak <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 199 × 3
    id_num tomato_peak sample_peak
@@ -1068,12 +1096,12 @@
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>tomato_size_pg <span class="ot">&lt;-</span> <span class="fl">1.96</span></span>
-<span id="cb29-2"><a href=""></a></span>
-<span id="cb29-3"><a href=""></a>flow_cyt_data_size <span class="ot">&lt;-</span></span>
-<span id="cb29-4"><a href=""></a>  <span class="fu">mutate</span>(</span>
-<span id="cb29-5"><a href=""></a>    flow_cyt_data,</span>
-<span id="cb29-6"><a href=""></a>    <span class="at">sample_size =</span> sample_peak <span class="sc">*</span> tomato_size_pg <span class="sc">/</span> tomato_peak)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>tomato_size_pg <span class="ot">&lt;-</span> <span class="fl">1.96</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a></span>
+<span id="cb29-3"><a href="#cb29-3"></a>flow_cyt_data_size <span class="ot">&lt;-</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb29-5"><a href="#cb29-5"></a>    flow_cyt_data,</span>
+<span id="cb29-6"><a href="#cb29-6"></a>    <span class="at">sample_size =</span> sample_peak <span class="sc">*</span> tomato_size_pg <span class="sc">/</span> tomato_peak)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -1103,8 +1131,8 @@
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="co"># 例えば、pgでなく、ng表記がいいとしたら</span></span>
-<span id="cb31-2"><a href=""></a><span class="fu">mutate</span>(flow_cyt_data_size, <span class="at">sample_size =</span> sample_size <span class="sc">*</span> <span class="fl">1e3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># 例えば、pgでなく、ng表記がいいとしたら</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="fu">mutate</span>(flow_cyt_data_size, <span class="at">sample_size =</span> sample_size <span class="sc">*</span> <span class="fl">1e3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 414 × 4
    id_num tomato_peak sample_peak sample_size
@@ -1130,8 +1158,8 @@
 <p><code>flow_cyt_data</code>から”sample_peak”と”tomato_peak”のデータを切り出して、それぞれがゼロより大きい列だけに絞って下さい</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a>sample_peak_1 <span class="ot">&lt;-</span> <span class="fu">select</span>(flow_cyt_data, sample_peak, tomato_peak)</span>
-<span id="cb33-2"><a href=""></a>sample_peak_2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(sample_peak_1, sample_peak <span class="sc">&gt;</span> <span class="dv">0</span>, tomato_peak <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>sample_peak_1 <span class="ot">&lt;-</span> <span class="fu">select</span>(flow_cyt_data, sample_peak, tomato_peak)</span>
+<span id="cb33-2"><a href="#cb33-2"></a>sample_peak_2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(sample_peak_1, sample_peak <span class="sc">&gt;</span> <span class="dv">0</span>, tomato_peak <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>でもこれは処理が多くなるとややこしくなってくる。</p>
 <p><strong>もっといい方法はある：パイプ</strong></p>
@@ -1151,9 +1179,9 @@
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a>flow_cyt_data <span class="sc">%&gt;%</span></span>
-<span id="cb34-2"><a href=""></a>  <span class="fu">select</span>(sample_peak, tomato_peak) <span class="sc">%&gt;%</span></span>
-<span id="cb34-3"><a href=""></a>  <span class="fu">filter</span>(sample_peak <span class="sc">&gt;</span> <span class="dv">0</span>, tomato_peak <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>flow_cyt_data <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a>  <span class="fu">select</span>(sample_peak, tomato_peak) <span class="sc">%&gt;%</span></span>
+<span id="cb34-3"><a href="#cb34-3"></a>  <span class="fu">filter</span>(sample_peak <span class="sc">&gt;</span> <span class="dv">0</span>, tomato_peak <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 199 × 2
    sample_peak tomato_peak
@@ -1270,14 +1298,10 @@ flow_cyt_data <-
 
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a><span class="fu">ggplot</span>(flow_cyt_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">ggplot</span>(flow_cyt_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
-<div>
-<figure>
 <p><img data-src="index_files/figure-revealjs/unnamed-chunk-25-1.png" width="960"></p>
-</figure>
-</div>
 </div>
 </div>
 </div>
@@ -1286,19 +1310,15 @@ flow_cyt_data <-
 
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="fu">ggplot</span>(</span>
-<span id="cb37-2"><a href=""></a>  flow_cyt_data,</span>
-<span id="cb37-3"><a href=""></a>  <span class="fu">aes</span>(</span>
-<span id="cb37-4"><a href=""></a>    <span class="at">x =</span> sample_peak,</span>
-<span id="cb37-5"><a href=""></a>    <span class="at">y =</span> tomato_peak)</span>
-<span id="cb37-6"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb37-2"><a href="#cb37-2"></a>  flow_cyt_data,</span>
+<span id="cb37-3"><a href="#cb37-3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb37-4"><a href="#cb37-4"></a>    <span class="at">x =</span> sample_peak,</span>
+<span id="cb37-5"><a href="#cb37-5"></a>    <span class="at">y =</span> tomato_peak)</span>
+<span id="cb37-6"><a href="#cb37-6"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
-<div>
-<figure>
 <p><img data-src="index_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></p>
-</figure>
-</div>
 </div>
 </div>
 </div>
@@ -1307,20 +1327,16 @@ flow_cyt_data <-
 
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a><span class="fu">ggplot</span>(</span>
-<span id="cb38-2"><a href=""></a>  flow_cyt_data,</span>
-<span id="cb38-3"><a href=""></a>  <span class="fu">aes</span>(</span>
-<span id="cb38-4"><a href=""></a>    <span class="at">x =</span> sample_peak,</span>
-<span id="cb38-5"><a href=""></a>    <span class="at">y =</span> tomato_peak)</span>
-<span id="cb38-6"><a href=""></a>  ) <span class="sc">+</span></span>
-<span id="cb38-7"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb38-2"><a href="#cb38-2"></a>  flow_cyt_data,</span>
+<span id="cb38-3"><a href="#cb38-3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb38-4"><a href="#cb38-4"></a>    <span class="at">x =</span> sample_peak,</span>
+<span id="cb38-5"><a href="#cb38-5"></a>    <span class="at">y =</span> tomato_peak)</span>
+<span id="cb38-6"><a href="#cb38-6"></a>  ) <span class="sc">+</span></span>
+<span id="cb38-7"><a href="#cb38-7"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
-<div>
-<figure>
 <p><img data-src="index_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
-</figure>
-</div>
 </div>
 </div>
 </div>
@@ -1339,41 +1355,64 @@ flow_cyt_data <-
 </section>
 <section id="ヒストグラムの作成" class="slide level2">
 <h2>ヒストグラムの作成</h2>
+<ul>
+<li><code>geom_histogram()</code>でヒストグラムを作る
+<ul>
+<li><code>aes()</code>は<code>x</code>だけで良い</li>
+</ul></li>
+</ul>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a><span class="fu">ggplot</span>(</span>
-<span id="cb39-2"><a href=""></a>  flow_cyt_data,</span>
-<span id="cb39-3"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> sample_size)) <span class="sc">+</span></span>
-<span id="cb39-4"><a href=""></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb39-2"><a href="#cb39-2"></a>  flow_cyt_data,</span>
+<span id="cb39-3"><a href="#cb39-3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> sample_size)) <span class="sc">+</span></span>
+<span id="cb39-4"><a href="#cb39-4"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure>
 <p><img data-src="index_files/figure-revealjs/unnamed-chunk-28-1.png" width="960"></p>
-</figure>
-</div>
 </div>
 </div>
 </div>
 </section>
 <section id="ヒストグラムの作成-1" class="slide level2">
 <h2>ヒストグラムの作成</h2>
+<ul>
+<li>ビン（箱）の数はデフォルトで30
+<ul>
+<li><code>bins</code>設定で変更可能</li>
+</ul></li>
+</ul>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a><span class="fu">ggplot</span>(</span>
-<span id="cb41-2"><a href=""></a>  flow_cyt_data,</span>
-<span id="cb41-3"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> sample_size)) <span class="sc">+</span></span>
-<span id="cb41-4"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb41-2"><a href="#cb41-2"></a>  flow_cyt_data,</span>
+<span id="cb41-3"><a href="#cb41-3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> sample_size)) <span class="sc">+</span></span>
+<span id="cb41-4"><a href="#cb41-4"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
-<div>
-<figure>
 <p><img data-src="index_files/figure-revealjs/unnamed-chunk-29-1.png" width="960"></p>
-</figure>
 </div>
+</div>
+</div>
+</section>
+<section id="ヒストグラムの作成-2" class="slide level2">
+<h2>ヒストグラムの作成</h2>
+<ul>
+<li><code>geom_rug()</code>を追加するとデータが実際にどこにあるのか、可視化する</li>
+</ul>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb42-2"><a href="#cb42-2"></a>  flow_cyt_data,</span>
+<span id="cb42-3"><a href="#cb42-3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> sample_size)) <span class="sc">+</span></span>
+<span id="cb42-4"><a href="#cb42-4"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb42-5"><a href="#cb42-5"></a>  <span class="fu">geom_rug</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-30-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -1473,28 +1512,28 @@ flow_cyt_data <-
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a><span class="fu">kmeans</span>(flow_cyt_data<span class="sc">$</span>sample_size, <span class="at">centers =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">kmeans</span>(flow_cyt_data<span class="sc">$</span>sample_size, <span class="at">centers =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>K-means clustering with 4 clusters of sizes 51, 17, 31, 100
+<pre><code>K-means clustering with 4 clusters of sizes 123, 51, 15, 10
 
 Cluster means:
       [,1]
-1 8.068650
-2 6.073266
-3 3.025890
-4 4.031496
+1 3.740816
+2 8.068650
+3 6.181352
+4 4.735706
 
 Clustering vector:
-  [1] 3 3 3 3 3 3 3 4 4 4 4 1 4 3 3 3 4 1 1 2 3 3 4 4 4 4 2 4 3 3 4 4 4 4 4 4 4
- [38] 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 1 2 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1
- [75] 4 4 4 4 4 1 1 1 1 1 4 4 1 1 1 1 1 1 4 4 1 1 4 3 4 4 4 2 4 2 2 4 3 3 3 1 3
-[112] 3 3 3 3 3 3 4 3 4 3 1 2 2 2 2 2 1 2 1 3 4 4 4 4 4 4 2 4 4 1 1 4 3 2 4 4 4
-[149] 4 2 4 4 4 2 4 4 4 4 4 4 4 4 4 1 1 4 4 4 4 4 1 1 4 1 4 4 4 4 4 4 4 4 4 1 4
-[186] 1 1 1 1 1 1 4 1 4 3 4 3 4 4
+  [1] 1 1 1 1 1 1 1 1 1 1 1 2 4 1 1 1 1 2 2 3 1 1 4 1 1 1 3 1 1 1 4 1 1 1 1 1 1
+ [38] 1 1 1 1 1 1 1 4 1 1 1 1 1 1 1 1 1 1 1 2 3 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2
+ [75] 1 1 1 1 1 2 2 2 2 2 1 1 2 2 2 2 2 2 1 4 2 2 1 1 1 1 1 3 4 3 4 1 1 1 1 2 1
+[112] 1 1 1 1 1 1 1 1 1 1 2 3 3 3 3 3 2 3 2 1 1 1 1 1 1 1 3 1 1 2 2 1 1 4 1 1 1
+[149] 1 3 1 1 1 3 1 1 1 1 1 1 1 1 1 2 2 1 1 1 1 1 2 2 1 2 1 1 1 1 1 1 1 1 1 2 1
+[186] 2 2 2 2 2 2 1 2 1 1 1 1 4 4
 
 Within cluster sum of squares by cluster:
-[1] 6.267951 3.277437 2.527355 6.592609
- (between_SS / total_SS =  97.4 %)
+[1] 26.906029  6.267951  1.783742  1.246064
+ (between_SS / total_SS =  95.1 %)
 
 Available components:
 
@@ -1522,9 +1561,9 @@ Available components:
 <p><code>runif()</code>は0-1の間のランダムな数字を返す</p>
 <div class="large">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a><span class="fu">runif</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">runif</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.05076572</code></pre>
+<pre><code>[1] 0.27603</code></pre>
 </div>
 </div>
 </div>
@@ -1535,8 +1574,8 @@ Available components:
 <p><code>set.seed()</code>は、ランダムな数字を<strong>固定させる</strong></p>
 <div class="large">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># インプットは数字であれば、なんでも良い</span></span>
-<span id="cb46-2"><a href=""></a><span class="fu">runif</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># インプットは数字であれば、なんでも良い</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a><span class="fu">runif</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2875775</code></pre>
 </div>
@@ -1551,8 +1590,8 @@ Available components:
 <section id="kmeansによる倍数性のグループ分け" class="slide level2">
 <h2>kmeansによる倍数性のグループ分け</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb48-2"><a href=""></a>size_clusters <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(flow_cyt_data<span class="sc">$</span>sample_size, <span class="at">centers =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb49-2"><a href="#cb49-2"></a>size_clusters <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(flow_cyt_data<span class="sc">$</span>sample_size, <span class="at">centers =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -1589,7 +1628,7 @@ Available components:
 <p><code>kmeans()</code>の出力は<strong>リスト</strong>となっている。</p>
 <p>リストの要素を取り出すのに、<code>$</code>を使う：</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a>size_clusters<span class="sc">$</span>centers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>size_clusters<span class="sc">$</span>centers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      [,1]
 1 6.073266
@@ -1604,16 +1643,16 @@ Available components:
 <h2>分けたグループをプロットしよう</h2>
 <p>kmeansのグループを倍数性に当てる</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href=""></a>flow_cyt_data <span class="ot">&lt;-</span></span>
-<span id="cb52-2"><a href=""></a>  flow_cyt_data <span class="sc">%&gt;%</span></span>
-<span id="cb52-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">cluster =</span> size_clusters<span class="sc">$</span>cluster) <span class="sc">%&gt;%</span></span>
-<span id="cb52-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">ploidy =</span> <span class="fu">case_when</span>(</span>
-<span id="cb52-5"><a href=""></a>    cluster <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"6x"</span>,</span>
-<span id="cb52-6"><a href=""></a>    cluster <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"8x"</span>,</span>
-<span id="cb52-7"><a href=""></a>    cluster <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"2x"</span>,</span>
-<span id="cb52-8"><a href=""></a>    cluster <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">"4x"</span></span>
-<span id="cb52-9"><a href=""></a>  )) <span class="sc">%&gt;%</span></span>
-<span id="cb52-10"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">ploidy =</span> <span class="fu">factor</span>(ploidy, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"2x"</span>, <span class="st">"4x"</span>, <span class="st">"6x"</span>, <span class="st">"8x"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>flow_cyt_data <span class="ot">&lt;-</span></span>
+<span id="cb53-2"><a href="#cb53-2"></a>  flow_cyt_data <span class="sc">%&gt;%</span></span>
+<span id="cb53-3"><a href="#cb53-3"></a>  <span class="fu">mutate</span>(<span class="at">cluster =</span> size_clusters<span class="sc">$</span>cluster) <span class="sc">%&gt;%</span></span>
+<span id="cb53-4"><a href="#cb53-4"></a>  <span class="fu">mutate</span>(<span class="at">ploidy =</span> <span class="fu">case_when</span>(</span>
+<span id="cb53-5"><a href="#cb53-5"></a>    cluster <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"6x"</span>,</span>
+<span id="cb53-6"><a href="#cb53-6"></a>    cluster <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"8x"</span>,</span>
+<span id="cb53-7"><a href="#cb53-7"></a>    cluster <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"2x"</span>,</span>
+<span id="cb53-8"><a href="#cb53-8"></a>    cluster <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">"4x"</span></span>
+<span id="cb53-9"><a href="#cb53-9"></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb53-10"><a href="#cb53-10"></a>  <span class="fu">mutate</span>(<span class="at">ploidy =</span> <span class="fu">factor</span>(ploidy, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"2x"</span>, <span class="st">"4x"</span>, <span class="st">"6x"</span>, <span class="st">"8x"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="分けたグループをプロットしよう-1" class="slide level2">
@@ -1621,18 +1660,14 @@ Available components:
 <p>まずは、ポイント（点）だけ</p>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a><span class="fu">ggplot</span>(flow_cyt_data,</span>
-<span id="cb53-2"><a href=""></a>  <span class="fu">aes</span>(</span>
-<span id="cb53-3"><a href=""></a>    <span class="at">x =</span> sample_size,</span>
-<span id="cb53-4"><a href=""></a>    <span class="at">y =</span> ploidy)) <span class="sc">+</span></span>
-<span id="cb53-5"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">ggplot</span>(flow_cyt_data,</span>
+<span id="cb54-2"><a href="#cb54-2"></a>  <span class="fu">aes</span>(</span>
+<span id="cb54-3"><a href="#cb54-3"></a>    <span class="at">x =</span> sample_size,</span>
+<span id="cb54-4"><a href="#cb54-4"></a>    <span class="at">y =</span> ploidy)) <span class="sc">+</span></span>
+<span id="cb54-5"><a href="#cb54-5"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-37-1.png" width="960"></p>
-</figure>
-</div>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-38-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -1648,18 +1683,14 @@ Available components:
 </ul>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href=""></a><span class="fu">ggplot</span>(flow_cyt_data,</span>
-<span id="cb54-2"><a href=""></a>  <span class="fu">aes</span>(</span>
-<span id="cb54-3"><a href=""></a>    <span class="at">x =</span> sample_size,</span>
-<span id="cb54-4"><a href=""></a>    <span class="at">y =</span> ploidy)) <span class="sc">+</span></span>
-<span id="cb54-5"><a href=""></a>  <span class="fu">geom_jitter</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">ggplot</span>(flow_cyt_data,</span>
+<span id="cb55-2"><a href="#cb55-2"></a>  <span class="fu">aes</span>(</span>
+<span id="cb55-3"><a href="#cb55-3"></a>    <span class="at">x =</span> sample_size,</span>
+<span id="cb55-4"><a href="#cb55-4"></a>    <span class="at">y =</span> ploidy)) <span class="sc">+</span></span>
+<span id="cb55-5"><a href="#cb55-5"></a>  <span class="fu">geom_jitter</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-38-1.png" width="960"></p>
-</figure>
-</div>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-39-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -1670,16 +1701,12 @@ Available components:
 
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a><span class="fu">ggplot</span>(flow_cyt_data,</span>
-<span id="cb55-2"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> sample_size)) <span class="sc">+</span></span>
-<span id="cb55-3"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="fu">ggplot</span>(flow_cyt_data,</span>
+<span id="cb56-2"><a href="#cb56-2"></a>  <span class="fu">aes</span>(<span class="at">x =</span> sample_size)) <span class="sc">+</span></span>
+<span id="cb56-3"><a href="#cb56-3"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-39-1.png" width="960"></p>
-</figure>
-</div>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-40-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -1689,21 +1716,17 @@ Available components:
 <p><code>geom_vline()</code>（縦線を書く関数）を使って、重点の位置をプロットしよう</p>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a><span class="fu">ggplot</span>(flow_cyt_data,</span>
-<span id="cb56-2"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> sample_size)) <span class="sc">+</span></span>
-<span id="cb56-3"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
-<span id="cb56-4"><a href=""></a>  <span class="fu">geom_vline</span>(</span>
-<span id="cb56-5"><a href=""></a>    <span class="at">data =</span> <span class="fu">as_tibble</span>(</span>
-<span id="cb56-6"><a href=""></a>      size_clusters<span class="sc">$</span>centers),</span>
-<span id="cb56-7"><a href=""></a>    <span class="fu">aes</span>(<span class="at">xintercept =</span> V1)</span>
-<span id="cb56-8"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a><span class="fu">ggplot</span>(flow_cyt_data,</span>
+<span id="cb57-2"><a href="#cb57-2"></a>  <span class="fu">aes</span>(<span class="at">x =</span> sample_size)) <span class="sc">+</span></span>
+<span id="cb57-3"><a href="#cb57-3"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb57-4"><a href="#cb57-4"></a>  <span class="fu">geom_vline</span>(</span>
+<span id="cb57-5"><a href="#cb57-5"></a>    <span class="at">data =</span> <span class="fu">as_tibble</span>(</span>
+<span id="cb57-6"><a href="#cb57-6"></a>      size_clusters<span class="sc">$</span>centers),</span>
+<span id="cb57-7"><a href="#cb57-7"></a>    <span class="fu">aes</span>(<span class="at">xintercept =</span> V1)</span>
+<span id="cb57-8"><a href="#cb57-8"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-40-1.png" width="960"></p>
-</figure>
-</div>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-41-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -1713,22 +1736,18 @@ Available components:
 <p><code>geom_rug()</code>（マージンにデータをプロットする関数）を使って、ポイントの位置を確かめよう</p>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a><span class="fu">ggplot</span>(flow_cyt_data,</span>
-<span id="cb57-2"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> sample_size)) <span class="sc">+</span></span>
-<span id="cb57-3"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
-<span id="cb57-4"><a href=""></a>  <span class="fu">geom_vline</span>(</span>
-<span id="cb57-5"><a href=""></a>    <span class="at">data =</span> <span class="fu">as_tibble</span>(</span>
-<span id="cb57-6"><a href=""></a>      size_clusters<span class="sc">$</span>centers),</span>
-<span id="cb57-7"><a href=""></a>    <span class="fu">aes</span>(<span class="at">xintercept =</span> V1)</span>
-<span id="cb57-8"><a href=""></a>  ) <span class="sc">+</span></span>
-<span id="cb57-9"><a href=""></a>  <span class="fu">geom_rug</span>(<span class="fu">aes</span>(<span class="at">color =</span> ploidy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="fu">ggplot</span>(flow_cyt_data,</span>
+<span id="cb58-2"><a href="#cb58-2"></a>  <span class="fu">aes</span>(<span class="at">x =</span> sample_size)) <span class="sc">+</span></span>
+<span id="cb58-3"><a href="#cb58-3"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb58-4"><a href="#cb58-4"></a>  <span class="fu">geom_vline</span>(</span>
+<span id="cb58-5"><a href="#cb58-5"></a>    <span class="at">data =</span> <span class="fu">as_tibble</span>(</span>
+<span id="cb58-6"><a href="#cb58-6"></a>      size_clusters<span class="sc">$</span>centers),</span>
+<span id="cb58-7"><a href="#cb58-7"></a>    <span class="fu">aes</span>(<span class="at">xintercept =</span> V1)</span>
+<span id="cb58-8"><a href="#cb58-8"></a>  ) <span class="sc">+</span></span>
+<span id="cb58-9"><a href="#cb58-9"></a>  <span class="fu">geom_rug</span>(<span class="fu">aes</span>(<span class="at">color =</span> ploidy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-41-1.png" width="960"></p>
-</figure>
-</div>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-42-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -1764,10 +1783,8 @@ Available components:
 <img data-src="images/squash.png" class="r-stretch"><div class="small">
 <p>Motsa, M.M., Bester, C., Slabbert, M.M. et al.&nbsp;Flow cytometry: a quick method to determine ploidy levels in honeybush (Cyclopia spp.). Genet Resour Crop Evol 65, 1711–1724 (2018).</p>
 </div>
-<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="https://joelnitta.github.io/gap-term-2024">https://joelnitta.github.io/gap-term-2024</a></p>
-</div>
 </div>
 </section></section>
     </div>
@@ -1796,6 +1813,7 @@ Available components:
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
+'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -2094,9 +2112,10 @@ Available components:
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      function tippyHover(el, contentFn) {
         const config = {
           allowHTML: true,
+          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -2106,17 +2125,8 @@ Available components:
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start',
+          placement: 'bottom-start'
         };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
