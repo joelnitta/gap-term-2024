@@ -49,7 +49,7 @@ options(width = 80)
 
 - スライド： <https://joelnitta.github.io/gap-term-2024>
 
-- コード： <https://github.com/joelnitta/gap-term-2023/blob/main/ploidy-analysis.R>
+- コード： <https://github.com/joelnitta/gap-term-2024/blob/main/ploidy-analysis.R>
 
 # Part I: R入門
 
@@ -71,6 +71,23 @@ options(width = 80)
 - コミュニティー
 
 ::::::
+
+## TokyoR
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- 日本で最も大きなRユーザーのコミュニティー
+- 定期的にミーテアップ
+- slackで初心者（とそれ以上）の質問に答える
+- <https://github.com/tokyor/r-wakalang>から誰も参加可能
+:::
+
+::: {.column width="50%"}
+![](images/tokyoR.png)
+:::
+
+::::
 
 ## RとRStudio 
 

@@ -435,7 +435,7 @@
 <h2>リンク</h2>
 <ul>
 <li><p>スライド： <a href="https://joelnitta.github.io/gap-term-2024" class="uri">https://joelnitta.github.io/gap-term-2024</a></p></li>
-<li><p>コード： <a href="https://github.com/joelnitta/gap-term-2023/blob/main/ploidy-analysis.R" class="uri">https://github.com/joelnitta/gap-term-2023/blob/main/ploidy-analysis.R</a></p></li>
+<li><p>コード： <a href="https://github.com/joelnitta/gap-term-2024/blob/main/ploidy-analysis.R" class="uri">https://github.com/joelnitta/gap-term-2024/blob/main/ploidy-analysis.R</a></p></li>
 </ul>
 </section>
 <section>
@@ -464,6 +464,21 @@
 <li class="fragment">広く生態学に使われている</li>
 <li class="fragment">コミュニティー</li>
 </ul>
+</div>
+</section>
+<section id="tokyor" class="slide level2">
+<h2>TokyoR</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>日本で最も大きなRユーザーのコミュニティー</li>
+<li>定期的にミーテアップ</li>
+<li>slackで初心者（とそれ以上）の質問に答える</li>
+<li><a href="https://github.com/tokyor/r-wakalang" class="uri">https://github.com/tokyor/r-wakalang</a>から誰も参加可能</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><img data-src="images/tokyoR.png"></p>
+</div>
 </div>
 </section>
 <section id="rとrstudio" class="slide level2">
@@ -1514,26 +1529,26 @@ flow_cyt_data <-
 <div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">kmeans</span>(flow_cyt_data<span class="sc">$</span>sample_size, <span class="at">centers =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>K-means clustering with 4 clusters of sizes 123, 51, 15, 10
+<pre><code>K-means clustering with 4 clusters of sizes 100, 31, 17, 51
 
 Cluster means:
       [,1]
-1 3.740816
-2 8.068650
-3 6.181352
-4 4.735706
+1 4.031496
+2 3.025890
+3 6.073266
+4 8.068650
 
 Clustering vector:
-  [1] 1 1 1 1 1 1 1 1 1 1 1 2 4 1 1 1 1 2 2 3 1 1 4 1 1 1 3 1 1 1 4 1 1 1 1 1 1
- [38] 1 1 1 1 1 1 1 4 1 1 1 1 1 1 1 1 1 1 1 2 3 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2
- [75] 1 1 1 1 1 2 2 2 2 2 1 1 2 2 2 2 2 2 1 4 2 2 1 1 1 1 1 3 4 3 4 1 1 1 1 2 1
-[112] 1 1 1 1 1 1 1 1 1 1 2 3 3 3 3 3 2 3 2 1 1 1 1 1 1 1 3 1 1 2 2 1 1 4 1 1 1
-[149] 1 3 1 1 1 3 1 1 1 1 1 1 1 1 1 2 2 1 1 1 1 1 2 2 1 2 1 1 1 1 1 1 1 1 1 2 1
-[186] 2 2 2 2 2 2 1 2 1 1 1 1 4 4
+  [1] 2 2 2 2 2 2 2 1 1 1 1 4 1 2 2 2 1 4 4 3 2 2 1 1 1 1 3 1 2 2 1 1 1 1 1 1 1
+ [38] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 4 3 4 4 4 4 4 4 4 4 4 4 3 4 4 4 4 4
+ [75] 1 1 1 1 1 4 4 4 4 4 1 1 4 4 4 4 4 4 1 1 4 4 1 2 1 1 1 3 1 3 3 1 2 2 2 4 2
+[112] 2 2 2 2 2 2 1 2 1 2 4 3 3 3 3 3 4 3 4 2 1 1 1 1 1 1 3 1 1 4 4 1 2 3 1 1 1
+[149] 1 3 1 1 1 3 1 1 1 1 1 1 1 1 1 4 4 1 1 1 1 1 4 4 1 4 1 1 1 1 1 1 1 1 1 4 1
+[186] 4 4 4 4 4 4 1 4 1 2 1 2 1 1
 
 Within cluster sum of squares by cluster:
-[1] 26.906029  6.267951  1.783742  1.246064
- (between_SS / total_SS =  95.1 %)
+[1] 6.592609 2.527355 3.277437 6.267951
+ (between_SS / total_SS =  97.4 %)
 
 Available components:
 
@@ -1563,7 +1578,7 @@ Available components:
 <div class="cell">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">runif</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.27603</code></pre>
+<pre><code>[1] 0.1813148</code></pre>
 </div>
 </div>
 </div>
